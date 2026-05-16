@@ -1032,8 +1032,6 @@ function renderFilters() {
 function applyFilters() {
     const q = STATE.searchQuery.trim().toLowerCase();
     STATE.filtered = STATE.repos.filter(r => {
-	// 💡 加上這一行：遇到 Albert-Pyahaw 大門就直接跳過不顯示
-    if (repo.name === 'Albert-Pyahaw') return false;
         if (STATE.activeCat !== 'all' && r._cat !== STATE.activeCat) return false;
         if (!q) return true;
         const hay = (r.name + ' ' + (r.description || '') + ' ' + (r.language || '') + ' ' + (r.topics || []).join(' ')).toLowerCase();

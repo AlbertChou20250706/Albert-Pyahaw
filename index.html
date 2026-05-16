@@ -1,106 +1,1201 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Albert_Pyahaw | 技術指揮中心</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* 科技感微霓虹邊框發光效果 */
-        .glow-border {
-            box-shadow: 0 0 10px rgba(6, 182, 212, 0.15);
-            transition: all 0.3s ease;
-        }
-        .glow-border:hover {
-            box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
-            transform: translateY(-2px);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Albert Pyahaw - Technical Operations Center. System Integration Engineer Portfolio.">
+<meta name="author" content="Albert Pyahaw">
+<title>ALBERT_TOC_v2.0.0 // Technical Operations Center</title>
+
+<!-- =========================================================================
+     SECTION : EXTERNAL_RESOURCES（外部資源 / がいぶしげん）
+     ========================================================================= -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+/* =========================================================================
+   SECTION : DESIGN_TOKENS（設計トークン / せっけいトークン）
+   設計師：Albert Pyahaw | 版本：v2.0.0 | 風格：工業工程美學
+   ========================================================================= */
+:root {
+    /* ---------- Background Layers / 背景レイヤー ---------- */
+    --bg-void:        #06080F;   /* 最底層 - 虛空 */
+    --bg-deep:        #0A0E1A;   /* 深層背景 */
+    --bg-base:        #0F1626;   /* 基準背景 */
+    --bg-panel:       #131B2E;   /* 面板背景 */
+    --bg-elevated:    #1A2438;   /* 浮起元件 */
+    --bg-hover:       #1F2A42;   /* hover 狀態 */
+
+    /* ---------- Border / 枠線（わくせん） ---------- */
+    --border-subtle:  rgba(148, 163, 184, 0.08);
+    --border-line:    rgba(34, 211, 238, 0.20);
+    --border-glow:    rgba(34, 211, 238, 0.40);
+    --border-grid:    rgba(34, 211, 238, 0.04);
+
+    /* ---------- Status Colors / 状態色（じょうたいしょく） ---------- */
+    --color-pass:     #10B981;   /* 緑 - PASS */
+    --color-info:     #22D3EE;   /* 青 - INFO（主色）*/
+    --color-warn:     #F59E0B;   /* 琥珀 - WARN */
+    --color-fail:     #EF4444;   /* 赤 - FAIL */
+    --color-critical: #DC2626;   /* 深赤 - CRITICAL */
+    --color-error:    #F87171;   /* 朱 - ERROR */
+    --color-accent:   #C084FC;   /* 紫 - ACCENT */
+    --color-neon:     #84FF00;   /* 螢光綠 - 終端機 */
+
+    /* ---------- Text / 文字（もじ） ---------- */
+    --text-primary:   #F1F5F9;   /* 主文字 */
+    --text-secondary: #94A3B8;   /* 次文字 */
+    --text-muted:     #64748B;   /* 弱文字 */
+    --text-mono:      #22D3EE;   /* 等寬強調 */
+
+    /* ---------- Typography / 字体（じたい） ---------- */
+    --font-mono:      'JetBrains Mono', ui-monospace, monospace;
+    --font-sans:      'Space Grotesk', system-ui, sans-serif;
+}
+
+/* =========================================================================
+   SECTION : BASE_RESET（リセット / きそリセット）
+   ========================================================================= */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    margin: 0;
+    background: var(--bg-void);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* =========================================================================
+   SECTION : BACKGROUND_GRID（グリッド背景 / グリッドはいけい）
+   工業風格網格底紋 + 雷射掃描線
+   ========================================================================= */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(var(--border-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-grid) 1px, transparent 1px);
+    background-size: 56px 56px;
+    pointer-events: none;
+    z-index: 0;
+}
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(34, 211, 238, 0.08), transparent 70%),
+        radial-gradient(ellipse 60% 50% at 100% 100%, rgba(192, 132, 252, 0.05), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* 雷射掃描線 / レーザースキャン */
+.scanline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(34, 211, 238, 0.0) 10%,
+        rgba(34, 211, 238, 0.8) 50%,
+        rgba(34, 211, 238, 0.0) 90%,
+        transparent);
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.6);
+    pointer-events: none;
+    z-index: 100;
+    animation: scan 8s linear infinite;
+}
+@keyframes scan {
+    0%   { transform: translateY(0); opacity: 0; }
+    5%   { opacity: 1; }
+    95%  { opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* =========================================================================
+   SECTION : BOOT_SEQUENCE（起動シーケンス / きどうシーケンス）
+   類似 BIOS 開機畫面
+   ========================================================================= */
+#boot-screen {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-void);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#boot-screen.done {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+.boot-inner {
+    max-width: 680px;
+    width: 100%;
+    padding: 24px;
+    color: var(--color-pass);
+    font-size: 13px;
+}
+.boot-line {
+    opacity: 0;
+    animation: bootLine 0.1s forwards;
+    margin-bottom: 2px;
+}
+.boot-ok    { color: var(--color-pass); }
+.boot-info  { color: var(--color-info); }
+.boot-warn  { color: var(--color-warn); }
+.boot-dim   { color: var(--text-muted); }
+@keyframes bootLine { to { opacity: 1; } }
+
+.cursor-blink::after {
+    content: "▊";
+    animation: blink 1s steps(1) infinite;
+    color: var(--color-pass);
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* =========================================================================
+   SECTION : HEADER（ヘッダー / 上部バー）
+   ========================================================================= */
+.toc-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10, 14, 26, 0.85);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid var(--border-line);
+}
+.led-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-pass);
+    box-shadow: 0 0 8px var(--color-pass), 0 0 16px rgba(16, 185, 129, 0.4);
+    animation: pulse-led 1.6s ease-in-out infinite;
+}
+@keyframes pulse-led {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.35; }
+}
+
+/* =========================================================================
+   SECTION : HERO_TERMINAL（ヒーロー端末 / メインターミナル）
+   ========================================================================= */
+.terminal {
+    background: linear-gradient(180deg, var(--bg-panel) 0%, var(--bg-base) 100%);
+    border: 1px solid var(--border-line);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+.terminal::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(34, 211, 238, 0.03) 50%, transparent 100%);
+    pointer-events: none;
+}
+.terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: rgba(6, 8, 15, 0.6);
+    border-bottom: 1px solid var(--border-subtle);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+}
+.term-dot { width: 11px; height: 11px; border-radius: 50%; }
+.term-dot.r { background: #ff5f56; }
+.term-dot.y { background: #ffbd2e; }
+.term-dot.g { background: #27c93f; }
+.terminal-body {
+    padding: 22px 26px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.85;
+}
+.prompt { color: var(--color-pass); }
+.cmd    { color: var(--text-primary); }
+.out    { color: var(--text-secondary); }
+
+/* 打字效果 / タイピング演出 */
+.typing {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--color-pass);
+    animation: typing 2.2s steps(40, end), blink-cursor 0.7s step-end infinite;
+}
+@keyframes typing { from { width: 0; } to { width: 100%; } }
+@keyframes blink-cursor { 50% { border-color: transparent; } }
+
+/* =========================================================================
+   SECTION : IDENTITY_CARD（個人カード / プロフィール）
+   ========================================================================= */
+.id-card {
+    background: linear-gradient(135deg, var(--bg-panel) 0%, var(--bg-elevated) 100%);
+    border: 1px solid var(--border-line);
+    border-radius: 14px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+}
+.id-card::before {
+    content: "";
+    position: absolute;
+    top: 0; right: 0;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.10), transparent 70%);
+    pointer-events: none;
+}
+.avatar-wrap {
+    position: relative;
+    width: 112px;
+    height: 112px;
+    flex-shrink: 0;
+}
+.avatar-wrap img {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-info);
+    box-shadow: 0 0 24px rgba(34, 211, 238, 0.35);
+}
+.avatar-wrap::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border: 1px dashed var(--border-glow);
+    border-radius: 50%;
+    animation: rotate 24s linear infinite;
+}
+@keyframes rotate { to { transform: rotate(360deg); } }
+
+.tech-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-secondary);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+.tech-chip:hover {
+    color: var(--color-info);
+    border-color: var(--border-glow);
+    transform: translateY(-1px);
+}
+
+/* =========================================================================
+   SECTION : SECTION_HEADER（セクション見出し / みだし）
+   ========================================================================= */
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--color-info);
+    text-transform: uppercase;
+    margin: 0;
+}
+.section-title::before {
+    content: ">";
+    color: var(--color-pass);
+}
+.section-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-glow), transparent);
+}
+
+/* =========================================================================
+   SECTION : CONTROL_PANEL（操作パネル / そうさパネル）
+   分類過濾 + 搜尋
+   ========================================================================= */
+.control-panel {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-line);
+    border-radius: 10px;
+    padding: 16px;
+}
+.search-input {
+    width: 100%;
+    background: var(--bg-void);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 10px 14px 10px 38px;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+.search-input::placeholder { color: var(--text-muted); }
+.search-input:focus {
+    border-color: var(--color-info);
+    box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.12);
+}
+.filter-btn {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 6px 12px;
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    background: var(--bg-void);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+.filter-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-glow);
+}
+.filter-btn.active {
+    background: var(--color-info);
+    color: var(--bg-void);
+    border-color: var(--color-info);
+    font-weight: 700;
+}
+.filter-count {
+    margin-left: 6px;
+    padding: 1px 6px;
+    background: rgba(0,0,0,0.25);
+    border-radius: 3px;
+    font-size: 10px;
+}
+
+/* =========================================================================
+   SECTION : RACK_CARD（仮想ラック / かそうラック）
+   每個專案 = 一個伺服器機架插槽
+   ========================================================================= */
+.rack-card {
+    position: relative;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-line);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    min-height: 220px;
+}
+.rack-card::before {
+    /* 左側機架識別條 / ラックインジケーター */
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--color-info);
+    transition: width 0.3s, box-shadow 0.3s;
+}
+.rack-card::after {
+    /* hover 時的角落裝飾 */
+    content: "";
+    position: absolute;
+    top: 0; right: 0;
+    width: 24px; height: 24px;
+    border-top: 1px solid transparent;
+    border-right: 1px solid transparent;
+    transition: all 0.3s;
+}
+.rack-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--border-glow);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 0 24px rgba(34, 211, 238, 0.15);
+}
+.rack-card:hover::before {
+    width: 5px;
+    box-shadow: 0 0 12px var(--color-info);
+}
+.rack-card:hover::after {
+    top: 8px; right: 8px;
+    border-color: var(--color-info);
+}
+
+.rack-card.cat-web::before     { background: #22D3EE; }
+.rack-card.cat-system::before  { background: #84FF00; }
+.rack-card.cat-edu::before     { background: #F59E0B; }
+.rack-card.cat-finance::before { background: #C084FC; }
+.rack-card.cat-server::before  { background: #F87171; }
+.rack-card.cat-other::before   { background: #94A3B8; }
+
+.rack-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+.rack-status.pass { background: rgba(16, 185, 129, 0.12); color: var(--color-pass); border: 1px solid rgba(16, 185, 129, 0.3); }
+.rack-status.info { background: rgba(34, 211, 238, 0.12); color: var(--color-info); border: 1px solid rgba(34, 211, 238, 0.3); }
+.rack-status.warn { background: rgba(245, 158, 11, 0.12); color: var(--color-warn); border: 1px solid rgba(245, 158, 11, 0.3); }
+.rack-status.priv { background: rgba(192, 132, 252, 0.12); color: var(--color-accent); border: 1px solid rgba(192, 132, 252, 0.3); }
+
+.rack-title {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text-primary);
+    margin: 0;
+    word-break: break-word;
+}
+.rack-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border-subtle);
+}
+.rack-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.rack-desc {
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.rack-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 8px 14px;
+    border: 1px solid var(--border-glow);
+    border-radius: 5px;
+    color: var(--color-info);
+    text-decoration: none;
+    transition: all 0.2s;
+    text-transform: uppercase;
+}
+.rack-link:hover {
+    background: var(--color-info);
+    color: var(--bg-void);
+    box-shadow: 0 0 16px rgba(34, 211, 238, 0.5);
+}
+
+/* =========================================================================
+   SECTION : STAT_BLOCK（統計ブロック / とうけい）
+   ========================================================================= */
+.stat-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-line);
+    border-radius: 8px;
+    padding: 14px 16px;
+}
+.stat-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+.stat-value {
+    font-family: var(--font-mono);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--color-info);
+    line-height: 1.1;
+    margin-top: 4px;
+}
+
+/* =========================================================================
+   SECTION : LOADING_STATE（ローディング / 読み込み中）
+   ========================================================================= */
+.skeleton {
+    background: linear-gradient(90deg, var(--bg-panel) 0%, var(--bg-elevated) 50%, var(--bg-panel) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s ease-in-out infinite;
+    border-radius: 8px;
+}
+@keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* =========================================================================
+   SECTION : FOOTER（フッター / 下部バー）
+   ========================================================================= */
+.toc-footer {
+    border-top: 1px solid var(--border-subtle);
+    background: rgba(6, 8, 15, 0.6);
+    padding: 22px 24px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+}
+
+/* =========================================================================
+   SECTION : RESPONSIVE（レスポンシブ / 適応設計）
+   ========================================================================= */
+@media (max-width: 640px) {
+    .id-card { padding: 22px; }
+    .terminal-body { padding: 16px 18px; font-size: 12px; }
+    .stat-value { font-size: 20px; }
+}
+
+/* 可訪問性 / アクセシビリティ */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+    .scanline { display: none; }
+}
+
+/* =========================================================================
+   SECTION : UTILITY（ユーティリティ）
+   ========================================================================= */
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 36px 0 20px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.18em;
+}
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border-subtle);
+}
+</style>
 </head>
-<body class="bg-[#0b0f19] text-slate-200 font-sans min-h-screen flex flex-col justify-between">
 
-    <header class="border-b border-cyan-500/20 bg-[#0f1626]/80 backdrop-blur sticky top-0 z-50 px-6 py-4">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <span class="w-3 h-3 bg-cyan-400 rounded-full animate-pulse"></span>
-                <h1 class="text-xl font-mono font-bold tracking-wider text-cyan-400">ALBERT_TOC_v1.0.0</h1>
-            </div>
-            <span class="text-xs font-mono text-slate-400">SYS_STATUS: ONLINE</span>
+<body>
+
+<!-- =========================================================================
+     SECTION : BOOT_SEQUENCE_SCREEN（起動画面 / きどうがめん）
+     模擬 BIOS / 系統開機畫面 - 提升「儀式感」與「物件感」
+     ========================================================================= -->
+<div id="boot-screen">
+    <div class="boot-inner">
+        <pre class="boot-ok" style="font-size:10px;line-height:1.2;margin:0 0 16px;">
+   ▄▄▄       ██▓     ▄▄▄▄    ▓█████  ██▀███  ▄▄▄█████▓
+  ▒████▄    ▓██▒    ▓█████▄  ▓█   ▀ ▓██ ▒ ██▒▓  ██▒ ▓▒
+  ▒██  ▀█▄  ▒██░    ▒██▒ ▄██ ▒███   ▓██ ░▄█ ▒▒ ▓██░ ▒░
+  ░██▄▄▄▄██ ▒██░    ▒██░█▀   ▒▓█  ▄ ▒██▀▀█▄  ░ ▓██▓ ░
+   ▓█   ▓██▒░██████▒░▓█  ▀█▓ ░▒████▒░██▓ ▒██▒  ▒██▒ ░
+                T E C H N I C A L   O P S   C E N T E R
+        </pre>
+        <div id="boot-lines"></div>
+        <div class="boot-line cursor-blink" style="animation-delay:3.0s;">&nbsp;</div>
+    </div>
+</div>
+
+<!-- 雷射掃描線 / レーザースキャンライン -->
+<div class="scanline"></div>
+
+<!-- =========================================================================
+     SECTION : HEADER（上部ヘッダー）
+     系統頂部狀態列：版本、即時時間、系統燈
+     ========================================================================= -->
+<header class="toc-header">
+    <div class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between flex-wrap gap-2" style="position:relative;z-index:1;">
+        <div class="flex items-center gap-3">
+            <span class="led-dot"></span>
+            <span style="font-family:var(--font-mono);font-weight:700;font-size:14px;color:var(--color-info);letter-spacing:0.05em;">
+                ALBERT_TOC_v2.0.0
+            </span>
+            <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-muted);letter-spacing:0.1em;" class="hidden md:inline">
+                // TECHNICAL_OPERATIONS_CENTER
+            </span>
         </div>
-    </header>
+        <div class="flex items-center gap-4" style="font-family:var(--font-mono);font-size:11px;color:var(--text-muted);">
+            <span><span style="color:var(--color-pass);">●</span> SYS_OK</span>
+            <span class="hidden sm:inline" id="clock">--:--:--</span>
+            <span class="hidden md:inline" id="date">----/--/--</span>
+        </div>
+    </div>
+</header>
 
-    <main class="max-w-4xl mx-auto px-6 py-12 flex-grow w-full">
-        
-        <section class="bg-[#131b2e] border border-cyan-500/20 rounded-xl p-6 md:p-8 mb-12 glow-border">
-            <div class="flex flex-col md:flex-row items-center md:space-x-8">
-                <div class="w-24 h-24 rounded-full border-2 border-cyan-400 overflow-hidden mb-4 md:mb-0 flex-shrink-0">
-                    <img src="https://github.com/AlbertChou20250706.png" alt="Albert_Pyahaw">
+<!-- =========================================================================
+     SECTION : MAIN_CONTENT（メインコンテンツ）
+     ========================================================================= -->
+<main class="max-w-6xl mx-auto px-5 py-10" style="position:relative;z-index:1;">
+
+    <!-- ===== Hero Terminal Block ===== -->
+    <section class="mb-10">
+        <div class="terminal">
+            <div class="terminal-bar">
+                <span class="term-dot r"></span>
+                <span class="term-dot y"></span>
+                <span class="term-dot g"></span>
+                <span class="ml-2">~/albert@toc-center: /portfolio/init.sh</span>
+            </div>
+            <div class="terminal-body">
+                <div><span class="prompt">albert@toc</span><span class="out">:</span><span style="color:var(--color-info);">~$</span>
+                    <span class="cmd">./run_portfolio.sh --mode=production --style=albert</span></div>
+                <div class="out" style="color:var(--text-muted);">[OK] Loading identity module ...</div>
+                <div class="out" style="color:var(--text-muted);">[OK] Fetching repositories from github.com/AlbertChou20250706 ...</div>
+                <div class="out" style="color:var(--text-muted);">[OK] Building category matrix ...</div>
+                <div class="out" style="color:var(--color-pass);">[PASS] Welcome to Albert's Technical Operations Center.</div>
+                <div style="margin-top:6px;"><span class="prompt">albert@toc</span><span class="out">:</span><span style="color:var(--color-info);">~$</span> <span class="cursor-blink"></span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Identity Card ===== -->
+    <section class="mb-10">
+        <div class="id-card">
+            <div class="flex flex-col md:flex-row md:items-center gap-6">
+                <div class="avatar-wrap mx-auto md:mx-0">
+                    <img src="https://github.com/AlbertChou20250706.png" alt="Albert_Pyahaw" loading="lazy"
+                         onerror="this.style.background='var(--bg-elevated)';this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23131b2e\'/%3E%3Ctext x=\'50\' y=\'58\' text-anchor=\'middle\' font-family=\'monospace\' font-size=\'42\' fill=\'%2322d3ee\' font-weight=\'700\'%3EA%3C/text%3E%3C/svg%3E';">
                 </div>
-                <div class="text-center md:text-left">
-                    <h2 class="text-2xl font-bold text-white tracking-wide">Albert_Pyahaw</h2>
-                    <p class="text-cyan-400 font-mono text-sm mt-1">System Integration Engineer / Technical Developer</p>
-                    <p class="text-slate-400 text-sm mt-3 leading-relaxed">
-                        專注於企業級伺服器架構部署、系統整合測試與自動化運維工具開發。堅持標準化架構與嚴謹的版本控制，打造高穩定性的技術解決方案。
+                <div class="flex-1 text-center md:text-left">
+                    <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-pass);letter-spacing:0.15em;">
+                        // OPERATOR_PROFILE
+                    </div>
+                    <h2 style="font-size:30px;font-weight:700;color:var(--text-primary);margin:6px 0 4px;letter-spacing:-0.01em;">
+                        Albert Pyahaw
+                    </h2>
+                    <p style="font-family:var(--font-mono);font-size:13px;color:var(--color-info);margin:0 0 12px;">
+                        System Integration Engineer / Technical Developer
                     </p>
-                    <div class="mt-4 flex flex-wrap justify-center md:justify-start gap-2 text-xs font-mono">
-                        <span class="bg-[#1e293b] px-2 py-1 rounded border border-slate-700 text-slate-300">Python</span>
-                        <span class="bg-[#1e293b] px-2 py-1 rounded border border-slate-700 text-slate-300">Shell Scripting</span>
-                        <span class="bg-[#1e293b] px-2 py-1 rounded border border-slate-700 text-slate-300">Windows Server 2022</span>
-                        <span class="bg-[#1e293b] px-2 py-1 rounded border border-slate-700 text-slate-300">RHEL</span>
+                    <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.7;margin:0 0 16px;max-width:640px;">
+                        專注於企業級伺服器架構部署、系統整合測試（SIT）、自動化運維工具開發。
+                        堅持<span style="color:var(--text-primary);">標準化架構</span>與<span style="color:var(--text-primary);">嚴謹版本控制</span>，
+                        在 RHEL／Windows Server 2022 與多硬體平台上交付穩定可維護的技術解決方案。
+                    </p>
+                    <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                        <span class="tech-chip">Python</span>
+                        <span class="tech-chip">PowerShell</span>
+                        <span class="tech-chip">Shell / Bash</span>
+                        <span class="tech-chip">Windows Server 2022</span>
+                        <span class="tech-chip">RHEL / Linux</span>
+                        <span class="tech-chip">PyQt6</span>
+                        <span class="tech-chip">HTML / CSS / JS</span>
+                        <span class="tech-chip">PXE / DHCP / TFTP</span>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="mb-12">
-            <h3 class="text-lg font-mono font-bold text-cyan-400 mb-6 flex items-center">
-                <span class="mr-2">⚡</span> CORE_PROJECT_MATRIX
-            </h3>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
-                <div class="bg-[#131b2e] border border-cyan-500/20 rounded-xl p-5 flex flex-col justify-between glow-border">
-                    <div>
-                        <div class="flex justify-between items-start">
-                            <h4 class="text-white font-bold text-lg">Coffee Dashboard</h4>
-                            <span class="text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded">● Stable v3.0</span>
-                        </div>
-                        <p class="text-slate-400 text-xs mt-2 leading-relaxed">
-                            專為資料整合設計的優化科技深色風格儀表板，支援橫向基本參數表格、ZIP 打包下載功能 (含 Excel/CSV) 與多國語言切換。
-                        </p>
-                    </div>
-                    <div class="mt-6">
-                        <a href="https://albertchou20250706.github.io/coffee-dashboard/" target="_blank" class="w-full block text-center font-mono text-xs text-cyan-400 border border-cyan-400/30 hover:bg-cyan-400/10 py-2 rounded transition tracking-wider">
-                            進入子網路系統 ↗
-                        </a>
-                    </div>
-                </div>
+    <!-- ===== Stats Row ===== -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
+        <div class="stat-card">
+            <div class="stat-label">// Repos</div>
+            <div class="stat-value" id="stat-total">—</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">// Languages</div>
+            <div class="stat-value" id="stat-langs">—</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">// Categories</div>
+            <div class="stat-value" id="stat-cats">—</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">// Updated</div>
+            <div class="stat-value" id="stat-updated" style="font-size:14px;line-height:1.4;padding-top:6px;">—</div>
+        </div>
+    </section>
 
-                <div class="bg-[#131b2e] border border-cyan-500/20 rounded-xl p-5 flex flex-col justify-between glow-border">
-                    <div>
-                        <div class="flex justify-between items-start">
-                            <h4 class="text-white font-bold text-lg">RX4770M8 Dashboard</h4>
-                            <span class="text-[10px] font-mono bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded">● Online</span>
-                        </div>
-                        <p class="text-slate-400 text-xs mt-2 leading-relaxed">
-                            RX4770M8-T50-2 測試狀態專屬監控儀表板，用於即時掌控伺服器環境組態與系統測試進度。
-                        </p>
-                    </div>
-                    <div class="mt-6">
-                        <a href="https://albertchou20250706.github.io/rx4770m8-dashboard/" target="_blank" class="w-full block text-center font-mono text-xs text-cyan-400 border border-cyan-400/30 hover:bg-cyan-400/10 py-2 rounded transition tracking-wider">
-                            進入子網路系統 ↗
-                        </a>
-                    </div>
-                </div>
+    <!-- ===== Section Title : Projects ===== -->
+    <h3 class="section-title mb-5">
+        CORE_PROJECT_MATRIX
+    </h3>
 
+    <!-- ===== Control Panel : Search + Filter ===== -->
+    <section class="control-panel mb-6">
+        <div class="flex flex-col md:flex-row gap-3 md:items-center">
+            <div style="position:relative;flex:1;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                     style="position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--text-muted);">
+                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                </svg>
+                <input type="text" id="search-input" class="search-input" placeholder="search projects... (e.g. PXE, GUI, dashboard)">
             </div>
-        </section>
+            <button id="refresh-btn" class="filter-btn" style="padding:10px 16px;" title="重新從 GitHub 拉取資料">
+                <span id="refresh-icon">⟳</span> RELOAD
+            </button>
+        </div>
+        <div id="filter-bar" class="flex flex-wrap gap-2 mt-3">
+            <!-- 分類按鈕由 JS 動態產生 / カテゴリーボタンは JS で動的に生成 -->
+        </div>
+    </section>
 
-    </main>
+    <!-- ===== Projects Grid ===== -->
+    <section id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+        <!-- 卡片由 JS 動態渲染 / カードは JS が動的にレンダリング -->
+    </section>
 
-    <footer class="border-t border-slate-800 bg-[#0d111c] px-6 py-4 text-center font-mono text-xs text-slate-500">
-        <p>© 2026 Albert_Pyahaw. All rights reserved. Designed in Albert Style.</p>
-    </footer>
+    <!-- ===== Empty / Error State ===== -->
+    <div id="empty-state" class="hidden text-center py-12">
+        <div style="font-family:var(--font-mono);font-size:13px;color:var(--text-muted);">
+            <div style="color:var(--color-warn);font-size:16px;margin-bottom:6px;">[WARN] No matching projects found.</div>
+            <div>嘗試清除搜尋字串或切換到 ALL 分類。</div>
+        </div>
+    </div>
+
+    <!-- ===== Divider ===== -->
+    <div class="divider">// END_OF_MATRIX</div>
+
+    <!-- ===== Changelog / Version Notes ===== -->
+    <section class="mb-10">
+        <h3 class="section-title mb-5">VERSION_HISTORY</h3>
+        <div class="terminal">
+            <div class="terminal-bar">
+                <span class="term-dot r"></span>
+                <span class="term-dot y"></span>
+                <span class="term-dot g"></span>
+                <span class="ml-2">CHANGELOG.md</span>
+            </div>
+            <div class="terminal-body" style="font-size:12.5px;">
+                <div style="color:var(--color-info);">## [v2.0.0] - 2026-05-16 — Designed by Albert Pyahaw</div>
+                <div class="out" style="margin-left:14px;">+ [NEW] GitHub API 自動拉取 repos（未來新增專案無需改 code）</div>
+                <div class="out" style="margin-left:14px;">+ [NEW] 智慧分類系統（Web / System / Edu / Finance / Server / Other）</div>
+                <div class="out" style="margin-left:14px;">+ [NEW] 即時搜尋過濾、雷射掃描線、BIOS 啟動畫面</div>
+                <div class="out" style="margin-left:14px;">+ [NEW] 即時時鐘、統計儀表、終端機 Hero Banner</div>
+                <div class="out" style="margin-left:14px;">+ [NEW] 完全相對路徑、純靜態、可離線檢視快取</div>
+                <div class="out" style="margin-left:14px;">+ [OPT] 響應式（手機／平板／桌機），鍵盤可訪問</div>
+                <div style="margin-top:8px;color:var(--text-muted);">## [v1.0.0] - 2025-12-31 — Initial Release</div>
+                <div class="out" style="margin-left:14px;color:var(--text-muted);">+ [INIT] 靜態雙專案卡（Coffee Dashboard / RX4770M8）</div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- =========================================================================
+     SECTION : FOOTER（フッター）
+     ========================================================================= -->
+<footer class="toc-footer">
+    <div>© 2026 Albert_Pyahaw · Technical Operations Center v2.0.0 · Designed in Albert Style</div>
+    <div style="margin-top:6px;color:var(--text-muted);font-size:10px;">
+        // BUILT_WITH: HTML5 + TailwindCSS + GitHub_REST_API · ZERO_DEPENDENCY_DEPLOY
+    </div>
+</footer>
+
+<!-- =========================================================================
+     SECTION : MAIN_SCRIPT（メインスクリプト / メインJS）
+     設計師：Albert Pyahaw | 版本：v2.0.0
+     注意事項（ちゅういじこう）：
+     - 所有 UI 文字使用英文（避免亂碼問題 / もじばけ かいひ）
+     - 註解使用日文 + 中文（含讀音）便於團隊維護
+     - 完全相對路徑、無需後端、純前端架構
+     ========================================================================= -->
+<script>
+'use strict';
+
+// =========================================================================
+// SECTION : USER_CONFIG（ユーザー設定 / ユーザーせってい）
+// 使用者可在此修改參數（カスタマイズ可能パラメーター）
+// =========================================================================
+const CONFIG = {
+    GITHUB_USER:    'AlbertChou20250706',          // GitHub 帳號 / アカウント名
+    PER_PAGE:       100,                            // 每頁拉取數量 / ページごとの件数
+    CACHE_KEY:      'albert_toc_cache_v2',         // 快取金鑰 / キャッシュキー
+    CACHE_TTL_MIN:  15,                             // 快取存活分鐘 / キャッシュ有効分
+    SORT_BY:        'updated',                      // 排序方式 / そーとほうしき: updated | stars | name
+    SHOW_FORKS:     false,                          // 是否顯示 fork / フォーク表示
+    SHOW_ARCHIVED:  true,                           // 是否顯示封存 / アーカイブ表示
+    BOOT_DURATION:  2800,                           // 開機畫面毫秒 / きどうがめん ms
+};
+
+// =========================================================================
+// SECTION : CATEGORY_RULES（分類ルール / ぶんるいルール）
+// 自動分類規則 - 依關鍵字判斷專案類別（じどうぶんるい）
+// =========================================================================
+const CATEGORY_RULES = [
+    { id: 'web',     label: 'WEB / DASHBOARD',    keywords: ['dashboard', 'web', 'html', 'site', 'page', 'coffee', 'rx4770'] },
+    { id: 'system',  label: 'SYSTEM / AUTOMATION', keywords: ['cstate', 'logger', 'gym', 'miniav', 'launcher', 'qt'] },
+    { id: 'server',  label: 'SERVER / NETWORK',   keywords: ['pxe', 'tftp', 'dhcp', 'dctcp', 'server', 'netpair'] },
+    { id: 'edu',     label: 'EDUCATION',          keywords: ['toeic', 'study', 'tracker', 'learn', 'english', 'teach'] },
+    { id: 'finance', label: 'FINANCE / DATA',     keywords: ['stock', 'market', 'finance', 'world'] },
+    { id: 'other',   label: 'OTHERS',             keywords: [] },
+];
+
+// =========================================================================
+// SECTION : STATE（状態 / じょうたい）
+// =========================================================================
+const STATE = {
+    repos:        [],   // 全部 repo 資料
+    filtered:     [],   // 過濾後資料
+    activeCat:    'all',
+    searchQuery:  '',
+};
+
+// =========================================================================
+// SECTION : UTIL（ユーティリティ / ゆーてぃりてぃ）
+// =========================================================================
+const $  = (sel) => document.querySelector(sel);
+const $$ = (sel) => document.querySelectorAll(sel);
+
+function escapeHTML(str) {
+    if (!str) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function timeAgo(iso) {
+    const d = new Date(iso);
+    const diff = (Date.now() - d.getTime()) / 1000;
+    if (diff < 60)        return `${Math.floor(diff)}s ago`;
+    if (diff < 3600)      return `${Math.floor(diff/60)}m ago`;
+    if (diff < 86400)     return `${Math.floor(diff/3600)}h ago`;
+    if (diff < 86400*30)  return `${Math.floor(diff/86400)}d ago`;
+    if (diff < 86400*365) return `${Math.floor(diff/86400/30)}mo ago`;
+    return `${Math.floor(diff/86400/365)}y ago`;
+}
+
+function classifyRepo(repo) {
+    const text = ((repo.name || '') + ' ' +
+                  (repo.description || '') + ' ' +
+                  (repo.topics || []).join(' ')).toLowerCase();
+    for (const rule of CATEGORY_RULES) {
+        if (rule.id === 'other') continue;
+        if (rule.keywords.some(kw => text.includes(kw))) return rule.id;
+    }
+    return 'other';
+}
+
+// =========================================================================
+// SECTION : BOOT_SEQUENCE（起動シーケンス / きどう）
+// 模擬 BIOS 開機動畫
+// =========================================================================
+function runBootSequence() {
+    const lines = [
+        { txt: '[BIOS] Albert TOC v2.0.0 ... initializing', cls: 'boot-dim', delay: 100 },
+        { txt: '[OK]   Memory test ........................ PASS', cls: 'boot-ok',   delay: 350 },
+        { txt: '[OK]   Network adapter .................... ONLINE', cls: 'boot-ok',   delay: 600 },
+        { txt: '[OK]   GitHub API endpoint reachable',           cls: 'boot-ok',   delay: 900 },
+        { txt: '[INFO] Loading repository matrix ...',           cls: 'boot-info', delay: 1200 },
+        { txt: '[INFO] Mounting category index ...',             cls: 'boot-info', delay: 1500 },
+        { txt: '[INFO] Activating UI module: Albert_Style',      cls: 'boot-info', delay: 1800 },
+        { txt: '[OK]   All systems operational',                 cls: 'boot-ok',   delay: 2100 },
+        { txt: '> System ready. Welcome, Operator.',             cls: 'boot-ok',   delay: 2400 },
+    ];
+    const target = $('#boot-lines');
+    if (!target) return;
+    lines.forEach((line) => {
+        const div = document.createElement('div');
+        div.className = `boot-line ${line.cls}`;
+        div.style.animationDelay = `${line.delay}ms`;
+        div.textContent = line.txt;
+        target.appendChild(div);
+    });
+    setTimeout(() => {
+        $('#boot-screen')?.classList.add('done');
+    }, CONFIG.BOOT_DURATION);
+}
+
+// =========================================================================
+// SECTION : CLOCK（時計 / とけい）
+// 即時時鐘 + 日期
+// =========================================================================
+function updateClock() {
+    const now = new Date();
+    const pad = (n) => String(n).padStart(2, '0');
+    const clk = $('#clock');
+    const dt  = $('#date');
+    if (clk) clk.textContent = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+    if (dt)  dt.textContent  = `${now.getFullYear()}/${pad(now.getMonth()+1)}/${pad(now.getDate())}`;
+}
+
+// =========================================================================
+// SECTION : CACHE（キャッシュ / きゃっしゅ）
+// 本地快取 - 減少 GitHub API 呼叫
+// =========================================================================
+function loadCache() {
+    try {
+        const raw = localStorage.getItem(CONFIG.CACHE_KEY);
+        if (!raw) return null;
+        const obj = JSON.parse(raw);
+        const ageMin = (Date.now() - obj.ts) / 60000;
+        if (ageMin > CONFIG.CACHE_TTL_MIN) return null;
+        return obj.data;
+    } catch (e) { return null; }
+}
+function saveCache(data) {
+    try {
+        localStorage.setItem(CONFIG.CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
+    } catch (e) { /* 容量不足忽略 / よぶん むし */ }
+}
+
+// =========================================================================
+// SECTION : FETCH_REPOS（リポジトリ取得 / しゅとく）
+// GitHub REST API 拉取所有 public repository
+// =========================================================================
+async function fetchRepos(force = false) {
+    if (!force) {
+        const cached = loadCache();
+        if (cached && cached.length) return cached;
+    }
+    const url = `https://api.github.com/users/${CONFIG.GITHUB_USER}/repos?per_page=${CONFIG.PER_PAGE}&sort=${CONFIG.SORT_BY}&direction=desc`;
+    const res = await fetch(url, { headers: { 'Accept': 'application/vnd.github+json' } });
+    if (!res.ok) throw new Error(`GitHub API error: HTTP ${res.status}`);
+    const data = await res.json();
+    saveCache(data);
+    return data;
+}
+
+// =========================================================================
+// SECTION : RENDER_FILTERS（フィルター描画 / びょうが）
+// =========================================================================
+function renderFilters() {
+    const bar = $('#filter-bar');
+    if (!bar) return;
+
+    // ALL 按鈕 / すべてボタン
+    const counts = { all: STATE.repos.length };
+    CATEGORY_RULES.forEach(r => { counts[r.id] = STATE.repos.filter(x => x._cat === r.id).length; });
+
+    const buttons = [
+        { id: 'all', label: 'ALL', count: counts.all },
+        ...CATEGORY_RULES.map(r => ({ id: r.id, label: r.label, count: counts[r.id] })),
+    ];
+
+    bar.innerHTML = buttons
+        .filter(b => b.count > 0 || b.id === 'all')
+        .map(b => `
+            <button class="filter-btn ${STATE.activeCat === b.id ? 'active' : ''}" data-cat="${b.id}">
+                ${b.label}<span class="filter-count">${b.count}</span>
+            </button>
+        `).join('');
+
+    bar.querySelectorAll('button[data-cat]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            STATE.activeCat = btn.dataset.cat;
+            renderFilters();
+            applyFilters();
+        });
+    });
+}
+
+// =========================================================================
+// SECTION : APPLY_FILTERS（フィルター適用 / てきよう）
+// =========================================================================
+function applyFilters() {
+    const q = STATE.searchQuery.trim().toLowerCase();
+    STATE.filtered = STATE.repos.filter(r => {
+        if (STATE.activeCat !== 'all' && r._cat !== STATE.activeCat) return false;
+        if (!q) return true;
+        const hay = (r.name + ' ' + (r.description || '') + ' ' + (r.language || '') + ' ' + (r.topics || []).join(' ')).toLowerCase();
+        return hay.includes(q);
+    });
+    renderGrid();
+}
+
+// =========================================================================
+// SECTION : RENDER_GRID（グリッド描画 / グリッドびょうが）
+// 渲染專案卡片
+// =========================================================================
+function renderGrid() {
+    const grid  = $('#project-grid');
+    const empty = $('#empty-state');
+    if (!grid) return;
+
+    if (!STATE.filtered.length) {
+        grid.innerHTML = '';
+        empty.classList.remove('hidden');
+        return;
+    }
+    empty.classList.add('hidden');
+
+    grid.innerHTML = STATE.filtered.map(repo => {
+        const isPriv     = repo.private;
+        const isArchived = repo.archived;
+        const statusCls  = isPriv ? 'priv' : (isArchived ? 'warn' : (repo.stargazers_count > 0 ? 'pass' : 'info'));
+        const statusTxt  = isPriv ? '● PRIVATE' : (isArchived ? '● ARCHIVED' : (repo.stargazers_count > 0 ? `● ★ ${repo.stargazers_count}` : '● ONLINE'));
+        const desc       = repo.description || '— No description provided. —';
+        const lang       = repo.language || 'N/A';
+        const updated    = timeAgo(repo.updated_at);
+        const link       = repo.has_pages
+            ? `https://${CONFIG.GITHUB_USER.toLowerCase()}.github.io/${repo.name.toLowerCase()}/`
+            : repo.html_url;
+        const linkLabel  = repo.has_pages ? 'OPEN DEMO ↗' : 'VIEW REPO ↗';
+
+        return `
+        <article class="rack-card cat-${repo._cat}">
+            <div class="flex justify-between items-start gap-2">
+                <h4 class="rack-title">${escapeHTML(repo.name)}</h4>
+                <span class="rack-status ${statusCls}">${statusTxt}</span>
+            </div>
+            <p class="rack-desc">${escapeHTML(desc)}</p>
+            <div class="rack-meta">
+                <span>◆ ${escapeHTML(lang)}</span>
+                <span>⌖ ${updated}</span>
+                ${repo.forks_count > 0 ? `<span>⑂ ${repo.forks_count}</span>` : ''}
+            </div>
+            <a class="rack-link" href="${escapeHTML(link)}" target="_blank" rel="noopener noreferrer">
+                ${linkLabel}
+            </a>
+        </article>`;
+    }).join('');
+}
+
+// =========================================================================
+// SECTION : RENDER_STATS（統計描画 / とうけい）
+// =========================================================================
+function renderStats() {
+    $('#stat-total').textContent = STATE.repos.length;
+    const langs = new Set(STATE.repos.map(r => r.language).filter(Boolean));
+    $('#stat-langs').textContent = langs.size;
+    const cats = new Set(STATE.repos.map(r => r._cat));
+    $('#stat-cats').textContent = cats.size;
+    const latest = STATE.repos.reduce((a, b) => new Date(a.updated_at) > new Date(b.updated_at) ? a : b, STATE.repos[0]);
+    $('#stat-updated').textContent = latest ? timeAgo(latest.updated_at) : '—';
+}
+
+// =========================================================================
+// SECTION : SHOW_ERROR（エラー表示 / エラーひょうじ）
+// =========================================================================
+function showError(msg) {
+    const grid = $('#project-grid');
+    grid.innerHTML = `
+        <div class="col-span-full text-center py-8" style="font-family:var(--font-mono);font-size:13px;">
+            <div style="color:var(--color-fail);font-size:15px;margin-bottom:8px;">[FAIL] ${escapeHTML(msg)}</div>
+            <div style="color:var(--text-muted);">GitHub API rate limit 為 60 req/hr，請稍候再試 or 開啟快取資料。</div>
+            <button class="filter-btn mt-3" onclick="bootstrap(true)">⟳ RETRY</button>
+        </div>`;
+}
+
+// =========================================================================
+// SECTION : BOOTSTRAP（ブートストラップ / きどうしょり）
+// 主程式進入點
+// =========================================================================
+async function bootstrap(force = false) {
+    const grid = $('#project-grid');
+    grid.innerHTML = Array.from({ length: 6 }, () =>
+        `<div class="skeleton" style="height:220px;"></div>`).join('');
+
+    try {
+        let data = await fetchRepos(force);
+        // 過濾規則 / フィルタールール
+        data = data.filter(r => CONFIG.SHOW_FORKS    || !r.fork);
+        data = data.filter(r => CONFIG.SHOW_ARCHIVED || !r.archived);
+        // 加上分類標籤 / カテゴリータグ
+        data.forEach(r => { r._cat = classifyRepo(r); });
+        STATE.repos = data;
+        STATE.filtered = data;
+        renderStats();
+        renderFilters();
+        applyFilters();
+    } catch (e) {
+        console.error(e);
+        showError(e.message || 'Failed to load repositories.');
+    }
+}
+
+// =========================================================================
+// SECTION : EVENT_BINDING（イベント紐付け / バインディング）
+// =========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    // 啟動序列 / きどうシーケンス
+    runBootSequence();
+
+    // 時鐘 / とけい
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // 搜尋 / けんさく
+    const searchInput = $('#search-input');
+    if (searchInput) {
+        let t;
+        searchInput.addEventListener('input', (e) => {
+            clearTimeout(t);
+            t = setTimeout(() => {
+                STATE.searchQuery = e.target.value;
+                applyFilters();
+            }, 200);
+        });
+    }
+
+    // 重新整理 / さいよみこみ
+    const refreshBtn = $('#refresh-btn');
+    if (refreshBtn) {
+        refreshBtn.addEventListener('click', () => {
+            const icon = $('#refresh-icon');
+            if (icon) icon.style.animation = 'rotate 0.8s linear';
+            localStorage.removeItem(CONFIG.CACHE_KEY);
+            bootstrap(true).then(() => {
+                setTimeout(() => { if (icon) icon.style.animation = ''; }, 800);
+            });
+        });
+    }
+
+    // 鍵盤快捷鍵 / キーボードショートカット
+    document.addEventListener('keydown', (e) => {
+        if (e.key === '/' && document.activeElement !== searchInput) {
+            e.preventDefault();
+            searchInput?.focus();
+        }
+        if (e.key === 'Escape' && document.activeElement === searchInput) {
+            searchInput.value = '';
+            STATE.searchQuery = '';
+            applyFilters();
+            searchInput.blur();
+        }
+    });
+
+    // 主程式 / メインプログラム
+    bootstrap(false);
+});
+</script>
 
 </body>
 </html>

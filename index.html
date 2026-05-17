@@ -1,63 +1,119 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Albert Pyahaw - Technical Operations Center. System Integration Engineer Portfolio.">
+<meta name="description" content="Albert Pyahaw - Technical Operations Center. System Integration Engineer Portfolio & Commercial Tools.">
 <meta name="author" content="Albert Pyahaw">
-<title>ALBERT_TOC_v2.0.0 // Technical Operations Center</title>
+<title>ALBERT_TOC_v2.2.0 // Technical Operations Center</title>
 
 <!-- =========================================================================
      SECTION : EXTERNAL_RESOURCES（外部資源 / がいぶしげん）
      ========================================================================= -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+JC:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
 /* =========================================================================
    SECTION : DESIGN_TOKENS（設計トークン / せっけいトークン）
-   設計師：Albert Pyahaw | 版本：v2.0.0 | 風格：工業工程美學
+   設計師：Albert Pyahaw | 版本：v2.2.0
+   主題系統：dark（既定）/ neutral / light
    ========================================================================= */
-:root {
-    /* ---------- Background Layers / 背景レイヤー ---------- */
-    --bg-void:        #06080F;   /* 最底層 - 虛空 */
-    --bg-deep:        #0A0E1A;   /* 深層背景 */
-    --bg-base:        #0F1626;   /* 基準背景 */
-    --bg-panel:       #131B2E;   /* 面板背景 */
-    --bg-elevated:    #1A2438;   /* 浮起元件 */
-    --bg-hover:       #1F2A42;   /* hover 狀態 */
 
-    /* ---------- Border / 枠線（わくせん） ---------- */
+/* ---------- DARK THEME（暗主題 / あんしゅだい） ---------- */
+[data-theme="dark"] {
+    --bg-void:        #06080F;
+    --bg-deep:        #0A0E1A;
+    --bg-base:        #0F1626;
+    --bg-panel:       #131B2E;
+    --bg-elevated:    #1A2438;
+    --bg-hover:       #1F2A42;
     --border-subtle:  rgba(148, 163, 184, 0.08);
     --border-line:    rgba(34, 211, 238, 0.20);
     --border-glow:    rgba(34, 211, 238, 0.40);
     --border-grid:    rgba(34, 211, 238, 0.04);
-
-    /* ---------- Status Colors / 状態色（じょうたいしょく） ---------- */
-    --color-pass:     #10B981;   /* 緑 - PASS */
-    --color-info:     #22D3EE;   /* 青 - INFO（主色）*/
-    --color-warn:     #F59E0B;   /* 琥珀 - WARN */
-    --color-fail:     #EF4444;   /* 赤 - FAIL */
-    --color-critical: #DC2626;   /* 深赤 - CRITICAL */
-    --color-error:    #F87171;   /* 朱 - ERROR */
-    --color-accent:   #C084FC;   /* 紫 - ACCENT */
-    --color-neon:     #84FF00;   /* 螢光綠 - 終端機 */
-
-    /* ---------- Text / 文字（もじ） ---------- */
-    --text-primary:   #F1F5F9;   /* 主文字 */
-    --text-secondary: #94A3B8;   /* 次文字 */
-    --text-muted:     #64748B;   /* 弱文字 */
-    --text-mono:      #22D3EE;   /* 等寬強調 */
-
-    /* ---------- Typography / 字体（じたい） ---------- */
-    --font-mono:      'JetBrains Mono', ui-monospace, monospace;
-    --font-sans:      'Space Grotesk', system-ui, sans-serif;
+    --text-primary:   #F1F5F9;
+    --text-secondary: #94A3B8;
+    --text-muted:     #64748B;
+    --color-info:     #22D3EE;
+    --color-pass:     #10B981;
+    --color-warn:     #F59E0B;
+    --color-fail:     #EF4444;
+    --color-critical: #DC2626;
+    --color-error:    #F87171;
+    --color-accent:   #C084FC;
+    --color-neon:     #84FF00;
+    --shadow-card:    0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-glow:    0 0 24px rgba(34, 211, 238, 0.15);
 }
 
+/* ---------- NEUTRAL THEME（中性色 / ちゅうせいしょく） ---------- */
+[data-theme="neutral"] {
+    --bg-void:        #262626;
+    --bg-deep:        #2E2E2E;
+    --bg-base:        #353535;
+    --bg-panel:       #3C3C3C;
+    --bg-elevated:    #454545;
+    --bg-hover:       #505050;
+    --border-subtle:  rgba(255, 255, 255, 0.08);
+    --border-line:    rgba(191, 191, 191, 0.35);
+    --border-glow:    rgba(255, 215, 100, 0.50);
+    --border-grid:    rgba(255, 255, 255, 0.03);
+    --text-primary:   #F5F5F5;
+    --text-secondary: #BFBFBF;
+    --text-muted:     #909090;
+    --color-info:     #FFD166;
+    --color-pass:     #06D6A0;
+    --color-warn:     #FFA94D;
+    --color-fail:     #EF476F;
+    --color-critical: #D62246;
+    --color-error:    #FF6B6B;
+    --color-accent:   #B79CED;
+    --color-neon:     #D4F600;
+    --shadow-card:    0 8px 32px rgba(0, 0, 0, 0.5);
+    --shadow-glow:    0 0 24px rgba(255, 209, 102, 0.18);
+}
+
+/* ---------- LIGHT THEME（淺色 / うすいろ） ---------- */
+[data-theme="light"] {
+    --bg-void:        #E6E6E6;
+    --bg-deep:        #DCDCDC;
+    --bg-base:        #ECECEC;
+    --bg-panel:       #F4F4F4;
+    --bg-elevated:    #FFFFFF;
+    --bg-hover:       #FAFAFA;
+    --border-subtle:  rgba(0, 0, 0, 0.08);
+    --border-line:    rgba(14, 116, 144, 0.30);
+    --border-glow:    rgba(14, 116, 144, 0.55);
+    --border-grid:    rgba(0, 0, 0, 0.04);
+    --text-primary:   #1A1A1A;
+    --text-secondary: #4A5560;
+    --text-muted:     #6B7280;
+    --color-info:     #0E7490;
+    --color-pass:     #047857;
+    --color-warn:     #B45309;
+    --color-fail:     #B91C1C;
+    --color-critical: #991B1B;
+    --color-error:    #DC2626;
+    --color-accent:   #7C3AED;
+    --color-neon:     #4D7C0F;
+    --shadow-card:    0 4px 16px rgba(0, 0, 0, 0.08);
+    --shadow-glow:    0 0 20px rgba(14, 116, 144, 0.18);
+}
+
+:root {
+    --font-mono:   'JetBrains Mono', ui-monospace, monospace;
+    --font-sans:   'Space Grotesk', 'Noto Sans TC', 'Noto Sans SC', 'Noto Sans JC', system-ui, sans-serif;
+}
+html[lang="zh-TW"] body { font-family: 'Space Grotesk', 'Noto Sans TC', sans-serif; }
+html[lang="zh-CN"] body { font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif; }
+html[lang="ja"]    body { font-family: 'Space Grotesk', 'Noto Sans JC', sans-serif; }
+html[lang="en"]    body { font-family: 'Space Grotesk', sans-serif; }
+
 /* =========================================================================
-   SECTION : BASE_RESET（リセット / きそリセット）
+   SECTION : BASE_RESET（リセット）
    ========================================================================= */
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -71,11 +127,11 @@ body {
     overflow-x: hidden;
     min-height: 100vh;
     position: relative;
+    transition: background 0.4s ease, color 0.4s ease;
 }
 
 /* =========================================================================
-   SECTION : BACKGROUND_GRID（グリッド背景 / グリッドはいけい）
-   工業風格網格底紋 + 雷射掃描線
+   SECTION : BACKGROUND_GRID（グリッド背景）
    ========================================================================= */
 body::before {
     content: "";
@@ -93,13 +149,13 @@ body::after {
     position: fixed;
     inset: 0;
     background:
-        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(34, 211, 238, 0.08), transparent 70%),
-        radial-gradient(ellipse 60% 50% at 100% 100%, rgba(192, 132, 252, 0.05), transparent 70%);
+        radial-gradient(ellipse 80% 60% at 50% 0%, var(--bg-elevated), transparent 70%),
+        radial-gradient(ellipse 60% 50% at 100% 100%, var(--bg-panel), transparent 70%);
+    opacity: 0.35;
     pointer-events: none;
     z-index: 0;
 }
 
-/* 雷射掃描線 / レーザースキャン */
 .scanline {
     position: fixed;
     top: 0;
@@ -108,25 +164,23 @@ body::after {
     height: 2px;
     background: linear-gradient(90deg,
         transparent,
-        rgba(34, 211, 238, 0.0) 10%,
-        rgba(34, 211, 238, 0.8) 50%,
-        rgba(34, 211, 238, 0.0) 90%,
+        var(--color-info) 50%,
         transparent);
-    box-shadow: 0 0 20px rgba(34, 211, 238, 0.6);
+    box-shadow: 0 0 20px var(--color-info);
+    opacity: 0.7;
     pointer-events: none;
     z-index: 100;
     animation: scan 8s linear infinite;
 }
 @keyframes scan {
     0%   { transform: translateY(0); opacity: 0; }
-    5%   { opacity: 1; }
-    95%  { opacity: 1; }
+    5%   { opacity: 0.7; }
+    95%  { opacity: 0.7; }
     100% { transform: translateY(100vh); opacity: 0; }
 }
 
 /* =========================================================================
-   SECTION : BOOT_SEQUENCE（起動シーケンス / きどうシーケンス）
-   類似 BIOS 開機畫面
+   SECTION : BOOT_SEQUENCE（起動シーケンス）
    ========================================================================= */
 #boot-screen {
     position: fixed;
@@ -139,44 +193,26 @@ body::after {
     font-family: var(--font-mono);
     transition: opacity 0.6s ease, visibility 0.6s ease;
 }
-#boot-screen.done {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-.boot-inner {
-    max-width: 680px;
-    width: 100%;
-    padding: 24px;
-    color: var(--color-pass);
-    font-size: 13px;
-}
-.boot-line {
-    opacity: 0;
-    animation: bootLine 0.1s forwards;
-    margin-bottom: 2px;
-}
+#boot-screen.done { opacity: 0; visibility: hidden; pointer-events: none; }
+.boot-inner { max-width: 680px; width: 100%; padding: 24px; color: var(--color-pass); font-size: 13px; }
+.boot-line { opacity: 0; animation: bootLine 0.1s forwards; margin-bottom: 2px; }
 .boot-ok    { color: var(--color-pass); }
 .boot-info  { color: var(--color-info); }
 .boot-warn  { color: var(--color-warn); }
 .boot-dim   { color: var(--text-muted); }
 @keyframes bootLine { to { opacity: 1; } }
 
-.cursor-blink::after {
-    content: "▊";
-    animation: blink 1s steps(1) infinite;
-    color: var(--color-pass);
-}
+.cursor-blink::after { content: "▊"; animation: blink 1s steps(1) infinite; color: var(--color-pass); }
 @keyframes blink { 50% { opacity: 0; } }
 
 /* =========================================================================
-   SECTION : HEADER（ヘッダー / 上部バー）
+   SECTION : HEADER（ヘッダー）
    ========================================================================= */
 .toc-header {
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(10, 14, 26, 0.85);
+    background: color-mix(in srgb, var(--bg-deep) 85%, transparent);
     backdrop-filter: blur(14px) saturate(140%);
     -webkit-backdrop-filter: blur(14px) saturate(140%);
     border-bottom: 1px solid var(--border-line);
@@ -186,16 +222,32 @@ body::after {
     height: 8px;
     border-radius: 50%;
     background: var(--color-pass);
-    box-shadow: 0 0 8px var(--color-pass), 0 0 16px rgba(16, 185, 129, 0.4);
+    box-shadow: 0 0 8px var(--color-pass);
     animation: pulse-led 1.6s ease-in-out infinite;
 }
-@keyframes pulse-led {
-    0%, 100% { opacity: 1; }
-    50%      { opacity: 0.35; }
+@keyframes pulse-led { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+/* 主題與語言切換 / テーマと げんごの きりかえ */
+.toolbar-btn {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 5px 10px;
+    background: var(--bg-elevated);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
 }
+.toolbar-btn:hover { color: var(--color-info); border-color: var(--border-glow); }
+.toolbar-btn.active { background: var(--color-info); color: var(--bg-void); border-color: var(--color-info); }
+.toolbar-group { display: inline-flex; gap: 4px; padding: 3px; background: var(--bg-void); border: 1px solid var(--border-subtle); border-radius: 6px; }
 
 /* =========================================================================
-   SECTION : HERO_TERMINAL（ヒーロー端末 / メインターミナル）
+   SECTION : TERMINAL（ターミナル）
    ========================================================================= */
 .terminal {
     background: linear-gradient(180deg, var(--bg-panel) 0%, var(--bg-base) 100%);
@@ -204,51 +256,25 @@ body::after {
     overflow: hidden;
     position: relative;
 }
-.terminal::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, transparent 0%, rgba(34, 211, 238, 0.03) 50%, transparent 100%);
-    pointer-events: none;
-}
 .terminal-bar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    display: flex; align-items: center; gap: 8px;
     padding: 10px 14px;
-    background: rgba(6, 8, 15, 0.6);
+    background: color-mix(in srgb, var(--bg-void) 60%, transparent);
     border-bottom: 1px solid var(--border-subtle);
-    font-family: var(--font-mono);
-    font-size: 11px;
+    font-family: var(--font-mono); font-size: 11px;
     color: var(--text-muted);
 }
 .term-dot { width: 11px; height: 11px; border-radius: 50%; }
 .term-dot.r { background: #ff5f56; }
 .term-dot.y { background: #ffbd2e; }
 .term-dot.g { background: #27c93f; }
-.terminal-body {
-    padding: 22px 26px;
-    font-family: var(--font-mono);
-    font-size: 13px;
-    line-height: 1.85;
-}
+.terminal-body { padding: 22px 26px; font-family: var(--font-mono); font-size: 13px; line-height: 1.85; }
 .prompt { color: var(--color-pass); }
 .cmd    { color: var(--text-primary); }
 .out    { color: var(--text-secondary); }
 
-/* 打字效果 / タイピング演出 */
-.typing {
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 2px solid var(--color-pass);
-    animation: typing 2.2s steps(40, end), blink-cursor 0.7s step-end infinite;
-}
-@keyframes typing { from { width: 0; } to { width: 100%; } }
-@keyframes blink-cursor { 50% { border-color: transparent; } }
-
 /* =========================================================================
-   SECTION : IDENTITY_CARD（個人カード / プロフィール）
+   SECTION : IDENTITY_CARD（プロフィール）
    ========================================================================= */
 .id-card {
     background: linear-gradient(135deg, var(--bg-panel) 0%, var(--bg-elevated) 100%);
@@ -263,21 +289,17 @@ body::after {
     position: absolute;
     top: 0; right: 0;
     width: 200px; height: 200px;
-    background: radial-gradient(circle, rgba(34, 211, 238, 0.10), transparent 70%);
+    background: radial-gradient(circle, var(--bg-elevated), transparent 70%);
     pointer-events: none;
+    opacity: 0.6;
 }
-.avatar-wrap {
-    position: relative;
-    width: 112px;
-    height: 112px;
-    flex-shrink: 0;
-}
+.avatar-wrap { position: relative; width: 112px; height: 112px; flex-shrink: 0; }
 .avatar-wrap img {
     width: 100%; height: 100%;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid var(--color-info);
-    box-shadow: 0 0 24px rgba(34, 211, 238, 0.35);
+    box-shadow: 0 0 24px var(--bg-elevated);
 }
 .avatar-wrap::after {
     content: "";
@@ -290,60 +312,35 @@ body::after {
 @keyframes rotate { to { transform: rotate(360deg); } }
 
 .tech-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
+    display: inline-flex; align-items: center; gap: 4px;
     padding: 4px 10px;
-    font-family: var(--font-mono);
-    font-size: 11px;
+    font-family: var(--font-mono); font-size: 11px;
     color: var(--text-secondary);
     background: var(--bg-elevated);
     border: 1px solid var(--border-subtle);
     border-radius: 4px;
     transition: all 0.2s;
 }
-.tech-chip:hover {
-    color: var(--color-info);
-    border-color: var(--border-glow);
-    transform: translateY(-1px);
-}
+.tech-chip:hover { color: var(--color-info); border-color: var(--border-glow); transform: translateY(-1px); }
 
 /* =========================================================================
-   SECTION : SECTION_HEADER（セクション見出し / みだし）
+   SECTION : SECTION_TITLE（見出し）
    ========================================================================= */
 .section-title {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    font-family: var(--font-mono);
-    font-size: 13px;
-    font-weight: 700;
+    display: flex; align-items: center; gap: 14px;
+    font-family: var(--font-mono); font-size: 13px; font-weight: 700;
     letter-spacing: 0.12em;
     color: var(--color-info);
     text-transform: uppercase;
     margin: 0;
 }
-.section-title::before {
-    content: ">";
-    color: var(--color-pass);
-}
-.section-title::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--border-glow), transparent);
-}
+.section-title::before { content: ">"; color: var(--color-pass); }
+.section-title::after  { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border-glow), transparent); }
 
 /* =========================================================================
-   SECTION : CONTROL_PANEL（操作パネル / そうさパネル）
-   分類過濾 + 搜尋
+   SECTION : CONTROL_PANEL（操作パネル）
    ========================================================================= */
-.control-panel {
-    background: var(--bg-panel);
-    border: 1px solid var(--border-line);
-    border-radius: 10px;
-    padding: 16px;
-}
+.control-panel { background: var(--bg-panel); border: 1px solid var(--border-line); border-radius: 10px; padding: 16px; }
 .search-input {
     width: 100%;
     background: var(--bg-void);
@@ -351,20 +348,14 @@ body::after {
     border-radius: 6px;
     padding: 10px 14px 10px 38px;
     color: var(--text-primary);
-    font-family: var(--font-mono);
-    font-size: 13px;
+    font-family: var(--font-mono); font-size: 13px;
     outline: none;
     transition: border 0.2s, box-shadow 0.2s;
 }
 .search-input::placeholder { color: var(--text-muted); }
-.search-input:focus {
-    border-color: var(--color-info);
-    box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.12);
-}
+.search-input:focus { border-color: var(--color-info); box-shadow: 0 0 0 3px var(--bg-elevated); }
 .filter-btn {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 500;
+    font-family: var(--font-mono); font-size: 11px; font-weight: 500;
     letter-spacing: 0.05em;
     padding: 6px 12px;
     border: 1px solid var(--border-subtle);
@@ -375,27 +366,12 @@ body::after {
     transition: all 0.2s;
     white-space: nowrap;
 }
-.filter-btn:hover {
-    color: var(--text-primary);
-    border-color: var(--border-glow);
-}
-.filter-btn.active {
-    background: var(--color-info);
-    color: var(--bg-void);
-    border-color: var(--color-info);
-    font-weight: 700;
-}
-.filter-count {
-    margin-left: 6px;
-    padding: 1px 6px;
-    background: rgba(0,0,0,0.25);
-    border-radius: 3px;
-    font-size: 10px;
-}
+.filter-btn:hover { color: var(--text-primary); border-color: var(--border-glow); }
+.filter-btn.active { background: var(--color-info); color: var(--bg-void); border-color: var(--color-info); font-weight: 700; }
+.filter-count { margin-left: 6px; padding: 1px 6px; background: color-mix(in srgb, var(--bg-void) 50%, transparent); border-radius: 3px; font-size: 10px; }
 
 /* =========================================================================
-   SECTION : RACK_CARD（仮想ラック / かそうラック）
-   每個專案 = 一個伺服器機架插槽
+   SECTION : RACK_CARD（仮想ラック）
    ========================================================================= */
 .rack-card {
     position: relative;
@@ -403,15 +379,12 @@ body::after {
     border: 1px solid var(--border-line);
     border-radius: 10px;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    display: flex; flex-direction: column; gap: 12px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
     min-height: 220px;
 }
 .rack-card::before {
-    /* 左側機架識別條 / ラックインジケーター */
     content: "";
     position: absolute;
     left: 0; top: 0; bottom: 0;
@@ -420,7 +393,6 @@ body::after {
     transition: width 0.3s, box-shadow 0.3s;
 }
 .rack-card::after {
-    /* hover 時的角落裝飾 */
     content: "";
     position: absolute;
     top: 0; right: 0;
@@ -429,87 +401,36 @@ body::after {
     border-right: 1px solid transparent;
     transition: all 0.3s;
 }
-.rack-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--border-glow);
-    box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.4),
-        0 0 24px rgba(34, 211, 238, 0.15);
-}
-.rack-card:hover::before {
-    width: 5px;
-    box-shadow: 0 0 12px var(--color-info);
-}
-.rack-card:hover::after {
-    top: 8px; right: 8px;
-    border-color: var(--color-info);
-}
-
-.rack-card.cat-web::before     { background: #22D3EE; }
-.rack-card.cat-system::before  { background: #84FF00; }
-.rack-card.cat-edu::before     { background: #F59E0B; }
-.rack-card.cat-finance::before { background: #C084FC; }
-.rack-card.cat-server::before  { background: #F87171; }
-.rack-card.cat-other::before   { background: #94A3B8; }
+.rack-card:hover { transform: translateY(-3px); border-color: var(--border-glow); box-shadow: var(--shadow-card), var(--shadow-glow); }
+.rack-card:hover::before { width: 5px; box-shadow: 0 0 12px var(--color-info); }
+.rack-card:hover::after { top: 8px; right: 8px; border-color: var(--color-info); }
+.rack-card.cat-web::before     { background: var(--color-info); }
+.rack-card.cat-system::before  { background: var(--color-neon); }
+.rack-card.cat-edu::before     { background: var(--color-warn); }
+.rack-card.cat-finance::before { background: var(--color-accent); }
+.rack-card.cat-server::before  { background: var(--color-error); }
+.rack-card.cat-other::before   { background: var(--text-muted); }
 
 .rack-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    font-weight: 600;
+    display: inline-flex; align-items: center; gap: 5px;
+    font-family: var(--font-mono); font-size: 10px; font-weight: 600;
     letter-spacing: 0.08em;
     padding: 3px 8px;
     border-radius: 3px;
     text-transform: uppercase;
 }
-.rack-status.pass { background: rgba(16, 185, 129, 0.12); color: var(--color-pass); border: 1px solid rgba(16, 185, 129, 0.3); }
-.rack-status.info { background: rgba(34, 211, 238, 0.12); color: var(--color-info); border: 1px solid rgba(34, 211, 238, 0.3); }
-.rack-status.warn { background: rgba(245, 158, 11, 0.12); color: var(--color-warn); border: 1px solid rgba(245, 158, 11, 0.3); }
-.rack-status.priv { background: rgba(192, 132, 252, 0.12); color: var(--color-accent); border: 1px solid rgba(192, 132, 252, 0.3); }
+.rack-status.pass { background: color-mix(in srgb, var(--color-pass) 12%, transparent); color: var(--color-pass); border: 1px solid color-mix(in srgb, var(--color-pass) 30%, transparent); }
+.rack-status.info { background: color-mix(in srgb, var(--color-info) 12%, transparent); color: var(--color-info); border: 1px solid color-mix(in srgb, var(--color-info) 30%, transparent); }
+.rack-status.warn { background: color-mix(in srgb, var(--color-warn) 12%, transparent); color: var(--color-warn); border: 1px solid color-mix(in srgb, var(--color-warn) 30%, transparent); }
+.rack-status.priv { background: color-mix(in srgb, var(--color-accent) 12%, transparent); color: var(--color-accent); border: 1px solid color-mix(in srgb, var(--color-accent) 30%, transparent); }
 
-.rack-title {
-    font-family: var(--font-mono);
-    font-weight: 700;
-    font-size: 16px;
-    color: var(--text-primary);
-    margin: 0;
-    word-break: break-word;
-}
-.rack-meta {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text-muted);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: auto;
-    padding-top: 12px;
-    border-top: 1px dashed var(--border-subtle);
-}
-.rack-meta span {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-}
-.rack-desc {
-    font-size: 12.5px;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
+.rack-title { font-family: var(--font-mono); font-weight: 700; font-size: 16px; color: var(--text-primary); margin: 0; word-break: break-word; }
+.rack-meta { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 12px; border-top: 1px dashed var(--border-subtle); }
+.rack-meta span { display: inline-flex; align-items: center; gap: 4px; }
+.rack-desc { font-size: 12.5px; color: var(--text-secondary); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .rack-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    font-family: var(--font-mono);
-    font-size: 11.5px;
-    font-weight: 600;
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    font-family: var(--font-mono); font-size: 11.5px; font-weight: 600;
     letter-spacing: 0.08em;
     padding: 8px 14px;
     border: 1px solid var(--border-glow);
@@ -519,57 +440,336 @@ body::after {
     transition: all 0.2s;
     text-transform: uppercase;
 }
-.rack-link:hover {
-    background: var(--color-info);
+.rack-link:hover { background: var(--color-info); color: var(--bg-void); box-shadow: 0 0 16px var(--bg-elevated); }
+
+/* =========================================================================
+   SECTION : STAT_CARDS（統計）
+   ========================================================================= */
+.stat-card { background: var(--bg-panel); border: 1px solid var(--border-line); border-radius: 8px; padding: 14px 16px; }
+.stat-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; color: var(--text-muted); text-transform: uppercase; }
+.stat-value { font-family: var(--font-mono); font-size: 26px; font-weight: 700; color: var(--color-info); line-height: 1.1; margin-top: 4px; }
+
+/* =========================================================================
+   SECTION : PINNED_CARDS（招牌專案 / かんばんプロジェクト）
+   v2.2.0 NEW
+   ========================================================================= */
+.pinned-card {
+    position: relative;
+    background: linear-gradient(135deg, var(--bg-panel) 0%, var(--bg-elevated) 100%);
+    border: 1px solid var(--border-glow);
+    border-radius: 12px;
+    padding: 22px;
+    display: flex; flex-direction: column; gap: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    min-height: 280px;
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-warn) 25%, transparent), var(--shadow-card);
+}
+.pinned-card::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--color-warn), var(--color-info));
+    box-shadow: 0 0 12px var(--color-warn);
+}
+.pinned-card::after {
+    content: "";
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 140px; height: 140px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--color-warn) 18%, transparent), transparent 70%);
+    pointer-events: none;
+}
+.pinned-card:hover { transform: translateY(-4px); box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-warn) 60%, transparent), var(--shadow-card), 0 0 30px color-mix(in srgb, var(--color-warn) 25%, transparent); }
+.pinned-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 3px 8px;
+    background: var(--color-warn);
     color: var(--bg-void);
-    box-shadow: 0 0 16px rgba(34, 211, 238, 0.5);
+    border-radius: 3px;
+    text-transform: uppercase;
+    align-self: flex-start;
+    box-shadow: 0 0 12px color-mix(in srgb, var(--color-warn) 50%, transparent);
+}
+.pinned-readme-preview {
+    background: var(--bg-void);
+    border: 1px dashed var(--border-subtle);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    min-height: 48px;
+    max-height: 96px;
+    overflow: hidden;
+    position: relative;
+}
+.readme-hint { color: var(--text-muted); font-style: italic; }
+.readme-text { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* =========================================================================
+   SECTION : CONTRIBUTION_GRAPH（貢獻熱力圖 / こうけんねつりょくず）
+   v2.2.0 NEW
+   ========================================================================= */
+.contrib-wrap {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-line);
+    border-radius: 10px;
+    padding: 20px;
+    overflow-x: auto;
+}
+.contrib-wrap img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    border-radius: 6px;
+    filter: drop-shadow(0 0 8px color-mix(in srgb, var(--color-info) 20%, transparent));
+}
+.contrib-meta {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 /* =========================================================================
-   SECTION : STAT_BLOCK（統計ブロック / とうけい）
+   SECTION : PREMIUM_TOOLS（商業工具區 / プレミアムツール）
+   v2.2.0 NEW
    ========================================================================= */
-.stat-card {
+.premium-card {
+    position: relative;
+    background: linear-gradient(135deg, var(--bg-panel) 0%, var(--bg-elevated) 100%);
+    border: 1px solid var(--border-line);
+    border-radius: 12px;
+    padding: 22px;
+    display: flex; flex-direction: column; gap: 14px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    min-height: 320px;
+}
+.premium-card::before {
+    /* 頂部閃光條 */
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-info), var(--color-accent), transparent);
+    opacity: 0.6;
+}
+.premium-card::after {
+    /* 右上角裝飾 */
+    content: "";
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 120px; height: 120px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--color-info) 18%, transparent), transparent 70%);
+    pointer-events: none;
+}
+.premium-card:hover { transform: translateY(-4px); border-color: var(--border-glow); box-shadow: var(--shadow-card), var(--shadow-glow); }
+.premium-card.tier-pro::before        { background: linear-gradient(90deg, transparent, var(--color-info), var(--color-pass), transparent); }
+.premium-card.tier-enterprise::before { background: linear-gradient(90deg, transparent, var(--color-accent), var(--color-error), transparent); }
+.premium-card.tier-free::before       { background: linear-gradient(90deg, transparent, var(--color-pass), var(--color-neon), transparent); }
+
+.premium-tier {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    align-self: flex-start;
+}
+.premium-tier.pro        { background: color-mix(in srgb, var(--color-info) 15%, transparent); color: var(--color-info); border: 1px solid color-mix(in srgb, var(--color-info) 40%, transparent); }
+.premium-tier.enterprise { background: color-mix(in srgb, var(--color-accent) 15%, transparent); color: var(--color-accent); border: 1px solid color-mix(in srgb, var(--color-accent) 40%, transparent); }
+.premium-tier.free       { background: color-mix(in srgb, var(--color-pass) 15%, transparent); color: var(--color-pass); border: 1px solid color-mix(in srgb, var(--color-pass) 40%, transparent); }
+
+.premium-icon {
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--bg-void);
+    border: 1px solid var(--border-line);
+    border-radius: 8px;
+    color: var(--color-info);
+    flex-shrink: 0;
+}
+.premium-title { font-family: var(--font-mono); font-size: 18px; font-weight: 700; color: var(--text-primary); margin: 0; line-height: 1.2; }
+.premium-pain { font-size: 11.5px; color: var(--text-muted); font-style: italic; margin: 0; padding: 6px 0; border-left: 2px solid var(--color-fail); padding-left: 10px; }
+.premium-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+.premium-feature-list { list-style: none; margin: 0; padding: 0; font-size: 12px; color: var(--text-secondary); }
+.premium-feature-list li { padding: 3px 0; padding-left: 16px; position: relative; }
+.premium-feature-list li::before { content: "✓"; position: absolute; left: 0; color: var(--color-pass); font-weight: 700; }
+
+.premium-price-row {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 10px 0;
+    border-top: 1px dashed var(--border-subtle);
+    margin-top: auto;
+}
+.premium-price { font-family: var(--font-mono); font-size: 22px; font-weight: 700; color: var(--color-pass); line-height: 1; }
+.premium-price-unit { font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); }
+.premium-cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    font-family: var(--font-mono); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.premium-cta.primary {
+    background: var(--color-info);
+    color: var(--bg-void);
+    border: 1px solid var(--color-info);
+}
+.premium-cta.primary:hover { box-shadow: 0 0 18px var(--color-info); transform: translateY(-1px); }
+.premium-cta.outline {
+    background: transparent;
+    color: var(--color-info);
+    border: 1px solid var(--border-glow);
+}
+.premium-cta.outline:hover { background: var(--color-info); color: var(--bg-void); }
+.premium-cta.disabled { opacity: 0.5; pointer-events: none; }
+
+/* =========================================================================
+   SECTION : CONTACT（聯絡我區 / コンタクト）
+   v2.2.0 NEW
+   ========================================================================= */
+.contact-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+@media (min-width: 768px) { .contact-grid { grid-template-columns: 1.4fr 1fr; } }
+
+.contact-hero {
+    background: linear-gradient(135deg, var(--bg-panel) 0%, var(--bg-elevated) 100%);
+    border: 1px solid var(--border-line);
+    border-radius: 14px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+}
+.contact-hero::before {
+    content: "";
+    position: absolute;
+    top: 0; right: 0;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--color-info) 12%, transparent), transparent 65%);
+    pointer-events: none;
+}
+.contact-hero h4 {
+    font-family: var(--font-mono);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 8px 0 4px;
+    line-height: 1.2;
+}
+.contact-cta-primary {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 13px; font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 14px 24px;
+    background: var(--color-info);
+    color: var(--bg-void);
+    border: 1px solid var(--color-info);
+    border-radius: 8px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.25s;
+    margin-top: 16px;
+    position: relative;
+    z-index: 1;
+}
+.contact-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px var(--bg-elevated), 0 0 24px var(--color-info); }
+.contact-cta-primary svg { transition: transform 0.2s; }
+.contact-cta-primary:hover svg { transform: translateX(3px); }
+
+.contact-channels { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.contact-channel {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 16px;
     background: var(--bg-panel);
     border: 1px solid var(--border-line);
     border-radius: 8px;
-    padding: 14px 16px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.2s;
 }
-.stat-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    color: var(--text-muted);
-    text-transform: uppercase;
-}
-.stat-value {
-    font-family: var(--font-mono);
-    font-size: 26px;
-    font-weight: 700;
+.contact-channel:hover { transform: translateX(3px); border-color: var(--border-glow); }
+.contact-channel-icon {
+    width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--bg-void);
+    border: 1px solid var(--border-line);
+    border-radius: 6px;
     color: var(--color-info);
-    line-height: 1.1;
-    margin-top: 4px;
+    flex-shrink: 0;
 }
+.contact-channel-meta { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; }
+.contact-channel-value { font-family: var(--font-mono); font-size: 12.5px; color: var(--text-primary); margin-top: 2px; word-break: break-all; }
+.contact-channel-arrow { color: var(--text-muted); transition: color 0.2s, transform 0.2s; }
+.contact-channel:hover .contact-channel-arrow { color: var(--color-info); transform: translateX(3px); }
 
 /* =========================================================================
-   SECTION : LOADING_STATE（ローディング / 読み込み中）
+   SECTION : LIVE_ACTIVITY_LOG（動態日誌 / ライブログ）
+   v2.2.0 NEW - 模擬全球部署日誌
    ========================================================================= */
-.skeleton {
-    background: linear-gradient(90deg, var(--bg-panel) 0%, var(--bg-elevated) 50%, var(--bg-panel) 100%);
-    background-size: 200% 100%;
-    animation: shimmer 1.6s ease-in-out infinite;
-    border-radius: 8px;
+.live-log {
+    background: var(--bg-void);
+    border: 1px solid var(--border-line);
+    border-radius: 10px;
+    padding: 18px 20px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    line-height: 1.8;
+    max-height: 220px;
+    overflow: hidden;
+    position: relative;
 }
-@keyframes shimmer {
-    0%   { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+.live-log::after {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 50px;
+    background: linear-gradient(180deg, transparent, var(--bg-void));
+    pointer-events: none;
 }
+.log-line {
+    color: var(--text-secondary);
+    opacity: 0;
+    animation: logIn 0.5s forwards;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+@keyframes logIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.log-time   { color: var(--text-muted); }
+.log-tag-ok { color: var(--color-pass); font-weight: 700; }
+.log-tag-info { color: var(--color-info); font-weight: 700; }
+.log-tag-warn { color: var(--color-warn); font-weight: 700; }
+.log-region { color: var(--color-accent); }
 
 /* =========================================================================
-   SECTION : FOOTER（フッター / 下部バー）
+   SECTION : LOADING & EMPTY
+   ========================================================================= */
+.skeleton { background: linear-gradient(90deg, var(--bg-panel) 0%, var(--bg-elevated) 50%, var(--bg-panel) 100%); background-size: 200% 100%; animation: shimmer 1.6s ease-in-out infinite; border-radius: 8px; }
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* =========================================================================
+   SECTION : FOOTER（フッター）
    ========================================================================= */
 .toc-footer {
     border-top: 1px solid var(--border-subtle);
-    background: rgba(6, 8, 15, 0.6);
+    background: color-mix(in srgb, var(--bg-void) 60%, transparent);
     padding: 22px 24px;
     text-align: center;
     font-family: var(--font-mono);
@@ -579,43 +779,22 @@ body::after {
 }
 
 /* =========================================================================
-   SECTION : RESPONSIVE（レスポンシブ / 適応設計）
+   SECTION : RESPONSIVE & A11Y
    ========================================================================= */
 @media (max-width: 640px) {
     .id-card { padding: 22px; }
     .terminal-body { padding: 16px 18px; font-size: 12px; }
     .stat-value { font-size: 20px; }
+    .premium-title { font-size: 16px; }
+    .contact-hero h4 { font-size: 20px; }
 }
-
-/* 可訪問性 / アクセシビリティ */
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-    }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     .scanline { display: none; }
 }
 
-/* =========================================================================
-   SECTION : UTILITY（ユーティリティ）
-   ========================================================================= */
-.divider {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 36px 0 20px;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--text-muted);
-    letter-spacing: 0.18em;
-}
-.divider::before,
-.divider::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: var(--border-subtle);
-}
+.divider { display: flex; align-items: center; gap: 12px; margin: 36px 0 20px; font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.18em; }
+.divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: var(--border-subtle); }
 </style>
 </head>
 
@@ -623,7 +802,6 @@ body::after {
 
 <!-- =========================================================================
      SECTION : BOOT_SEQUENCE_SCREEN（起動画面 / きどうがめん）
-     模擬 BIOS / 系統開機畫面 - 提升「儀式感」與「物件感」
      ========================================================================= -->
 <div id="boot-screen">
     <div class="boot-inner">
@@ -645,23 +823,37 @@ body::after {
 
 <!-- =========================================================================
      SECTION : HEADER（上部ヘッダー）
-     系統頂部狀態列：版本、即時時間、系統燈
+     新增（v2.2.0）：語言切換 + 主題切換
      ========================================================================= -->
 <header class="toc-header">
-    <div class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between flex-wrap gap-2" style="position:relative;z-index:1;">
+    <div class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between flex-wrap gap-3" style="position:relative;z-index:1;">
         <div class="flex items-center gap-3">
             <span class="led-dot"></span>
             <span style="font-family:var(--font-mono);font-weight:700;font-size:14px;color:var(--color-info);letter-spacing:0.05em;">
-                ALBERT_TOC_v2.0.0
+                ALBERT_TOC_v2.2.0
             </span>
             <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-muted);letter-spacing:0.1em;" class="hidden md:inline">
                 // TECHNICAL_OPERATIONS_CENTER
             </span>
         </div>
-        <div class="flex items-center gap-4" style="font-family:var(--font-mono);font-size:11px;color:var(--text-muted);">
-            <span><span style="color:var(--color-pass);">●</span> SYS_OK</span>
-            <span class="hidden sm:inline" id="clock">--:--:--</span>
-            <span class="hidden md:inline" id="date">----/--/--</span>
+        <div class="flex items-center gap-3 flex-wrap">
+            <!-- 語言切換 / げんごきりかえ -->
+            <div class="toolbar-group" role="group" aria-label="Language">
+                <button class="toolbar-btn lang-btn" data-lang="zh-TW">繁</button>
+                <button class="toolbar-btn lang-btn" data-lang="zh-CN">简</button>
+                <button class="toolbar-btn lang-btn" data-lang="en">EN</button>
+                <button class="toolbar-btn lang-btn" data-lang="ja">日</button>
+            </div>
+            <!-- 主題切換 / テーマきりかえ -->
+            <div class="toolbar-group" role="group" aria-label="Theme">
+                <button class="toolbar-btn theme-btn" data-theme="dark"    title="Dark">●</button>
+                <button class="toolbar-btn theme-btn" data-theme="neutral" title="Neutral">◐</button>
+                <button class="toolbar-btn theme-btn" data-theme="light"   title="Light">○</button>
+            </div>
+            <div class="hidden lg:flex items-center gap-3" style="font-family:var(--font-mono);font-size:11px;color:var(--text-muted);">
+                <span><span style="color:var(--color-pass);">●</span> SYS_OK</span>
+                <span id="clock">--:--:--</span>
+            </div>
         </div>
     </div>
 </header>
@@ -671,7 +863,7 @@ body::after {
      ========================================================================= -->
 <main class="max-w-6xl mx-auto px-5 py-10" style="position:relative;z-index:1;">
 
-    <!-- ===== Hero Terminal Block ===== -->
+    <!-- ===== Hero Terminal ===== -->
     <section class="mb-10">
         <div class="terminal">
             <div class="terminal-bar">
@@ -686,7 +878,7 @@ body::after {
                 <div class="out" style="color:var(--text-muted);">[OK] Loading identity module ...</div>
                 <div class="out" style="color:var(--text-muted);">[OK] Fetching repositories from github.com/AlbertChou20250706 ...</div>
                 <div class="out" style="color:var(--text-muted);">[OK] Building category matrix ...</div>
-                <div class="out" style="color:var(--color-pass);">[PASS] Welcome to Albert's Technical Operations Center.</div>
+                <div class="out" style="color:var(--color-pass);" data-i18n="boot.welcome">[PASS] Welcome to Albert's Technical Operations Center.</div>
                 <div style="margin-top:6px;"><span class="prompt">albert@toc</span><span class="out">:</span><span style="color:var(--color-info);">~$</span> <span class="cursor-blink"></span></div>
             </div>
         </div>
@@ -698,22 +890,18 @@ body::after {
             <div class="flex flex-col md:flex-row md:items-center gap-6">
                 <div class="avatar-wrap mx-auto md:mx-0">
                     <img src="https://github.com/AlbertChou20250706.png" alt="Albert_Pyahaw" loading="lazy"
-                         onerror="this.style.background='var(--bg-elevated)';this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23131b2e\'/%3E%3Ctext x=\'50\' y=\'58\' text-anchor=\'middle\' font-family=\'monospace\' font-size=\'42\' fill=\'%2322d3ee\' font-weight=\'700\'%3EA%3C/text%3E%3C/svg%3E';">
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23131b2e\'/%3E%3Ctext x=\'50\' y=\'58\' text-anchor=\'middle\' font-family=\'monospace\' font-size=\'42\' fill=\'%2322d3ee\' font-weight=\'700\'%3EA%3C/text%3E%3C/svg%3E';">
                 </div>
                 <div class="flex-1 text-center md:text-left">
                     <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-pass);letter-spacing:0.15em;">
                         // OPERATOR_PROFILE
                     </div>
-                    <h2 style="font-size:30px;font-weight:700;color:var(--text-primary);margin:6px 0 4px;letter-spacing:-0.01em;">
-                        Albert Pyahaw
-                    </h2>
-                    <p style="font-family:var(--font-mono);font-size:13px;color:var(--color-info);margin:0 0 12px;">
+                    <h2 style="font-size:30px;font-weight:700;color:var(--text-primary);margin:6px 0 4px;letter-spacing:-0.01em;">Albert Pyahaw</h2>
+                    <p style="font-family:var(--font-mono);font-size:13px;color:var(--color-info);margin:0 0 12px;" data-i18n="profile.role">
                         System Integration Engineer / Technical Developer
                     </p>
-                    <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.7;margin:0 0 16px;max-width:640px;">
-                        專注於企業級伺服器架構部署、系統整合測試（SIT）、自動化運維工具開發。
-                        堅持<span style="color:var(--text-primary);">標準化架構</span>與<span style="color:var(--text-primary);">嚴謹版本控制</span>，
-                        在 RHEL／Windows Server 2022 與多硬體平台上交付穩定可維護的技術解決方案。
+                    <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.7;margin:0 0 16px;max-width:640px;" data-i18n="profile.bio">
+                        專注於企業級伺服器架構部署、系統整合測試（SIT）、自動化運維工具開發。堅持標準化架構與嚴謹版本控制，在 RHEL／Windows Server 2022 與多硬體平台上交付穩定可維護的技術解決方案。
                     </p>
                     <div class="flex flex-wrap gap-2 justify-center md:justify-start">
                         <span class="tech-chip">Python</span>
@@ -733,29 +921,225 @@ body::after {
     <!-- ===== Stats Row ===== -->
     <section class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
         <div class="stat-card">
-            <div class="stat-label">// Repos</div>
+            <div class="stat-label" data-i18n="stat.repos">// Repos</div>
             <div class="stat-value" id="stat-total">—</div>
         </div>
         <div class="stat-card">
-            <div class="stat-label">// Languages</div>
+            <div class="stat-label" data-i18n="stat.langs">// Languages</div>
             <div class="stat-value" id="stat-langs">—</div>
         </div>
         <div class="stat-card">
-            <div class="stat-label">// Categories</div>
+            <div class="stat-label" data-i18n="stat.cats">// Categories</div>
             <div class="stat-value" id="stat-cats">—</div>
         </div>
         <div class="stat-card">
-            <div class="stat-label">// Updated</div>
+            <div class="stat-label" data-i18n="stat.updated">// Updated</div>
             <div class="stat-value" id="stat-updated" style="font-size:14px;line-height:1.4;padding-top:6px;">—</div>
         </div>
     </section>
 
-    <!-- ===== Section Title : Projects ===== -->
-    <h3 class="section-title mb-5">
-        CORE_PROJECT_MATRIX
-    </h3>
+    <!-- =========================================================================
+         SECTION : PINNED_PROJECTS（招牌專案 / かんばんプロジェクト）
+         v2.2.0 NEW - CONFIG.PINNED_REPOS 手動置頂
+         ========================================================================= -->
+    <section id="pinned-section" class="mb-10 hidden">
+        <h3 class="section-title mb-5" data-i18n="section.pinned">FLAGSHIP_PROJECTS</h3>
+        <div style="font-family:var(--font-mono);font-size:11.5px;color:var(--text-muted);margin-bottom:14px;letter-spacing:0.05em;" data-i18n="pinned.subtitle">
+            // STAR ★ MANUALLY PINNED · HOVER TO PREVIEW README
+        </div>
+        <div id="pinned-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+    </section>
 
-    <!-- ===== Control Panel : Search + Filter ===== -->
+    <!-- =========================================================================
+         SECTION : CONTRIBUTION_GRAPH（貢獻熱力圖 / こうけんマップ）
+         v2.2.0 NEW
+         ========================================================================= -->
+    <section class="mb-10">
+        <h3 class="section-title mb-5" data-i18n="section.contrib">GITHUB_CONTRIBUTION_HEATMAP</h3>
+        <div style="font-family:var(--font-mono);font-size:11.5px;color:var(--text-muted);margin-bottom:14px;letter-spacing:0.05em;" data-i18n="contrib.subtitle">
+            // ANNUAL COMMIT ACTIVITY · POWERED BY GHCHART
+        </div>
+        <div class="contrib-wrap">
+            <img src="https://ghchart.rshah.org/22D3EE/AlbertChou20250706" alt="GitHub Contribution Graph"
+                 loading="lazy"
+                 onerror="this.parentElement.innerHTML='<div style=&quot;font-family:var(--font-mono);font-size:12px;color:var(--text-muted);text-align:center;padding:30px;&quot;>[INFO] Contribution graph temporarily unavailable.<br>View directly at: <a href=&quot;https://github.com/AlbertChou20250706&quot; style=&quot;color:var(--color-info);&quot; target=&quot;_blank&quot;>github.com/AlbertChou20250706</a></div>';">
+            <div class="contrib-meta">
+                <span data-i18n="contrib.source">▸ Source: github.com/AlbertChou20250706</span>
+                <span data-i18n="contrib.legend">▸ Darker = more commits</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         SECTION : PREMIUM_TOOLS_MATRIX（商業工具區 / プレミアムツール）
+         v2.2.0
+         ========================================================================= -->
+    <h3 class="section-title mb-5" data-i18n="section.premium">PREMIUM_TOOLS_MATRIX</h3>
+    <div style="font-family:var(--font-mono);font-size:11.5px;color:var(--text-muted);margin-bottom:18px;letter-spacing:0.05em;" data-i18n="premium.subtitle">
+        // INDUSTRIAL-GRADE TOOLKITS BUILT FROM 50+ YEARS OF FIELD EXPERIENCE
+    </div>
+
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+
+        <!-- ===== Card 1 : 5W2H Auto Generator (PRO) ===== -->
+        <article class="premium-card tier-pro">
+            <div class="flex items-center gap-3">
+                <div class="premium-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 17V7a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v10M9 17h10M9 17v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-2M5 7v14a2 2 0 0 0 2 2h2"/></svg>
+                </div>
+                <span class="premium-tier pro">● PRO</span>
+            </div>
+            <h4 class="premium-title">5W2H Auto Report</h4>
+            <p class="premium-pain" data-i18n="tool.5w2h.pain">Tired of spending 2-4 hours writing every RCA report by hand?</p>
+            <p class="premium-desc" data-i18n="tool.5w2h.desc">One-click generator producing standardized 5W2H abnormality reports with laser-scanning animation. Ready-to-ship .docx + .html dual output.</p>
+            <ul class="premium-feature-list">
+                <li data-i18n="tool.5w2h.f1">Auto NTP / Mantis ID parsing</li>
+                <li data-i18n="tool.5w2h.f2">REM ===== block-formatted output</li>
+                <li data-i18n="tool.5w2h.f3">CLI + HTML log dual export</li>
+                <li data-i18n="tool.5w2h.f4">Lifetime updates · Buy once</li>
+            </ul>
+            <div class="premium-price-row">
+                <div>
+                    <span class="premium-price">$9.99</span>
+                    <span class="premium-price-unit" data-i18n="price.once">/ one-time</span>
+                </div>
+                <a class="premium-cta primary" href="#" data-cta="gumroad-5w2h" rel="noopener" data-i18n="cta.buy">BUY ON GUMROAD ↗</a>
+            </div>
+        </article>
+
+        <!-- ===== Card 2 : Log Toolkit Pro (PRO) ===== -->
+        <article class="premium-card tier-pro">
+            <div class="flex items-center gap-3">
+                <div class="premium-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h2M8 17h8M8 9h1"/></svg>
+                </div>
+                <span class="premium-tier pro">● PRO</span>
+            </div>
+            <h4 class="premium-title">Log Toolkit Pro</h4>
+            <p class="premium-pain" data-i18n="tool.log.pain">Server logs scattered, time-syncing chaos, no clean export?</p>
+            <p class="premium-desc" data-i18n="tool.log.desc">Auto ZIP packaging + Excel/CSV dual export + chrony batch correction. Built for fleet-level server operators.</p>
+            <ul class="premium-feature-list">
+                <li data-i18n="tool.log.f1">Multi-host parallel log fetch</li>
+                <li data-i18n="tool.log.f2">Excel + CSV + JSON triple format</li>
+                <li data-i18n="tool.log.f3">Chrony auto-fix script bundled</li>
+                <li data-i18n="tool.log.f4">Windows + RHEL cross-platform</li>
+            </ul>
+            <div class="premium-price-row">
+                <div>
+                    <span class="premium-price">$19.99</span>
+                    <span class="premium-price-unit" data-i18n="price.once">/ one-time</span>
+                </div>
+                <a class="premium-cta primary" href="#" data-cta="gumroad-log" rel="noopener" data-i18n="cta.buy">BUY ON GUMROAD ↗</a>
+            </div>
+        </article>
+
+        <!-- ===== Card 3 : Enterprise Custom (ENTERPRISE) ===== -->
+        <article class="premium-card tier-enterprise">
+            <div class="flex items-center gap-3">
+                <div class="premium-icon" style="color:var(--color-accent);">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4M9 9h.01M9 13h.01M9 17h.01"/></svg>
+                </div>
+                <span class="premium-tier enterprise">● ENTERPRISE</span>
+            </div>
+            <h4 class="premium-title">Custom Dashboard / Consulting</h4>
+            <p class="premium-pain" data-i18n="tool.ent.pain">Need a tailor-made dashboard or full automation pipeline for your team?</p>
+            <p class="premium-desc" data-i18n="tool.ent.desc">From architecture to deployment, I build SIT command-centers, monitoring dashboards, and PXE/DHCP automation tailored to your stack.</p>
+            <ul class="premium-feature-list">
+                <li data-i18n="tool.ent.f1">Custom architecture design</li>
+                <li data-i18n="tool.ent.f2">Full source code delivery</li>
+                <li data-i18n="tool.ent.f3">On-site / remote SIT support</li>
+                <li data-i18n="tool.ent.f4">NDA & SLA negotiable</li>
+            </ul>
+            <div class="premium-price-row">
+                <div>
+                    <span class="premium-price" style="color:var(--color-accent);" data-i18n="price.quote">QUOTE</span>
+                    <span class="premium-price-unit" data-i18n="price.custom">/ by scope</span>
+                </div>
+                <a class="premium-cta primary" href="#contact-section" style="background:var(--color-accent);border-color:var(--color-accent);" data-i18n="cta.contact">CONTACT ME ↗</a>
+            </div>
+        </article>
+
+        <!-- ===== Card 4 : Try Live Demo (FREE) ===== -->
+        <article class="premium-card tier-free">
+            <div class="flex items-center gap-3">
+                <div class="premium-icon" style="color:var(--color-pass);">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </div>
+                <span class="premium-tier free">● FREE TRIAL</span>
+            </div>
+            <h4 class="premium-title">5W2H Lite — Live Sandbox</h4>
+            <p class="premium-pain" data-i18n="tool.demo.pain">Want to see the workflow before you buy?</p>
+            <p class="premium-desc" data-i18n="tool.demo.desc">Type 3 keywords (e.g. Server 2022, NTP Timeout, Mantis #1042) and watch the laser scanner generate the first half of your RCA report — free, no signup.</p>
+            <ul class="premium-feature-list">
+                <li data-i18n="tool.demo.f1">No registration required</li>
+                <li data-i18n="tool.demo.f2">1 free run per session</li>
+                <li data-i18n="tool.demo.f3">Preview only · Full export → PRO</li>
+            </ul>
+            <div class="premium-price-row">
+                <div>
+                    <span class="premium-price" style="color:var(--color-pass);" data-i18n="price.free">$0</span>
+                    <span class="premium-price-unit" data-i18n="price.trial">/ trial</span>
+                </div>
+                <button class="premium-cta outline" onclick="sendPromptDemo()" data-i18n="cta.try">TRY DEMO ↗</button>
+            </div>
+        </article>
+
+        <!-- ===== Card 5 : NotebookLM Podcast (FREE) ===== -->
+        <article class="premium-card tier-free">
+            <div class="flex items-center gap-3">
+                <div class="premium-icon" style="color:var(--color-pass);">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/></svg>
+                </div>
+                <span class="premium-tier free">● FREE</span>
+            </div>
+            <h4 class="premium-title">Albert's Audio Briefing</h4>
+            <p class="premium-pain" data-i18n="tool.audio.pain">No time to read long technical documents?</p>
+            <p class="premium-desc" data-i18n="tool.audio.desc">Weekly 10-min AI-hosted podcast covering server SIT case studies, PXE/DHCP pitfalls, and Albert-Style debug workflows. Subscribe and learn on the commute.</p>
+            <ul class="premium-feature-list">
+                <li data-i18n="tool.audio.f1">10 min / episode · weekly drop</li>
+                <li data-i18n="tool.audio.f2">EN + ZH bilingual hosts</li>
+                <li data-i18n="tool.audio.f3">Free forever on YouTube</li>
+            </ul>
+            <div class="premium-price-row">
+                <div>
+                    <span class="premium-price" style="color:var(--color-pass);" data-i18n="price.free">$0</span>
+                    <span class="premium-price-unit" data-i18n="price.forever">/ forever</span>
+                </div>
+                <a class="premium-cta outline" href="#" data-cta="youtube" rel="noopener" data-i18n="cta.subscribe">SUBSCRIBE ↗</a>
+            </div>
+        </article>
+
+        <!-- ===== Card 6 : 5W2H Template Pack (PRO) ===== -->
+        <article class="premium-card tier-pro">
+            <div class="flex items-center gap-3">
+                <div class="premium-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                </div>
+                <span class="premium-tier pro">● PRO</span>
+            </div>
+            <h4 class="premium-title">Notion 5W2H Template Pack</h4>
+            <p class="premium-pain" data-i18n="tool.tpl.pain">No standardized RCA workflow in your team?</p>
+            <p class="premium-desc" data-i18n="tool.tpl.desc">Battle-tested 5W2H Notion templates used in 100+ SIT cases. Plug-and-play for QA / DevOps / TechSupport teams.</p>
+            <ul class="premium-feature-list">
+                <li data-i18n="tool.tpl.f1">12 ready-to-duplicate templates</li>
+                <li data-i18n="tool.tpl.f2">Built-in Mantis / Jira sync hints</li>
+                <li data-i18n="tool.tpl.f3">PDF + Notion link bundle</li>
+            </ul>
+            <div class="premium-price-row">
+                <div>
+                    <span class="premium-price">$4.99</span>
+                    <span class="premium-price-unit" data-i18n="price.once">/ one-time</span>
+                </div>
+                <a class="premium-cta primary" href="#" data-cta="gumroad-tpl" rel="noopener" data-i18n="cta.buy">BUY ON GUMROAD ↗</a>
+            </div>
+        </article>
+    </section>
+
+    <!-- =========================================================================
+         SECTION : PROJECT_MATRIX（既存：プロジェクト）
+         ========================================================================= -->
+    <h3 class="section-title mb-5" data-i18n="section.projects">CORE_PROJECT_MATRIX</h3>
+
     <section class="control-panel mb-6">
         <div class="flex flex-col md:flex-row gap-3 md:items-center">
             <div style="position:relative;flex:1;">
@@ -763,9 +1147,9 @@ body::after {
                      style="position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--text-muted);">
                     <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
                 </svg>
-                <input type="text" id="search-input" class="search-input" placeholder="search projects... (e.g. PXE, GUI, dashboard)">
+                <input type="text" id="search-input" class="search-input" data-i18n-ph="search.ph" placeholder="search projects... (e.g. PXE, GUI, dashboard)">
             </div>
-            <button id="refresh-btn" class="filter-btn" style="padding:10px 16px;" title="重新從 GitHub 拉取資料">
+            <button id="refresh-btn" class="filter-btn" style="padding:10px 16px;" title="Reload from GitHub" data-i18n="btn.reload">
                 <span id="refresh-icon">⟳</span> RELOAD
             </button>
         </div>
@@ -774,42 +1158,152 @@ body::after {
         </div>
     </section>
 
-    <!-- ===== Projects Grid ===== -->
     <section id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
         <!-- 卡片由 JS 動態渲染 / カードは JS が動的にレンダリング -->
     </section>
 
-    <!-- ===== Empty / Error State ===== -->
     <div id="empty-state" class="hidden text-center py-12">
         <div style="font-family:var(--font-mono);font-size:13px;color:var(--text-muted);">
-            <div style="color:var(--color-warn);font-size:16px;margin-bottom:6px;">[WARN] No matching projects found.</div>
-            <div>嘗試清除搜尋字串或切換到 ALL 分類。</div>
+            <div style="color:var(--color-warn);font-size:16px;margin-bottom:6px;" data-i18n="empty.title">[WARN] No matching projects found.</div>
+            <div data-i18n="empty.body">Try clearing the search or switch to ALL category.</div>
         </div>
     </div>
 
-    <!-- ===== Divider ===== -->
-    <div class="divider">// END_OF_MATRIX</div>
-
-    <!-- ===== Changelog / Version Notes ===== -->
+    <!-- =========================================================================
+         SECTION : LIVE_ACTIVITY_LOG（動態日誌 / ライブログ）
+         v2.2.0 NEW - 模擬全球部署活動
+         ========================================================================= -->
+    <h3 class="section-title mb-5" data-i18n="section.livelog">LIVE_ACTIVITY_LOG</h3>
+    <div style="font-family:var(--font-mono);font-size:11.5px;color:var(--text-muted);margin-bottom:12px;letter-spacing:0.05em;" data-i18n="livelog.subtitle">
+        // SIMULATED GLOBAL DEPLOYMENT FEED · UPDATED EVERY 3s
+    </div>
     <section class="mb-10">
-        <h3 class="section-title mb-5">VERSION_HISTORY</h3>
+        <div class="live-log" id="live-log"></div>
+    </section>
+
+    <!-- =========================================================================
+         SECTION : CONTACT（聯絡我 / コンタクト）
+         v2.2.0 NEW
+         ========================================================================= -->
+    <h3 class="section-title mb-5" id="contact-section" data-i18n="section.contact">ESTABLISH_CONNECTION</h3>
+
+    <section class="contact-grid mb-10">
+        <!-- 主 CTA / メイン CTA -->
+        <div class="contact-hero">
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-pass);letter-spacing:0.15em;">
+                // CHANNEL_STATUS : OPEN_FOR_INQUIRY
+            </div>
+            <h4 data-i18n="contact.title">Need a custom dashboard or enterprise SIT pipeline?</h4>
+            <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.7;margin:8px 0 0;max-width:520px;" data-i18n="contact.body">
+                I take on enterprise consulting projects — server SIT automation, custom monitoring dashboards, PXE/DHCP deployment, and Windows/Linux toolchain integration. Drop me an email with a brief and I'll respond within 48 hours.
+            </p>
+            <a class="contact-cta-primary" href="mailto:aym12100105@gmail.com?subject=[ALBERT_TOC]%20Enterprise%20Consulting%20Inquiry&body=Hi%20Albert%2C%0A%0ACompany%3A%20%0AScope%3A%20%0ABudget%3A%20%0ATimeline%3A%20%0A%0A%2D%2D" data-i18n="contact.cta">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                START INQUIRY
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <div style="margin-top:14px;font-family:var(--font-mono);font-size:10.5px;color:var(--text-muted);">
+                ⏱ <span data-i18n="contact.sla">Response SLA: 48 hours</span> · 🌐 <span data-i18n="contact.tz">Timezone: UTC+08 Taiwan</span>
+            </div>
+        </div>
+
+        <!-- 聯絡管道 / コンタクトチャンネル -->
+        <div class="contact-channels">
+            <a class="contact-channel" href="mailto:aym12100105@gmail.com">
+                <div class="contact-channel-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div style="flex:1;">
+                    <div class="contact-channel-meta">EMAIL</div>
+                    <div class="contact-channel-value">aym12100105@gmail.com</div>
+                </div>
+                <span class="contact-channel-arrow">→</span>
+            </a>
+
+            <a class="contact-channel" href="https://github.com/AlbertChou20250706" target="_blank" rel="noopener">
+                <div class="contact-channel-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.06-.02-2.08-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.49 1 .11-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.49 5.93.43.37.82 1.1.82 2.22 0 1.6-.01 2.89-.01 3.29 0 .32.22.7.83.58C20.56 21.8 24 17.31 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                </div>
+                <div style="flex:1;">
+                    <div class="contact-channel-meta">GITHUB</div>
+                    <div class="contact-channel-value">@AlbertChou20250706</div>
+                </div>
+                <span class="contact-channel-arrow">→</span>
+            </a>
+
+            <a class="contact-channel" href="https://www.linkedin.com/" target="_blank" rel="noopener" data-cta="linkedin">
+                <div class="contact-channel-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+                </div>
+                <div style="flex:1;">
+                    <div class="contact-channel-meta">LINKEDIN</div>
+                    <div class="contact-channel-value" data-i18n="contact.linkedin.placeholder">Connect on LinkedIn</div>
+                </div>
+                <span class="contact-channel-arrow">→</span>
+            </a>
+
+            <a class="contact-channel" href="https://www.youtube.com/" target="_blank" rel="noopener" data-cta="youtube">
+                <div class="contact-channel-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.13-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.37.51A3.02 3.02 0 0 0 .5 6.2C0 8.07 0 12 0 12s0 3.93.5 5.8a3.02 3.02 0 0 0 2.13 2.14c1.87.51 9.37.51 9.37.51s7.5 0 9.37-.51a3.02 3.02 0 0 0 2.13-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.8zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg>
+                </div>
+                <div style="flex:1;">
+                    <div class="contact-channel-meta">YOUTUBE</div>
+                    <div class="contact-channel-value" data-i18n="contact.youtube.placeholder">Subscribe to Audio Briefings</div>
+                </div>
+                <span class="contact-channel-arrow">→</span>
+            </a>
+
+            <!-- v2.2.0 NEW : LINE -->
+            <a class="contact-channel" href="https://line.me/" target="_blank" rel="noopener" data-cta="line">
+                <div class="contact-channel-icon" style="color:var(--color-pass);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.508.43-.595.06-.023.135-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+                </div>
+                <div style="flex:1;">
+                    <div class="contact-channel-meta">LINE</div>
+                    <div class="contact-channel-value" data-i18n="contact.line.placeholder">Chat on LINE</div>
+                </div>
+                <span class="contact-channel-arrow">→</span>
+            </a>
+
+            <!-- v2.2.0 NEW : Meta / Facebook -->
+            <a class="contact-channel" href="https://www.facebook.com/" target="_blank" rel="noopener" data-cta="facebook">
+                <div class="contact-channel-icon" style="color:var(--color-info);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12c0-6.627-5.373-12-12-12S0 5.373 0 12c0 5.99 4.388 10.954 10.125 11.854V15.469H7.078V12h3.047V9.356c0-3.007 1.792-4.668 4.533-4.668 1.312 0 2.686.234 2.686.234v2.953h-1.514c-1.491 0-1.956.925-1.956 1.875V12h3.328l-.532 3.469h-2.796v8.385C19.612 22.954 24 17.99 24 12"/></svg>
+                </div>
+                <div style="flex:1;">
+                    <div class="contact-channel-meta">FACEBOOK / META</div>
+                    <div class="contact-channel-value" data-i18n="contact.fb.placeholder">Follow on Facebook</div>
+                </div>
+                <span class="contact-channel-arrow">→</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== Version History ===== -->
+    <h3 class="section-title mb-5" data-i18n="section.history">VERSION_HISTORY</h3>
+    <section class="mb-10">
         <div class="terminal">
             <div class="terminal-bar">
-                <span class="term-dot r"></span>
-                <span class="term-dot y"></span>
-                <span class="term-dot g"></span>
+                <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
                 <span class="ml-2">CHANGELOG.md</span>
             </div>
             <div class="terminal-body" style="font-size:12.5px;">
-                <div style="color:var(--color-info);">## [v2.0.0] - 2026-05-16 — Designed by Albert Pyahaw</div>
-                <div class="out" style="margin-left:14px;">+ [NEW] GitHub API 自動拉取 repos（未來新增專案無需改 code）</div>
-                <div class="out" style="margin-left:14px;">+ [NEW] 智慧分類系統（Web / System / Edu / Finance / Server / Other）</div>
-                <div class="out" style="margin-left:14px;">+ [NEW] 即時搜尋過濾、雷射掃描線、BIOS 啟動畫面</div>
-                <div class="out" style="margin-left:14px;">+ [NEW] 即時時鐘、統計儀表、終端機 Hero Banner</div>
-                <div class="out" style="margin-left:14px;">+ [NEW] 完全相對路徑、純靜態、可離線檢視快取</div>
-                <div class="out" style="margin-left:14px;">+ [OPT] 響應式（手機／平板／桌機），鍵盤可訪問</div>
-                <div style="margin-top:8px;color:var(--text-muted);">## [v1.0.0] - 2025-12-31 — Initial Release</div>
-                <div class="out" style="margin-left:14px;color:var(--text-muted);">+ [INIT] 靜態雙專案卡（Coffee Dashboard / RX4770M8）</div>
+                <div style="color:var(--color-info);">## [v2.2.0] - 2026-05-16 — Designed by Albert Pyahaw</div>
+                <div class="out" style="margin-left:14px;">+ [NEW] FLAGSHIP_PROJECTS — Manually pinned showcase cards</div>
+                <div class="out" style="margin-left:14px;">+ [NEW] README hover preview with permanent localStorage cache</div>
+                <div class="out" style="margin-left:14px;">+ [NEW] GitHub Contribution Heatmap (ghchart embed)</div>
+                <div class="out" style="margin-left:14px;">+ [NEW] EXCLUDE_REPOS blacklist — Albert-Pyahaw repo hidden</div>
+                <div class="out" style="margin-left:14px;">+ [NEW] LINE + Facebook contact channels (now 6 total)</div>
+                <div class="out" style="margin-left:14px;">+ [NEW] Visitor activity Webhook — 1 notification per visitor / day</div>
+                <div class="out" style="margin-left:14px;">+ [FIX] GitHub Pages URL logic verified for /Albert-Pyahaw/ subpath</div>
+                <div style="margin-top:8px;color:var(--text-muted);">## [v2.1.0] - 2026-05-16</div>
+                <div class="out" style="margin-left:14px;color:var(--text-muted);">+ [NEW] i18n 4 langs (zh-TW / zh-CN / en / ja)</div>
+                <div class="out" style="margin-left:14px;color:var(--text-muted);">+ [NEW] 3 themes (Dark / Neutral #262626 / Light #E6E6E6)</div>
+                <div class="out" style="margin-left:14px;color:var(--text-muted);">+ [NEW] PREMIUM_TOOLS_MATRIX · ESTABLISH_CONNECTION · LIVE_ACTIVITY_LOG</div>
+                <div style="margin-top:8px;color:var(--text-muted);">## [v2.0.0] - 2026-05-16</div>
+                <div class="out" style="margin-left:14px;color:var(--text-muted);">+ [NEW] GitHub API auto-sync, search, filter, BIOS boot, scanline</div>
+                <div style="margin-top:8px;color:var(--text-muted);">## [v1.0.0] - 2025-12-31</div>
+                <div class="out" style="margin-left:14px;color:var(--text-muted);">+ [INIT] Static dual-project layout</div>
             </div>
         </div>
     </section>
@@ -820,41 +1314,393 @@ body::after {
      SECTION : FOOTER（フッター）
      ========================================================================= -->
 <footer class="toc-footer">
-    <div>© 2026 Albert_Pyahaw · Technical Operations Center v2.0.0 · Designed in Albert Style</div>
-    <div style="margin-top:6px;color:var(--text-muted);font-size:10px;">
+    <div data-i18n="footer.line1">© 2026 Albert_Pyahaw · Technical Operations Center v2.2.0 · Designed in Albert Style</div>
+    <div style="margin-top:6px;color:var(--text-muted);font-size:10px;" data-i18n="footer.line2">
         // BUILT_WITH: HTML5 + TailwindCSS + GitHub_REST_API · ZERO_DEPENDENCY_DEPLOY
     </div>
 </footer>
 
 <!-- =========================================================================
-     SECTION : MAIN_SCRIPT（メインスクリプト / メインJS）
-     設計師：Albert Pyahaw | 版本：v2.0.0
-     注意事項（ちゅういじこう）：
-     - 所有 UI 文字使用英文（避免亂碼問題 / もじばけ かいひ）
-     - 註解使用日文 + 中文（含讀音）便於團隊維護
-     - 完全相對路徑、無需後端、純前端架構
+     SECTION : MAIN_SCRIPT（メインスクリプト）
+     設計師：Albert Pyahaw | 版本：v2.2.0
      ========================================================================= -->
 <script>
 'use strict';
 
 // =========================================================================
-// SECTION : USER_CONFIG（ユーザー設定 / ユーザーせってい）
-// 使用者可在此修改參數（カスタマイズ可能パラメーター）
+// SECTION : USER_CONFIG（ユーザー設定 / カスタマイズ可能パラメーター）
+// 使用者可在此修改參數
 // =========================================================================
 const CONFIG = {
-    GITHUB_USER:    'AlbertChou20250706',          // GitHub 帳號 / アカウント名
-    PER_PAGE:       100,                            // 每頁拉取數量 / ページごとの件数
-    CACHE_KEY:      'albert_toc_cache_v2',         // 快取金鑰 / キャッシュキー
-    CACHE_TTL_MIN:  15,                             // 快取存活分鐘 / キャッシュ有効分
-    SORT_BY:        'updated',                      // 排序方式 / そーとほうしき: updated | stars | name
-    SHOW_FORKS:     false,                          // 是否顯示 fork / フォーク表示
-    SHOW_ARCHIVED:  true,                           // 是否顯示封存 / アーカイブ表示
-    BOOT_DURATION:  2800,                           // 開機畫面毫秒 / きどうがめん ms
+    GITHUB_USER:    'AlbertChou20250706',
+    SITE_REPO:      'Albert-Pyahaw',     // 本網頁所在的 repo / このサイトの repo
+    PER_PAGE:       100,
+    CACHE_KEY:      'albert_toc_cache_v22',
+    CACHE_TTL_MIN:  15,
+    SORT_BY:        'updated',
+    SHOW_FORKS:     false,
+    SHOW_ARCHIVED:  true,
+    BOOT_DURATION:  2800,
+    DEFAULT_LANG:   'zh-TW',             // 既定言語 / きていげんご
+    DEFAULT_THEME:  'dark',              // 既定主題 / きていしゅだい
+    LOG_INTERVAL:   3500,                // 動態日誌間隔（ms）/ ライブログ かんかく
+
+    // ---- 排除清單 / じょがいリスト（這些 repo 不會顯示在卡片矩陣）----
+    EXCLUDE_REPOS: [
+        'Albert-Pyahaw',                  // 本站自己（點進去會 404）
+    ],
+
+    // ---- 招牌專案 / かんばんプロジェクト（會置頂在 Pinned 區塊）----
+    PINNED_REPOS: [
+        'cstate-logger-pro',
+        'coffee-dashboard',
+        'rx4770m8-dashboard',
+        'PXE_TFTP_GUI_Windows',
+    ],
+
+    // ---- README 預覽快取（永久 / えいきゅう）----
+    README_CACHE_KEY: 'albert_toc_readme_cache_v22',
+    README_PREVIEW_CHARS: 240,            // 預覽字元數 / プレビュー もじすう
+
+    // ---- 商業連結 / コマーシャルリンク（請替換為實際 URL）----
+    LINKS: {
+        gumroad_5w2h: 'https://gumroad.com/',           // TODO: 換成你的 Gumroad 商品 URL
+        gumroad_log:  'https://gumroad.com/',           // TODO
+        gumroad_tpl:  'https://gumroad.com/',           // TODO
+        youtube:      'https://www.youtube.com/@12100105aym',       // TODO: 換成你的 YouTube 頻道
+        linkedin:     'https://www.linkedin.com/feed/',      // TODO: 換成你的 LinkedIn
+        line:         'https://line.me/ti/p/~abert.chou_mct',  // TODO: 換成你的 LINE ID
+        facebook:     'https://www.facebook.com/profile.php?id=100000237199103&sk=grid',      // TODO: 換成你的 FB 個人頁
+    },
+
+    // ---- 通知 Webhook（Discord / Slack / Pipedream 等）----
+    // 規則：每位訪客每天最多送 1 次，避免洗版 / かいげんよう
+    // 設定方式請見 README：建議用 Discord Webhook（最簡單）
+    NOTIFY: {
+        WEBHOOK_URL: 'https://discord.com/api/webhooks/1505194758501433528/SL4dqKirqiA9LaTLVW8JbB0WEdayYfwWAfHF5L5DsdVAncpNJwbd6b87QCMQDiAF0OwB',                  // 範例：'https://discord.com/api/webhooks/xxxxx/yyyyy'
+        DAILY_KEY:   'albert_toc_notified_today',
+        TRACK_KEY:   'albert_toc_pending_events',
+        ENABLED:     true,               // 設為 true 才會啟動（先填 URL 再開）
+    }
 };
 
 // =========================================================================
-// SECTION : CATEGORY_RULES（分類ルール / ぶんるいルール）
-// 自動分類規則 - 依關鍵字判斷專案類別（じどうぶんるい）
+// SECTION : I18N_DICTIONARY（多言語辞書 / たげんごじしょ）
+// 4 語對應翻譯字典：繁中 / 簡中 / 英文 / 日文
+// =========================================================================
+const I18N = {
+    'zh-TW': {
+        'boot.welcome':            '[PASS] 歡迎進入 Albert 技術指揮中心。',
+        'profile.role':            '系統整合工程師 / 技術開發者',
+        'profile.bio':             '專注於企業級伺服器架構部署、系統整合測試（SIT）、自動化運維工具開發。堅持標準化架構與嚴謹版本控制，在 RHEL／Windows Server 2022 與多硬體平台上交付穩定可維護的技術解決方案。',
+        'stat.repos':              '// 倉庫總數', 'stat.langs': '// 使用語言', 'stat.cats': '// 分類數', 'stat.updated': '// 最近更新',
+        'section.pinned':          'FLAGSHIP_PROJECTS // 招牌專案',
+        'pinned.subtitle':         '// 手動置頂的招牌專案 · 滑鼠停留可預覽 README',
+        'section.contrib':         'GITHUB_CONTRIBUTION_HEATMAP // 貢獻熱力圖',
+        'contrib.subtitle':        '// 年度提交活動 · 由 ghchart 提供',
+        'contrib.source':          '▸ 資料來源：github.com/AlbertChou20250706',
+        'contrib.legend':          '▸ 顏色越深 = 提交越多',
+        'contact.line.placeholder':     '在 LINE 上聯絡我',
+        'contact.fb.placeholder':       '在 Facebook 追蹤我',
+        'section.premium':         'PREMIUM_TOOLS_MATRIX // 商業工具',
+        'premium.subtitle':        '// 工業級工具包，凝結 50+ 年現場實戰經驗',
+        'section.projects':        'CORE_PROJECT_MATRIX // 專案矩陣',
+        'section.livelog':         'LIVE_ACTIVITY_LOG // 全球活動日誌',
+        'livelog.subtitle':        '// 模擬全球部署訊息流 · 每 3 秒更新',
+        'section.contact':         'ESTABLISH_CONNECTION // 聯絡通道',
+        'section.history':         'VERSION_HISTORY // 版本歷史',
+        'tool.5w2h.pain':          '厭倦每份 RCA 報告手寫 2-4 小時了嗎？',
+        'tool.5w2h.desc':          '一鍵生成標準 5W2H 異常報告，含雷射掃描動畫。即用即交付 .docx + .html 雙格式。',
+        'tool.5w2h.f1':            '自動解析 NTP / Mantis ID',
+        'tool.5w2h.f2':            'REM ===== 分隔式格式輸出',
+        'tool.5w2h.f3':            'CLI + HTML 日誌雙匯出',
+        'tool.5w2h.f4':            '終身更新 · 買斷制',
+        'tool.log.pain':           '伺服器日誌散亂、時間同步混亂、無法乾淨匯出？',
+        'tool.log.desc':           '自動 ZIP 打包 + Excel/CSV 雙匯出 + chrony 批次修正。為車隊級伺服器運維打造。',
+        'tool.log.f1':             '多主機並行拉日誌',
+        'tool.log.f2':             'Excel + CSV + JSON 三格式',
+        'tool.log.f3':             '內建 chrony 自動修正腳本',
+        'tool.log.f4':             'Windows + RHEL 跨平台',
+        'tool.ent.pain':           '需要為團隊量身打造儀表板或完整自動化流水線？',
+        'tool.ent.desc':           '從架構到部署，為您打造 SIT 指揮中心、監控儀表板、PXE/DHCP 自動化方案。',
+        'tool.ent.f1':             '客製架構設計',
+        'tool.ent.f2':             '完整原始碼交付',
+        'tool.ent.f3':             '到場 / 遠端 SIT 支援',
+        'tool.ent.f4':             'NDA 與 SLA 可議',
+        'tool.demo.pain':          '想在購買前親自試試流程？',
+        'tool.demo.desc':          '輸入 3 個關鍵字（如 Server 2022、NTP Timeout、Mantis #1042），看雷射掃描器幫你生成 RCA 報告前半段 — 免費、免註冊。',
+        'tool.demo.f1':            '無需註冊',
+        'tool.demo.f2':            '每次連線 1 次免費執行',
+        'tool.demo.f3':            '僅預覽 · 完整匯出需升級 PRO',
+        'tool.audio.pain':         '沒時間讀大量技術文檔？',
+        'tool.audio.desc':         '每週 10 分鐘 AI 雙人主持 Podcast，涵蓋伺服器 SIT 案例、PXE/DHCP 陷阱、Albert-Style 除錯流程。通勤路上輕鬆學。',
+        'tool.audio.f1':           '每集 10 分鐘 · 週更',
+        'tool.audio.f2':           '英中雙語主持',
+        'tool.audio.f3':           'YouTube 永久免費',
+        'tool.tpl.pain':           '團隊還沒有標準化的 RCA 流程？',
+        'tool.tpl.desc':           '在 100+ SIT 案例中實戰驗證的 5W2H Notion 範本。QA／DevOps／TechSupport 團隊即插即用。',
+        'tool.tpl.f1':             '12 套可複製範本',
+        'tool.tpl.f2':             '內建 Mantis / Jira 同步提示',
+        'tool.tpl.f3':             'PDF + Notion 連結雙包裝',
+        'price.once':              '/ 買斷',
+        'price.custom':            '/ 依規格報價',
+        'price.quote':             '洽詢',
+        'price.free':              '$0',
+        'price.trial':             '/ 試用',
+        'price.forever':           '/ 永久',
+        'cta.buy':                 '前往 GUMROAD 購買 ↗',
+        'cta.contact':             '立即聯絡 ↗',
+        'cta.try':                 '試用 DEMO ↗',
+        'cta.subscribe':           '訂閱 ↗',
+        'contact.title':           '需要客製化儀表板或企業級 SIT 流水線？',
+        'contact.body':            '我承接企業諮詢專案 — 伺服器 SIT 自動化、客製監控儀表板、PXE/DHCP 部署、Windows/Linux 工具鏈整合。寄信簡述需求，48 小時內回覆。',
+        'contact.cta':             '發起諮詢',
+        'contact.sla':             '回覆 SLA：48 小時',
+        'contact.tz':              '時區：UTC+08 台灣',
+        'contact.linkedin.placeholder': '在 LinkedIn 連結我',
+        'contact.youtube.placeholder':  '訂閱我的技術 Podcast',
+        'search.ph':               '搜尋專案... (如：PXE、GUI、dashboard)',
+        'btn.reload':              ' RELOAD 重整',
+        'empty.title':             '[WARN] 找不到符合的專案。',
+        'empty.body':              '請清除搜尋字串或切換到「ALL」分類。',
+        'footer.line1':            '© 2026 Albert_Pyahaw · 技術指揮中心 v2.2.0 · 以 Albert Style 設計',
+        'footer.line2':            '// 採用 HTML5 + TailwindCSS + GitHub_REST_API · 零依賴部署'
+    },
+    'zh-CN': {
+        'boot.welcome':            '[PASS] 欢迎进入 Albert 技术指挥中心。',
+        'profile.role':            '系统集成工程师 / 技术开发者',
+        'profile.bio':             '专注于企业级服务器架构部署、系统集成测试（SIT）、自动化运维工具开发。坚持标准化架构与严谨版本控制，在 RHEL／Windows Server 2022 与多硬件平台上交付稳定可维护的技术解决方案。',
+        'stat.repos':              '// 仓库总数', 'stat.langs': '// 使用语言', 'stat.cats': '// 分类数', 'stat.updated': '// 最近更新',
+        'section.pinned':          'FLAGSHIP_PROJECTS // 招牌项目',
+        'pinned.subtitle':         '// 手动置顶的招牌项目 · 鼠标停留可预览 README',
+        'section.contrib':         'GITHUB_CONTRIBUTION_HEATMAP // 贡献热力图',
+        'contrib.subtitle':        '// 年度提交活动 · 由 ghchart 提供',
+        'contrib.source':          '▸ 数据来源：github.com/AlbertChou20250706',
+        'contrib.legend':          '▸ 颜色越深 = 提交越多',
+        'contact.line.placeholder':     '在 LINE 上联络我',
+        'contact.fb.placeholder':       '在 Facebook 关注我',
+        'section.premium':         'PREMIUM_TOOLS_MATRIX // 商业工具',
+        'premium.subtitle':        '// 工业级工具包，凝结 50+ 年现场实战经验',
+        'section.projects':        'CORE_PROJECT_MATRIX // 项目矩阵',
+        'section.livelog':         'LIVE_ACTIVITY_LOG // 全球活动日志',
+        'livelog.subtitle':        '// 模拟全球部署消息流 · 每 3 秒更新',
+        'section.contact':         'ESTABLISH_CONNECTION // 联络通道',
+        'section.history':         'VERSION_HISTORY // 版本历史',
+        'tool.5w2h.pain':          '厌倦每份 RCA 报告手写 2-4 小时了吗？',
+        'tool.5w2h.desc':          '一键生成标准 5W2H 异常报告，含激光扫描动画。即用即交付 .docx + .html 双格式。',
+        'tool.5w2h.f1':            '自动解析 NTP / Mantis ID',
+        'tool.5w2h.f2':            'REM ===== 分隔式格式输出',
+        'tool.5w2h.f3':            'CLI + HTML 日志双导出',
+        'tool.5w2h.f4':            '终身更新 · 买断制',
+        'tool.log.pain':           '服务器日志散乱、时间同步混乱、无法干净导出？',
+        'tool.log.desc':           '自动 ZIP 打包 + Excel/CSV 双导出 + chrony 批量修正。为车队级服务器运维打造。',
+        'tool.log.f1':             '多主机并行拉日志',
+        'tool.log.f2':             'Excel + CSV + JSON 三格式',
+        'tool.log.f3':             '内建 chrony 自动修正脚本',
+        'tool.log.f4':             'Windows + RHEL 跨平台',
+        'tool.ent.pain':           '需要为团队量身打造仪表板或完整自动化流水线？',
+        'tool.ent.desc':           '从架构到部署，为您打造 SIT 指挥中心、监控仪表板、PXE/DHCP 自动化方案。',
+        'tool.ent.f1':             '定制架构设计',
+        'tool.ent.f2':             '完整源码交付',
+        'tool.ent.f3':             '到场 / 远程 SIT 支援',
+        'tool.ent.f4':             'NDA 与 SLA 可议',
+        'tool.demo.pain':          '想在购买前亲自试试流程？',
+        'tool.demo.desc':          '输入 3 个关键字，看激光扫描器帮你生成 RCA 报告前半段 — 免费、免注册。',
+        'tool.demo.f1':            '无需注册',
+        'tool.demo.f2':            '每次连线 1 次免费执行',
+        'tool.demo.f3':            '仅预览 · 完整导出需升级 PRO',
+        'tool.audio.pain':         '没时间读大量技术文档？',
+        'tool.audio.desc':         '每周 10 分钟 AI 双人主持播客，涵盖服务器 SIT 案例、PXE/DHCP 陷阱、Albert-Style 调试流程。',
+        'tool.audio.f1':           '每集 10 分钟 · 周更',
+        'tool.audio.f2':           '英中双语主持',
+        'tool.audio.f3':           'YouTube 永久免费',
+        'tool.tpl.pain':           '团队还没有标准化的 RCA 流程？',
+        'tool.tpl.desc':           '在 100+ SIT 案例中实战验证的 5W2H Notion 模板。QA／DevOps／TechSupport 团队即插即用。',
+        'tool.tpl.f1':             '12 套可复制模板',
+        'tool.tpl.f2':             '内建 Mantis / Jira 同步提示',
+        'tool.tpl.f3':             'PDF + Notion 链接双打包',
+        'price.once':              '/ 买断',
+        'price.custom':            '/ 按规格报价',
+        'price.quote':             '咨询',
+        'price.free':              '$0',
+        'price.trial':             '/ 试用',
+        'price.forever':           '/ 永久',
+        'cta.buy':                 '前往 GUMROAD 购买 ↗',
+        'cta.contact':             '立即联络 ↗',
+        'cta.try':                 '试用 DEMO ↗',
+        'cta.subscribe':           '订阅 ↗',
+        'contact.title':           '需要定制仪表板或企业级 SIT 流水线？',
+        'contact.body':            '我承接企业咨询项目 — 服务器 SIT 自动化、定制监控仪表板、PXE/DHCP 部署、Windows/Linux 工具链集成。来信简述需求，48 小时内回复。',
+        'contact.cta':             '发起咨询',
+        'contact.sla':             '回复 SLA：48 小时',
+        'contact.tz':              '时区：UTC+08 台湾',
+        'contact.linkedin.placeholder': '在 LinkedIn 连接我',
+        'contact.youtube.placeholder':  '订阅我的技术播客',
+        'search.ph':               '搜索项目... (如：PXE、GUI、dashboard)',
+        'btn.reload':              ' RELOAD 重载',
+        'empty.title':             '[WARN] 未找到匹配的项目。',
+        'empty.body':              '请清除搜索字串或切换到「ALL」分类。',
+        'footer.line1':            '© 2026 Albert_Pyahaw · 技术指挥中心 v2.2.0 · 以 Albert Style 设计',
+        'footer.line2':            '// 采用 HTML5 + TailwindCSS + GitHub_REST_API · 零依赖部署'
+    },
+    'en': {
+        'boot.welcome':            "[PASS] Welcome to Albert's Technical Operations Center.",
+        'profile.role':            'System Integration Engineer / Technical Developer',
+        'profile.bio':             'Specialized in enterprise server architecture deployment, system integration testing (SIT), and automation tooling. Strict on standardized architecture and rigorous version control — delivering stable, maintainable solutions on RHEL, Windows Server 2022, and multi-hardware platforms.',
+        'stat.repos':              '// Repos', 'stat.langs': '// Languages', 'stat.cats': '// Categories', 'stat.updated': '// Updated',
+        'section.pinned':          'FLAGSHIP_PROJECTS',
+        'pinned.subtitle':         '// STAR ★ MANUALLY PINNED · HOVER TO PREVIEW README',
+        'section.contrib':         'GITHUB_CONTRIBUTION_HEATMAP',
+        'contrib.subtitle':        '// ANNUAL COMMIT ACTIVITY · POWERED BY GHCHART',
+        'contrib.source':          '▸ Source: github.com/AlbertChou20250706',
+        'contrib.legend':          '▸ Darker = more commits',
+        'contact.line.placeholder':     'Chat on LINE',
+        'contact.fb.placeholder':       'Follow on Facebook',
+        'section.premium':         'PREMIUM_TOOLS_MATRIX',
+        'premium.subtitle':        '// INDUSTRIAL-GRADE TOOLKITS BUILT FROM 50+ YEARS OF FIELD EXPERIENCE',
+        'section.projects':        'CORE_PROJECT_MATRIX',
+        'section.livelog':         'LIVE_ACTIVITY_LOG',
+        'livelog.subtitle':        '// SIMULATED GLOBAL DEPLOYMENT FEED · UPDATED EVERY 3s',
+        'section.contact':         'ESTABLISH_CONNECTION',
+        'section.history':         'VERSION_HISTORY',
+        'tool.5w2h.pain':          'Tired of spending 2-4 hours writing every RCA report by hand?',
+        'tool.5w2h.desc':          'One-click generator producing standardized 5W2H abnormality reports with laser-scanning animation. Ready-to-ship .docx + .html dual output.',
+        'tool.5w2h.f1':            'Auto NTP / Mantis ID parsing',
+        'tool.5w2h.f2':            'REM ===== block-formatted output',
+        'tool.5w2h.f3':            'CLI + HTML log dual export',
+        'tool.5w2h.f4':            'Lifetime updates · Buy once',
+        'tool.log.pain':           'Server logs scattered, time-syncing chaos, no clean export?',
+        'tool.log.desc':           'Auto ZIP packaging + Excel/CSV dual export + chrony batch correction. Built for fleet-level server operators.',
+        'tool.log.f1':             'Multi-host parallel log fetch',
+        'tool.log.f2':             'Excel + CSV + JSON triple format',
+        'tool.log.f3':             'Chrony auto-fix script bundled',
+        'tool.log.f4':             'Windows + RHEL cross-platform',
+        'tool.ent.pain':           'Need a tailor-made dashboard or full automation pipeline for your team?',
+        'tool.ent.desc':           'From architecture to deployment, I build SIT command-centers, monitoring dashboards, and PXE/DHCP automation tailored to your stack.',
+        'tool.ent.f1':             'Custom architecture design',
+        'tool.ent.f2':             'Full source code delivery',
+        'tool.ent.f3':             'On-site / remote SIT support',
+        'tool.ent.f4':             'NDA & SLA negotiable',
+        'tool.demo.pain':          'Want to see the workflow before you buy?',
+        'tool.demo.desc':          'Type 3 keywords (e.g. Server 2022, NTP Timeout, Mantis #1042) and watch the laser scanner generate the first half of your RCA report — free, no signup.',
+        'tool.demo.f1':            'No registration required',
+        'tool.demo.f2':            '1 free run per session',
+        'tool.demo.f3':            'Preview only · Full export → PRO',
+        'tool.audio.pain':         'No time to read long technical documents?',
+        'tool.audio.desc':         'Weekly 10-min AI-hosted podcast covering server SIT case studies, PXE/DHCP pitfalls, and Albert-Style debug workflows. Subscribe and learn on the commute.',
+        'tool.audio.f1':           '10 min / episode · weekly drop',
+        'tool.audio.f2':           'EN + ZH bilingual hosts',
+        'tool.audio.f3':           'Free forever on YouTube',
+        'tool.tpl.pain':           'No standardized RCA workflow in your team?',
+        'tool.tpl.desc':           'Battle-tested 5W2H Notion templates used in 100+ SIT cases. Plug-and-play for QA / DevOps / TechSupport teams.',
+        'tool.tpl.f1':             '12 ready-to-duplicate templates',
+        'tool.tpl.f2':             'Built-in Mantis / Jira sync hints',
+        'tool.tpl.f3':             'PDF + Notion link bundle',
+        'price.once':              '/ one-time',
+        'price.custom':            '/ by scope',
+        'price.quote':             'QUOTE',
+        'price.free':              '$0',
+        'price.trial':             '/ trial',
+        'price.forever':           '/ forever',
+        'cta.buy':                 'BUY ON GUMROAD ↗',
+        'cta.contact':             'CONTACT ME ↗',
+        'cta.try':                 'TRY DEMO ↗',
+        'cta.subscribe':           'SUBSCRIBE ↗',
+        'contact.title':           'Need a custom dashboard or enterprise SIT pipeline?',
+        'contact.body':            "I take on enterprise consulting projects — server SIT automation, custom monitoring dashboards, PXE/DHCP deployment, and Windows/Linux toolchain integration. Drop me an email with a brief and I'll respond within 48 hours.",
+        'contact.cta':             'START INQUIRY',
+        'contact.sla':             'Response SLA: 48 hours',
+        'contact.tz':              'Timezone: UTC+08 Taiwan',
+        'contact.linkedin.placeholder': 'Connect on LinkedIn',
+        'contact.youtube.placeholder':  'Subscribe to Audio Briefings',
+        'search.ph':               'search projects... (e.g. PXE, GUI, dashboard)',
+        'btn.reload':              ' RELOAD',
+        'empty.title':             '[WARN] No matching projects found.',
+        'empty.body':              'Try clearing the search or switch to ALL category.',
+        'footer.line1':            '© 2026 Albert_Pyahaw · Technical Operations Center v2.2.0 · Designed in Albert Style',
+        'footer.line2':            '// BUILT_WITH: HTML5 + TailwindCSS + GitHub_REST_API · ZERO_DEPENDENCY_DEPLOY'
+    },
+    'ja': {
+        'boot.welcome':            '[PASS] Albert テクニカル オペレーション センターへようこそ。',
+        'profile.role':            'システムインテグレーション エンジニア / テクニカル デベロッパー',
+        'profile.bio':             'エンタープライズ サーバー アーキテクチャ展開、システム統合テスト（SIT）、自動化運用ツール開発に特化。標準化アーキテクチャと厳格なバージョン管理を堅持し、RHEL／Windows Server 2022 およびマルチハードウェアプラットフォームで安定したソリューションを提供。',
+        'stat.repos':              '// リポジトリ', 'stat.langs': '// 言語数', 'stat.cats': '// カテゴリ', 'stat.updated': '// 最終更新',
+        'section.pinned':          'FLAGSHIP_PROJECTS // かんばんプロジェクト',
+        'pinned.subtitle':         '// 手動でピン留めされたプロジェクト · ホバーで README プレビュー',
+        'section.contrib':         'GITHUB_CONTRIBUTION_HEATMAP // 貢献ヒートマップ',
+        'contrib.subtitle':        '// 年間コミット活動 · ghchart 提供',
+        'contrib.source':          '▸ ソース：github.com/AlbertChou20250706',
+        'contrib.legend':          '▸ 濃いほどコミット数が多い',
+        'contact.line.placeholder':     'LINE で連絡',
+        'contact.fb.placeholder':       'Facebook でフォロー',
+        'section.premium':         'PREMIUM_TOOLS_MATRIX // プレミアムツール',
+        'premium.subtitle':        '// 50年超の現場経験から生まれた工業グレードのツールキット',
+        'section.projects':        'CORE_PROJECT_MATRIX // プロジェクトマトリクス',
+        'section.livelog':         'LIVE_ACTIVITY_LOG // グローバル活動ログ',
+        'livelog.subtitle':        '// 模擬グローバル配信フィード · 3秒ごとに更新',
+        'section.contact':         'ESTABLISH_CONNECTION // コンタクトチャンネル',
+        'section.history':         'VERSION_HISTORY // バージョン履歴',
+        'tool.5w2h.pain':          '毎回 RCA レポートを手書きで 2-4 時間かけるのに疲れていませんか？',
+        'tool.5w2h.desc':          'ワンクリックで標準 5W2H 異常レポートを生成、レーザースキャンアニメーション付き。.docx + .html 二重出力でそのまま納品可能。',
+        'tool.5w2h.f1':            'NTP / Mantis ID 自動解析',
+        'tool.5w2h.f2':            'REM ===== ブロック整形出力',
+        'tool.5w2h.f3':            'CLI + HTML ログ二重エクスポート',
+        'tool.5w2h.f4':            '生涯アップデート · 買い切り',
+        'tool.log.pain':           'サーバーログが散乱、時刻同期が混乱、綺麗にエクスポートできない？',
+        'tool.log.desc':           '自動 ZIP パッケージング + Excel/CSV 二重出力 + chrony 一括修正。フリート規模のサーバー運用向け。',
+        'tool.log.f1':             'マルチホスト並列ログ取得',
+        'tool.log.f2':             'Excel + CSV + JSON 三種形式',
+        'tool.log.f3':             'Chrony 自動修正スクリプト同梱',
+        'tool.log.f4':             'Windows + RHEL クロスプラットフォーム',
+        'tool.ent.pain':           'チーム専用のダッシュボードや完全自動化パイプラインが必要ですか？',
+        'tool.ent.desc':           'アーキテクチャから展開まで、SIT コマンドセンター、監視ダッシュボード、PXE/DHCP 自動化をカスタム構築します。',
+        'tool.ent.f1':             'カスタムアーキテクチャ設計',
+        'tool.ent.f2':             '完全ソースコード納品',
+        'tool.ent.f3':             '現地 / リモート SIT サポート',
+        'tool.ent.f4':             'NDA & SLA 交渉可',
+        'tool.demo.pain':          '購入前にワークフローを試したいですか？',
+        'tool.demo.desc':          'キーワードを 3 つ入力（例：Server 2022、NTP Timeout、Mantis #1042）すると、レーザースキャナーが RCA レポートの前半を生成 — 無料・登録不要。',
+        'tool.demo.f1':            '登録不要',
+        'tool.demo.f2':            'セッションあたり 1 回無料実行',
+        'tool.demo.f3':            'プレビューのみ · 完全版は PRO へ',
+        'tool.audio.pain':         '大量の技術ドキュメントを読む時間がない？',
+        'tool.audio.desc':         '週次 10 分の AI ホストポッドキャスト、サーバー SIT 事例、PXE/DHCP の落とし穴、Albert-Style デバッグフローを網羅。通勤中に学習。',
+        'tool.audio.f1':           '1 話 10 分 · 週次配信',
+        'tool.audio.f2':           '英中バイリンガルホスト',
+        'tool.audio.f3':           'YouTube 永久無料',
+        'tool.tpl.pain':           'チームに標準化された RCA フローがない？',
+        'tool.tpl.desc':           '100+ SIT 案件で実戦検証された 5W2H Notion テンプレート。QA／DevOps／TechSupport チーム向けプラグアンドプレイ。',
+        'tool.tpl.f1':             '12 種類の複製可能テンプレート',
+        'tool.tpl.f2':             'Mantis / Jira 同期ヒント内蔵',
+        'tool.tpl.f3':             'PDF + Notion リンク二重バンドル',
+        'price.once':              '/ 買い切り',
+        'price.custom':            '/ 規模により',
+        'price.quote':             '見積',
+        'price.free':              '$0',
+        'price.trial':             '/ トライアル',
+        'price.forever':           '/ 永久',
+        'cta.buy':                 'GUMROAD で購入 ↗',
+        'cta.contact':             'お問い合わせ ↗',
+        'cta.try':                 'DEMO を試す ↗',
+        'cta.subscribe':           '登録 ↗',
+        'contact.title':           'カスタムダッシュボードまたはエンタープライズ SIT パイプラインが必要ですか？',
+        'contact.body':            'エンタープライズコンサルティングを承ります — サーバー SIT 自動化、カスタム監視ダッシュボード、PXE/DHCP 展開、Windows/Linux ツールチェーン統合。要件をメールでお送りください、48 時間以内に返信します。',
+        'contact.cta':             '問い合わせ開始',
+        'contact.sla':             '返信 SLA：48 時間',
+        'contact.tz':              'タイムゾーン：UTC+08 台湾',
+        'contact.linkedin.placeholder': 'LinkedIn でつながる',
+        'contact.youtube.placeholder':  'テクニカルポッドキャストを登録',
+        'search.ph':               'プロジェクトを検索... (例：PXE、GUI、dashboard)',
+        'btn.reload':              ' RELOAD',
+        'empty.title':             '[WARN] 一致するプロジェクトが見つかりません。',
+        'empty.body':              '検索文字列をクリアするか、「ALL」カテゴリに切り替えてください。',
+        'footer.line1':            '© 2026 Albert_Pyahaw · テクニカル オペレーション センター v2.2.0 · Albert Style で設計',
+        'footer.line2':            '// HTML5 + TailwindCSS + GitHub_REST_API · ゼロ依存展開'
+    }
+};
+
+// =========================================================================
+// SECTION : CATEGORY_RULES（分類ルール）
 // =========================================================================
 const CATEGORY_RULES = [
     { id: 'web',     label: 'WEB / DASHBOARD',    keywords: ['dashboard', 'web', 'html', 'site', 'page', 'coffee', 'rx4770'] },
@@ -869,14 +1715,12 @@ const CATEGORY_RULES = [
 // SECTION : STATE（状態 / じょうたい）
 // =========================================================================
 const STATE = {
-    repos:        [],   // 全部 repo 資料
-    filtered:     [],   // 過濾後資料
-    activeCat:    'all',
-    searchQuery:  '',
+    repos: [], filtered: [], activeCat: 'all', searchQuery: '',
+    lang: CONFIG.DEFAULT_LANG, theme: CONFIG.DEFAULT_THEME,
 };
 
 // =========================================================================
-// SECTION : UTIL（ユーティリティ / ゆーてぃりてぃ）
+// SECTION : UTIL
 // =========================================================================
 const $  = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
@@ -884,28 +1728,21 @@ const $$ = (sel) => document.querySelectorAll(sel);
 function escapeHTML(str) {
     if (!str) return '';
     return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
-
 function timeAgo(iso) {
     const d = new Date(iso);
     const diff = (Date.now() - d.getTime()) / 1000;
-    if (diff < 60)        return `${Math.floor(diff)}s ago`;
-    if (diff < 3600)      return `${Math.floor(diff/60)}m ago`;
-    if (diff < 86400)     return `${Math.floor(diff/3600)}h ago`;
-    if (diff < 86400*30)  return `${Math.floor(diff/86400)}d ago`;
+    if (diff < 60) return `${Math.floor(diff)}s ago`;
+    if (diff < 3600) return `${Math.floor(diff/60)}m ago`;
+    if (diff < 86400) return `${Math.floor(diff/3600)}h ago`;
+    if (diff < 86400*30) return `${Math.floor(diff/86400)}d ago`;
     if (diff < 86400*365) return `${Math.floor(diff/86400/30)}mo ago`;
     return `${Math.floor(diff/86400/365)}y ago`;
 }
-
 function classifyRepo(repo) {
-    const text = ((repo.name || '') + ' ' +
-                  (repo.description || '') + ' ' +
-                  (repo.topics || []).join(' ')).toLowerCase();
+    const text = ((repo.name || '') + ' ' + (repo.description || '') + ' ' + (repo.topics || []).join(' ')).toLowerCase();
     for (const rule of CATEGORY_RULES) {
         if (rule.id === 'other') continue;
         if (rule.keywords.some(kw => text.includes(kw))) return rule.id;
@@ -914,71 +1751,95 @@ function classifyRepo(repo) {
 }
 
 // =========================================================================
-// SECTION : BOOT_SEQUENCE（起動シーケンス / きどう）
-// 模擬 BIOS 開機動畫
+// SECTION : I18N（多言語 / たげんご）
+// 套用語言切換
+// =========================================================================
+function applyI18n(lang) {
+    STATE.lang = lang;
+    document.documentElement.lang = lang;
+    const dict = I18N[lang] || I18N['en'];
+    $$('[data-i18n]').forEach(el => {
+        const k = el.dataset.i18n;
+        if (dict[k] !== undefined) el.textContent = dict[k];
+    });
+    $$('[data-i18n-ph]').forEach(el => {
+        const k = el.dataset.i18nPh;
+        if (dict[k] !== undefined) el.placeholder = dict[k];
+    });
+    $$('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    try { localStorage.setItem('albert_toc_lang', lang); } catch (e) {}
+    renderGrid();   // 重新渲染卡片（語言相關文字）
+    renderFilters();
+}
+
+// =========================================================================
+// SECTION : THEME（テーマ）
+// 套用主題切換
+// =========================================================================
+function applyTheme(theme) {
+    STATE.theme = theme;
+    document.documentElement.setAttribute('data-theme', theme);
+    $$('.theme-btn').forEach(b => b.classList.toggle('active', b.dataset.theme === theme));
+    try { localStorage.setItem('albert_toc_theme', theme); } catch (e) {}
+}
+
+// =========================================================================
+// SECTION : BOOT_SEQUENCE
 // =========================================================================
 function runBootSequence() {
     const lines = [
-        { txt: '[BIOS] Albert TOC v2.0.0 ... initializing', cls: 'boot-dim', delay: 100 },
-        { txt: '[OK]   Memory test ........................ PASS', cls: 'boot-ok',   delay: 350 },
-        { txt: '[OK]   Network adapter .................... ONLINE', cls: 'boot-ok',   delay: 600 },
-        { txt: '[OK]   GitHub API endpoint reachable',           cls: 'boot-ok',   delay: 900 },
-        { txt: '[INFO] Loading repository matrix ...',           cls: 'boot-info', delay: 1200 },
-        { txt: '[INFO] Mounting category index ...',             cls: 'boot-info', delay: 1500 },
-        { txt: '[INFO] Activating UI module: Albert_Style',      cls: 'boot-info', delay: 1800 },
-        { txt: '[OK]   All systems operational',                 cls: 'boot-ok',   delay: 2100 },
-        { txt: '> System ready. Welcome, Operator.',             cls: 'boot-ok',   delay: 2400 },
+        { txt: '[BIOS] Albert TOC v2.2.0 ... initializing', cls: 'boot-dim', delay: 100 },
+        { txt: '[OK]   Memory test ........................ PASS', cls: 'boot-ok', delay: 350 },
+        { txt: '[OK]   Network adapter .................... ONLINE', cls: 'boot-ok', delay: 600 },
+        { txt: '[OK]   GitHub API endpoint reachable',           cls: 'boot-ok', delay: 900 },
+        { txt: '[INFO] Loading i18n dictionary (4 langs) ...',   cls: 'boot-info', delay: 1100 },
+        { txt: '[INFO] Mounting theme engine (3 themes) ...',    cls: 'boot-info', delay: 1300 },
+        { txt: '[INFO] Loading flagship projects index ...',     cls: 'boot-info', delay: 1500 },
+        { txt: '[INFO] Activating notify hook (daily max=1) ...',cls: 'boot-info', delay: 1700 },
+        { txt: '[INFO] Activating UI module: Albert_Style',      cls: 'boot-info', delay: 1900 },
+        { txt: '[OK]   All systems operational',                 cls: 'boot-ok', delay: 2100 },
+        { txt: '> System ready. Welcome, Operator.',             cls: 'boot-ok', delay: 2400 },
     ];
     const target = $('#boot-lines');
     if (!target) return;
-    lines.forEach((line) => {
+    lines.forEach(line => {
         const div = document.createElement('div');
         div.className = `boot-line ${line.cls}`;
         div.style.animationDelay = `${line.delay}ms`;
         div.textContent = line.txt;
         target.appendChild(div);
     });
-    setTimeout(() => {
-        $('#boot-screen')?.classList.add('done');
-    }, CONFIG.BOOT_DURATION);
+    setTimeout(() => $('#boot-screen')?.classList.add('done'), CONFIG.BOOT_DURATION);
 }
 
 // =========================================================================
-// SECTION : CLOCK（時計 / とけい）
-// 即時時鐘 + 日期
+// SECTION : CLOCK
 // =========================================================================
 function updateClock() {
     const now = new Date();
     const pad = (n) => String(n).padStart(2, '0');
     const clk = $('#clock');
-    const dt  = $('#date');
     if (clk) clk.textContent = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
-    if (dt)  dt.textContent  = `${now.getFullYear()}/${pad(now.getMonth()+1)}/${pad(now.getDate())}`;
 }
 
 // =========================================================================
-// SECTION : CACHE（キャッシュ / きゃっしゅ）
-// 本地快取 - 減少 GitHub API 呼叫
+// SECTION : CACHE
 // =========================================================================
 function loadCache() {
     try {
         const raw = localStorage.getItem(CONFIG.CACHE_KEY);
         if (!raw) return null;
         const obj = JSON.parse(raw);
-        const ageMin = (Date.now() - obj.ts) / 60000;
-        if (ageMin > CONFIG.CACHE_TTL_MIN) return null;
+        if ((Date.now() - obj.ts) / 60000 > CONFIG.CACHE_TTL_MIN) return null;
         return obj.data;
     } catch (e) { return null; }
 }
 function saveCache(data) {
-    try {
-        localStorage.setItem(CONFIG.CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
-    } catch (e) { /* 容量不足忽略 / よぶん むし */ }
+    try { localStorage.setItem(CONFIG.CACHE_KEY, JSON.stringify({ ts: Date.now(), data })); } catch (e) {}
 }
 
 // =========================================================================
-// SECTION : FETCH_REPOS（リポジトリ取得 / しゅとく）
-// GitHub REST API 拉取所有 public repository
+// SECTION : FETCH_REPOS
 // =========================================================================
 async function fetchRepos(force = false) {
     if (!force) {
@@ -994,29 +1855,21 @@ async function fetchRepos(force = false) {
 }
 
 // =========================================================================
-// SECTION : RENDER_FILTERS（フィルター描画 / びょうが）
+// SECTION : RENDER_FILTERS
 // =========================================================================
 function renderFilters() {
     const bar = $('#filter-bar');
     if (!bar) return;
-
-    // ALL 按鈕 / すべてボタン
     const counts = { all: STATE.repos.length };
     CATEGORY_RULES.forEach(r => { counts[r.id] = STATE.repos.filter(x => x._cat === r.id).length; });
-
     const buttons = [
         { id: 'all', label: 'ALL', count: counts.all },
         ...CATEGORY_RULES.map(r => ({ id: r.id, label: r.label, count: counts[r.id] })),
     ];
-
-    bar.innerHTML = buttons
-        .filter(b => b.count > 0 || b.id === 'all')
-        .map(b => `
-            <button class="filter-btn ${STATE.activeCat === b.id ? 'active' : ''}" data-cat="${b.id}">
-                ${b.label}<span class="filter-count">${b.count}</span>
-            </button>
-        `).join('');
-
+    bar.innerHTML = buttons.filter(b => b.count > 0 || b.id === 'all').map(b => `
+        <button class="filter-btn ${STATE.activeCat === b.id ? 'active' : ''}" data-cat="${b.id}">
+            ${b.label}<span class="filter-count">${b.count}</span>
+        </button>`).join('');
     bar.querySelectorAll('button[data-cat]').forEach(btn => {
         btn.addEventListener('click', () => {
             STATE.activeCat = btn.dataset.cat;
@@ -1027,7 +1880,7 @@ function renderFilters() {
 }
 
 // =========================================================================
-// SECTION : APPLY_FILTERS（フィルター適用 / てきよう）
+// SECTION : APPLY_FILTERS
 // =========================================================================
 function applyFilters() {
     const q = STATE.searchQuery.trim().toLowerCase();
@@ -1041,34 +1894,31 @@ function applyFilters() {
 }
 
 // =========================================================================
-// SECTION : RENDER_GRID（グリッド描画 / グリッドびょうが）
-// 渲染專案卡片
+// SECTION : RENDER_GRID
 // =========================================================================
 function renderGrid() {
     const grid  = $('#project-grid');
     const empty = $('#empty-state');
     if (!grid) return;
-
     if (!STATE.filtered.length) {
         grid.innerHTML = '';
-        empty.classList.remove('hidden');
+        empty?.classList.remove('hidden');
         return;
     }
-    empty.classList.add('hidden');
-
+    empty?.classList.add('hidden');
+    const dict = I18N[STATE.lang] || I18N['en'];
     grid.innerHTML = STATE.filtered.map(repo => {
-        const isPriv     = repo.private;
+        const isPriv = repo.private;
         const isArchived = repo.archived;
-        const statusCls  = isPriv ? 'priv' : (isArchived ? 'warn' : (repo.stargazers_count > 0 ? 'pass' : 'info'));
-        const statusTxt  = isPriv ? '● PRIVATE' : (isArchived ? '● ARCHIVED' : (repo.stargazers_count > 0 ? `● ★ ${repo.stargazers_count}` : '● ONLINE'));
-        const desc       = repo.description || '— No description provided. —';
-        const lang       = repo.language || 'N/A';
-        const updated    = timeAgo(repo.updated_at);
-        const link       = repo.has_pages
+        const statusCls = isPriv ? 'priv' : (isArchived ? 'warn' : (repo.stargazers_count > 0 ? 'pass' : 'info'));
+        const statusTxt = isPriv ? '● PRIVATE' : (isArchived ? '● ARCHIVED' : (repo.stargazers_count > 0 ? `● ★ ${repo.stargazers_count}` : '● ONLINE'));
+        const desc = repo.description || '— No description provided. —';
+        const lang = repo.language || 'N/A';
+        const updated = timeAgo(repo.updated_at);
+        const link = repo.has_pages
             ? `https://${CONFIG.GITHUB_USER.toLowerCase()}.github.io/${repo.name.toLowerCase()}/`
             : repo.html_url;
-        const linkLabel  = repo.has_pages ? 'OPEN DEMO ↗' : 'VIEW REPO ↗';
-
+        const linkLabel = repo.has_pages ? 'OPEN DEMO ↗' : 'VIEW REPO ↗';
         return `
         <article class="rack-card cat-${repo._cat}">
             <div class="flex justify-between items-start gap-2">
@@ -1081,15 +1931,13 @@ function renderGrid() {
                 <span>⌖ ${updated}</span>
                 ${repo.forks_count > 0 ? `<span>⑂ ${repo.forks_count}</span>` : ''}
             </div>
-            <a class="rack-link" href="${escapeHTML(link)}" target="_blank" rel="noopener noreferrer">
-                ${linkLabel}
-            </a>
+            <a class="rack-link" href="${escapeHTML(link)}" target="_blank" rel="noopener noreferrer">${linkLabel}</a>
         </article>`;
     }).join('');
 }
 
 // =========================================================================
-// SECTION : RENDER_STATS（統計描画 / とうけい）
+// SECTION : RENDER_STATS
 // =========================================================================
 function renderStats() {
     $('#stat-total').textContent = STATE.repos.length;
@@ -1102,37 +1950,88 @@ function renderStats() {
 }
 
 // =========================================================================
-// SECTION : SHOW_ERROR（エラー表示 / エラーひょうじ）
+// SECTION : LIVE_LOG（動態日誌 / ライブログ）
+// 模擬全球部署訊息流
+// =========================================================================
+const LOG_TEMPLATES = [
+    { tag: 'SUCCESS', tagCls: 'log-tag-ok',   msg: 'License activated for Node: RX4770-M8',             region: 'TechCorp_US'    },
+    { tag: 'INFO',    tagCls: 'log-tag-info', msg: '5W2H_Report_Generator_v2.2.0 downloaded',           region: 'Taiwan (114.34.*)' },
+    { tag: 'SUCCESS', tagCls: 'log-tag-ok',   msg: 'Premium Package purchase via Gumroad',              region: 'Tokyo, JP'      },
+    { tag: 'INFO',    tagCls: 'log-tag-info', msg: 'Log_Toolkit_Pro installed on Windows Server 2022',  region: 'Berlin, DE'     },
+    { tag: 'SUCCESS', tagCls: 'log-tag-ok',   msg: 'Enterprise consulting inquiry received',            region: 'Singapore, SG'  },
+    { tag: 'INFO',    tagCls: 'log-tag-info', msg: 'Notion 5W2H Template Pack subscribed',              region: 'Seoul, KR'      },
+    { tag: 'SUCCESS', tagCls: 'log-tag-ok',   msg: 'PXE GUI v1.0 deployed to 4 lab racks',              region: 'Hsinchu, TW'    },
+    { tag: 'INFO',    tagCls: 'log-tag-info', msg: 'NotebookLM podcast EP12 published',                 region: 'YouTube'        },
+    { tag: 'SUCCESS', tagCls: 'log-tag-ok',   msg: 'Chrony auto-fix executed on 12 nodes',              region: 'Mumbai, IN'     },
+    { tag: 'WARN',    tagCls: 'log-tag-warn', msg: 'Rate limit warning · API requests = 58/60',         region: 'Internal'       },
+    { tag: 'SUCCESS', tagCls: 'log-tag-ok',   msg: 'Custom Dashboard delivered & signed-off',           region: 'London, UK'     },
+    { tag: 'INFO',    tagCls: 'log-tag-info', msg: 'Audio Briefing EP10 ↗ 1.2k plays this week',        region: 'YouTube'        },
+    { tag: 'SUCCESS', tagCls: 'log-tag-ok',   msg: 'SIT pipeline integration completed for RX2530',     region: 'Osaka, JP'      },
+    { tag: 'INFO',    tagCls: 'log-tag-info', msg: 'New repo synced from github.com/AlbertChou20250706', region: 'CDN'           },
+    { tag: 'SUCCESS', tagCls: 'log-tag-ok',   msg: 'DHCP Option 66/67 wizard activated',                region: 'Shenzhen, CN'   },
+];
+function pad2(n) { return String(n).padStart(2, '0'); }
+function pushLogLine() {
+    const log = $('#live-log');
+    if (!log) return;
+    const t = new Date();
+    const ts = `${t.getFullYear()}-${pad2(t.getMonth()+1)}-${pad2(t.getDate())} ${pad2(t.getHours())}:${pad2(t.getMinutes())}:${pad2(t.getSeconds())}`;
+    const tpl = LOG_TEMPLATES[Math.floor(Math.random() * LOG_TEMPLATES.length)];
+    const line = document.createElement('div');
+    line.className = 'log-line';
+    line.innerHTML = `<span class="log-time">[${ts}]</span> <span class="${tpl.tagCls}">[${tpl.tag}]</span> ${escapeHTML(tpl.msg)} <span class="log-region">(${escapeHTML(tpl.region)})</span>`;
+    log.appendChild(line);
+    // 保留最新 8 條 / さいしん 8 ほん いがい さくじょ
+    while (log.children.length > 8) log.removeChild(log.firstChild);
+}
+
+// =========================================================================
+// SECTION : DEMO_HANDLER（DEMO ボタン）
+// 5W2H Lite 沙盒 - 預留接口（提示用戶這是 demo）
+// =========================================================================
+function sendPromptDemo() {
+    const dict = I18N[STATE.lang] || I18N['en'];
+    const messages = {
+        'zh-TW': '🚀 [DEMO] 雷射掃描已啟動！\n\n這是 5W2H Lite 免費試用提示。完整生成器（含 .docx 匯出、Mantis 自動連結、chrony 修正）請升級 PRO 版。',
+        'zh-CN': '🚀 [DEMO] 激光扫描已启动！\n\n这是 5W2H Lite 免费试用提示。完整生成器请升级 PRO 版。',
+        'en':    '🚀 [DEMO] Laser scanner engaged!\n\nThis is the 5W2H Lite free preview. Upgrade to PRO for full .docx export, Mantis auto-linking, and chrony fix.',
+        'ja':    '🚀 [DEMO] レーザースキャンを起動！\n\n5W2H Lite 無料プレビューです。完全版（.docx エクスポート等）は PRO 版へ。'
+    };
+    alert(messages[STATE.lang] || messages['en']);
+}
+window.sendPromptDemo = sendPromptDemo;
+
+// =========================================================================
+// SECTION : SHOW_ERROR
 // =========================================================================
 function showError(msg) {
     const grid = $('#project-grid');
     grid.innerHTML = `
         <div class="col-span-full text-center py-8" style="font-family:var(--font-mono);font-size:13px;">
             <div style="color:var(--color-fail);font-size:15px;margin-bottom:8px;">[FAIL] ${escapeHTML(msg)}</div>
-            <div style="color:var(--text-muted);">GitHub API rate limit 為 60 req/hr，請稍候再試 or 開啟快取資料。</div>
+            <div style="color:var(--text-muted);">GitHub API rate limit = 60 req/hr. Please retry later or use cache.</div>
             <button class="filter-btn mt-3" onclick="bootstrap(true)">⟳ RETRY</button>
         </div>`;
 }
 
 // =========================================================================
-// SECTION : BOOTSTRAP（ブートストラップ / きどうしょり）
-// 主程式進入點
+// SECTION : BOOTSTRAP
 // =========================================================================
 async function bootstrap(force = false) {
     const grid = $('#project-grid');
-    grid.innerHTML = Array.from({ length: 6 }, () =>
-        `<div class="skeleton" style="height:220px;"></div>`).join('');
-
+    grid.innerHTML = Array.from({ length: 6 }, () => `<div class="skeleton" style="height:220px;"></div>`).join('');
     try {
         let data = await fetchRepos(force);
-        // 過濾規則 / フィルタールール
-        data = data.filter(r => CONFIG.SHOW_FORKS    || !r.fork);
+        // v2.2.0：先過 EXCLUDE 黑名單（如本站所在的 Albert-Pyahaw repo）
+        // じょがいリスト ふぃるたー
+        data = data.filter(r => !CONFIG.EXCLUDE_REPOS.includes(r.name));
+        data = data.filter(r => CONFIG.SHOW_FORKS || !r.fork);
         data = data.filter(r => CONFIG.SHOW_ARCHIVED || !r.archived);
-        // 加上分類標籤 / カテゴリータグ
         data.forEach(r => { r._cat = classifyRepo(r); });
         STATE.repos = data;
         STATE.filtered = data;
         renderStats();
+        renderPinned();      // v2.2.0：渲染招牌專案 / かんばん プロジェクト レンダリング
         renderFilters();
         applyFilters();
     } catch (e) {
@@ -1140,11 +2039,196 @@ async function bootstrap(force = false) {
         showError(e.message || 'Failed to load repositories.');
     }
 }
+window.bootstrap = bootstrap;
 
 // =========================================================================
-// SECTION : EVENT_BINDING（イベント紐付け / バインディング）
+// SECTION : PINNED_PROJECTS（招牌專案 / かんばんプロジェクト）
+// v2.2.0 NEW - 手動指定置頂的招牌專案
+// =========================================================================
+function renderPinned() {
+    const wrap = $('#pinned-grid');
+    const sec  = $('#pinned-section');
+    if (!wrap || !sec) return;
+    // 依 CONFIG.PINNED_REPOS 順序挑出 / CONFIG じゅんばんに ぴっくあっぷ
+    const pinned = CONFIG.PINNED_REPOS
+        .map(name => STATE.repos.find(r => r.name === name))
+        .filter(Boolean);
+    if (!pinned.length) { sec.classList.add('hidden'); return; }
+    sec.classList.remove('hidden');
+    wrap.innerHTML = pinned.map(repo => {
+        const link = repo.has_pages
+            ? `https://${CONFIG.GITHUB_USER.toLowerCase()}.github.io/${repo.name}/`
+            : repo.html_url;
+        const linkLabel = repo.has_pages ? 'OPEN DEMO ↗' : 'VIEW REPO ↗';
+        const desc = repo.description || '— No description provided. —';
+        return `
+        <article class="pinned-card cat-${repo._cat}" data-repo="${escapeHTML(repo.name)}">
+            <div class="pinned-badge">★ PINNED</div>
+            <div class="flex justify-between items-start gap-2 mt-2">
+                <h4 class="rack-title" style="font-size:18px;">${escapeHTML(repo.name)}</h4>
+                <span class="rack-status ${repo.stargazers_count > 0 ? 'pass' : 'info'}">
+                    ${repo.stargazers_count > 0 ? `● ★ ${repo.stargazers_count}` : '● ONLINE'}
+                </span>
+            </div>
+            <p class="rack-desc">${escapeHTML(desc)}</p>
+            <div class="pinned-readme-preview" data-repo="${escapeHTML(repo.name)}">
+                <span class="readme-hint">▸ Hover to preview README ...</span>
+            </div>
+            <div class="rack-meta">
+                <span>◆ ${escapeHTML(repo.language || 'N/A')}</span>
+                <span>⌖ ${timeAgo(repo.updated_at)}</span>
+                ${repo.forks_count > 0 ? `<span>⑂ ${repo.forks_count}</span>` : ''}
+            </div>
+            <a class="rack-link" href="${escapeHTML(link)}" target="_blank" rel="noopener noreferrer"
+               onclick="trackInteraction('open_pinned', '${escapeHTML(repo.name)}')">${linkLabel}</a>
+        </article>`;
+    }).join('');
+    // 綁定 hover 載入 README / ほばー で README ロード
+    wrap.querySelectorAll('.pinned-card').forEach(card => {
+        card.addEventListener('mouseenter', () => loadReadmePreview(card.dataset.repo), { once: true });
+    });
+}
+
+// =========================================================================
+// SECTION : README_PREVIEW（README プレビュー）
+// v2.2.0 NEW - hover 時 lazy fetch + 永久 cache（節省 API 呼叫）
+// =========================================================================
+function loadReadmeCache() {
+    try { return JSON.parse(localStorage.getItem(CONFIG.README_CACHE_KEY) || '{}'); }
+    catch (e) { return {}; }
+}
+function saveReadmeCache(cache) {
+    try { localStorage.setItem(CONFIG.README_CACHE_KEY, JSON.stringify(cache)); } catch (e) {}
+}
+async function loadReadmePreview(repoName) {
+    const previewEl = document.querySelector(`.pinned-readme-preview[data-repo="${repoName}"]`);
+    if (!previewEl || previewEl.dataset.loaded === '1') return;
+    previewEl.dataset.loaded = '1';
+
+    // 先查 cache / きゃっしゅから さがす
+    const cache = loadReadmeCache();
+    if (cache[repoName]) {
+        previewEl.innerHTML = `<div class="readme-text">${escapeHTML(cache[repoName])}</div>`;
+        return;
+    }
+
+    previewEl.innerHTML = '<span class="readme-hint">▸ Loading README ...</span>';
+    try {
+        const res = await fetch(`https://api.github.com/repos/${CONFIG.GITHUB_USER}/${repoName}/readme`, {
+            headers: { 'Accept': 'application/vnd.github.v3.raw' }
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const text = await res.text();
+        // 去除 markdown 記號 / マークダウン きごう さくじょ
+        const clean = text
+            .replace(/```[\s\S]*?```/g, '')   // 移除 code block
+            .replace(/!\[.*?\]\(.*?\)/g, '')  // 移除圖片
+            .replace(/\[.*?\]\(.*?\)/g, '')   // 移除連結
+            .replace(/[#*_>`]/g, '')           // 移除 markdown 記號
+            .replace(/\s+/g, ' ')
+            .trim();
+        const preview = clean.slice(0, CONFIG.README_PREVIEW_CHARS) + (clean.length > CONFIG.README_PREVIEW_CHARS ? ' ...' : '');
+        cache[repoName] = preview;
+        saveReadmeCache(cache);
+        previewEl.innerHTML = `<div class="readme-text">${escapeHTML(preview)}</div>`;
+    } catch (e) {
+        previewEl.innerHTML = '<span class="readme-hint" style="color:var(--color-fail);">▸ README unavailable.</span>';
+    }
+}
+
+// =========================================================================
+// SECTION : INTERACTION_TRACKING（互動追蹤 / インタラクション ついせき）
+// v2.2.0 NEW - 每訪客每天最多送 1 次 Webhook，避免洗版
+//             まいにち 1 かい のみ つうち
+// =========================================================================
+function todayStr() {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function trackInteraction(action, detail) {
+    if (!CONFIG.NOTIFY.ENABLED) return;
+    const today = todayStr();
+
+    // 累積到 pending 紀錄 / ぺんでぃんぐ ろぐ
+    let pending = {};
+    try { pending = JSON.parse(localStorage.getItem(CONFIG.NOTIFY.TRACK_KEY) || '{}'); } catch (e) {}
+    pending[today] = pending[today] || [];
+    pending[today].push({ t: new Date().toISOString(), action, detail });
+    try { localStorage.setItem(CONFIG.NOTIFY.TRACK_KEY, JSON.stringify(pending)); } catch (e) {}
+
+    // 檢查今天是否已通知（防洗版）/ せんちきゅう そうしん の そし
+    const lastNotified = localStorage.getItem(CONFIG.NOTIFY.DAILY_KEY);
+    if (lastNotified === today) return;
+
+    // 送 Webhook / ウェブフック そうしん
+    sendWebhook(today, pending[today]).then(ok => {
+        if (ok) {
+            try { localStorage.setItem(CONFIG.NOTIFY.DAILY_KEY, today); } catch (e) {}
+        }
+    });
+}
+window.trackInteraction = trackInteraction;
+
+async function sendWebhook(date, events) {
+    const url = CONFIG.NOTIFY.WEBHOOK_URL;
+    if (!url) return false;
+    const lines = events.map(e => `• ${e.t.slice(11,19)} | ${e.action} | ${e.detail || '-'}`).join('\n');
+    const body = {
+        // Discord/Slack 兼容欄位 / Discord と Slack のりょうほう
+        content: `🛰️ **ALBERT_TOC** new visitor activity (${date})\n\`\`\`\n${lines}\n\`\`\`\n_(每位訪客每天最多 1 次通知 · One notification per visitor per day)_`,
+        text:    `🛰️ ALBERT_TOC new visitor activity (${date})\n${lines}\n(每位訪客每天最多 1 次通知)`
+    };
+    try {
+        await fetch(url, {
+            method: 'POST',
+            mode: 'no-cors',                  // Discord/Slack 大多需要 no-cors
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        });
+        return true;
+    } catch (e) {
+        console.warn('[NOTIFY] Webhook failed:', e);
+        return false;
+    }
+}
+
+// =========================================================================
+// SECTION : LINK_RESOLVER（リンクの差し替え）
+// 把 data-cta="xxx" 的連結替換為 CONFIG.LINKS 中的真實 URL
+// =========================================================================
+function resolveCtaLinks() {
+    const map = {
+        'gumroad-5w2h': CONFIG.LINKS.gumroad_5w2h,
+        'gumroad-log':  CONFIG.LINKS.gumroad_log,
+        'gumroad-tpl':  CONFIG.LINKS.gumroad_tpl,
+        'youtube':      CONFIG.LINKS.youtube,
+        'linkedin':     CONFIG.LINKS.linkedin,
+        'line':         CONFIG.LINKS.line,          // v2.2.0 NEW
+        'facebook':     CONFIG.LINKS.facebook,      // v2.2.0 NEW
+    };
+    $$('[data-cta]').forEach(el => {
+        const key = el.dataset.cta;
+        if (map[key]) {
+            el.setAttribute('href', map[key]);
+            if (el.tagName === 'A') { el.setAttribute('target', '_blank'); el.setAttribute('rel', 'noopener noreferrer'); }
+        }
+        // v2.2.0：追蹤點擊（每日 1 次通知）/ くりっく ついせき
+        el.addEventListener('click', () => trackInteraction('cta_click', key));
+    });
+}
+
+// =========================================================================
+// SECTION : EVENT_BINDING
 // =========================================================================
 document.addEventListener('DOMContentLoaded', () => {
+    // 套用儲存的語言 / きおくされたげんごをてきよう
+    let savedLang  = null, savedTheme = null;
+    try { savedLang  = localStorage.getItem('albert_toc_lang'); }  catch (e) {}
+    try { savedTheme = localStorage.getItem('albert_toc_theme'); } catch (e) {}
+    applyTheme(savedTheme && ['dark','neutral','light'].includes(savedTheme) ? savedTheme : CONFIG.DEFAULT_THEME);
+    applyI18n(savedLang  && I18N[savedLang] ? savedLang  : CONFIG.DEFAULT_LANG);
+
     // 啟動序列 / きどうシーケンス
     runBootSequence();
 
@@ -1152,19 +2236,28 @@ document.addEventListener('DOMContentLoaded', () => {
     updateClock();
     setInterval(updateClock, 1000);
 
+    // 動態日誌 / ライブログ
+    pushLogLine(); pushLogLine(); pushLogLine();
+    setInterval(pushLogLine, CONFIG.LOG_INTERVAL);
+
+    // 語言切換 / げんごきりかえ
+    $$('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => applyI18n(btn.dataset.lang));
+    });
+    // 主題切換 / テーマきりかえ
+    $$('.theme-btn').forEach(btn => {
+        btn.addEventListener('click', () => applyTheme(btn.dataset.theme));
+    });
+
     // 搜尋 / けんさく
     const searchInput = $('#search-input');
     if (searchInput) {
         let t;
         searchInput.addEventListener('input', (e) => {
             clearTimeout(t);
-            t = setTimeout(() => {
-                STATE.searchQuery = e.target.value;
-                applyFilters();
-            }, 200);
+            t = setTimeout(() => { STATE.searchQuery = e.target.value; applyFilters(); }, 200);
         });
     }
-
     // 重新整理 / さいよみこみ
     const refreshBtn = $('#refresh-btn');
     if (refreshBtn) {
@@ -1172,25 +2265,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const icon = $('#refresh-icon');
             if (icon) icon.style.animation = 'rotate 0.8s linear';
             localStorage.removeItem(CONFIG.CACHE_KEY);
-            bootstrap(true).then(() => {
-                setTimeout(() => { if (icon) icon.style.animation = ''; }, 800);
-            });
+            bootstrap(true).then(() => { setTimeout(() => { if (icon) icon.style.animation = ''; }, 800); });
         });
     }
-
     // 鍵盤快捷鍵 / キーボードショートカット
     document.addEventListener('keydown', (e) => {
-        if (e.key === '/' && document.activeElement !== searchInput) {
-            e.preventDefault();
-            searchInput?.focus();
-        }
+        if (e.key === '/' && document.activeElement !== searchInput) { e.preventDefault(); searchInput?.focus(); }
         if (e.key === 'Escape' && document.activeElement === searchInput) {
-            searchInput.value = '';
-            STATE.searchQuery = '';
-            applyFilters();
-            searchInput.blur();
+            searchInput.value = ''; STATE.searchQuery = ''; applyFilters(); searchInput.blur();
         }
     });
+
+    // 解析商業連結 / コマーシャル リンクの かいせつ
+    resolveCtaLinks();
+
+    // v2.2.0：訪客首次造訪追蹤（每天最多 1 次通知 Albert）
+    // はつほうもん の ついせき・1にち 1かい の つうち
+    trackInteraction('page_view', document.referrer || 'direct');
 
     // 主程式 / メインプログラム
     bootstrap(false);

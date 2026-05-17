@@ -1,706 +1,1201 @@
 <!DOCTYPE html>
-<!--
-=============================================================================
-  ファイル名 (Filename):  index.html
-  プロジェクト (Project):  Albert Engineering Showcase Site
-  バージョン (Version):    v1.0.0
-  作成者 (Author):        Albert Chou
-  作成日 (Created):       2026-05-17
-  説明 (Description):
-    Albert Style 商業工程美學ポートフォリオサイト
-    (しょうぎょう こうがく びがく ポートフォリオ サイト)
-    Showcases engineering tools, GitHub repos, and consultation services.
-
-  対応言語 (Supported Languages):
-    zh-TW (繁體中文), zh-CN (简体中文), en (English), ja (日本語)
-
-  対応テーマ (Supported Themes):
-    dark (#262626), neutral (#BFBFBF), light (#E6E6E6)
-=============================================================================
--->
-<html lang="zh-TW" data-theme="dark">
+<html lang="zh-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Albert Chou — Engineering Toolset & Consultation Hub. CPU validation, C-State logger, BIOS RCA tools." />
-  <meta name="theme-color" content="#0a0a0a" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Albert Pyahaw - Technical Operations Center. System Integration Engineer Portfolio.">
+<meta name="author" content="Albert Pyahaw">
+<title>ALBERT_TOC_v2.0.0 // Technical Operations Center</title>
 
-  <!-- ============================================================
-       ファビコン (Favicon) と PWA マニフェスト (PWA Manifest)
-       ============================================================ -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2300d4ff'/%3E%3Ctext x='32' y='44' font-family='monospace' font-size='32' text-anchor='middle' fill='%23000' font-weight='900'%3EA%3C/text%3E%3C/svg%3E" />
-  <link rel="manifest" href="./manifest.webmanifest" />
+<!-- =========================================================================
+     SECTION : EXTERNAL_RESOURCES（外部資源 / がいぶしげん）
+     ========================================================================= -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- ============================================================
-       フォント (Fonts) - 等幅とサンセリフの組み合わせ
-       (とうはば と サンセリフ の くみあわせ)
-       Monospace + Sans-serif pairing for engineering aesthetic
-       ============================================================ -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+/* =========================================================================
+   SECTION : DESIGN_TOKENS（設計トークン / せっけいトークン）
+   設計師：Albert Pyahaw | 版本：v2.0.0 | 風格：工業工程美學
+   ========================================================================= */
+:root {
+    /* ---------- Background Layers / 背景レイヤー ---------- */
+    --bg-void:        #06080F;   /* 最底層 - 虛空 */
+    --bg-deep:        #0A0E1A;   /* 深層背景 */
+    --bg-base:        #0F1626;   /* 基準背景 */
+    --bg-panel:       #131B2E;   /* 面板背景 */
+    --bg-elevated:    #1A2438;   /* 浮起元件 */
+    --bg-hover:       #1F2A42;   /* hover 狀態 */
 
-  <!-- ============================================================
-       スタイルシート (Stylesheets)
-       ============================================================ -->
-  <link rel="stylesheet" href="./assets/css/main.css" />
+    /* ---------- Border / 枠線（わくせん） ---------- */
+    --border-subtle:  rgba(148, 163, 184, 0.08);
+    --border-line:    rgba(34, 211, 238, 0.20);
+    --border-glow:    rgba(34, 211, 238, 0.40);
+    --border-grid:    rgba(34, 211, 238, 0.04);
 
-  <title>Albert Engineering · Professional Toolset & Consultation</title>
+    /* ---------- Status Colors / 状態色（じょうたいしょく） ---------- */
+    --color-pass:     #10B981;   /* 緑 - PASS */
+    --color-info:     #22D3EE;   /* 青 - INFO（主色）*/
+    --color-warn:     #F59E0B;   /* 琥珀 - WARN */
+    --color-fail:     #EF4444;   /* 赤 - FAIL */
+    --color-critical: #DC2626;   /* 深赤 - CRITICAL */
+    --color-error:    #F87171;   /* 朱 - ERROR */
+    --color-accent:   #C084FC;   /* 紫 - ACCENT */
+    --color-neon:     #84FF00;   /* 螢光綠 - 終端機 */
+
+    /* ---------- Text / 文字（もじ） ---------- */
+    --text-primary:   #F1F5F9;   /* 主文字 */
+    --text-secondary: #94A3B8;   /* 次文字 */
+    --text-muted:     #64748B;   /* 弱文字 */
+    --text-mono:      #22D3EE;   /* 等寬強調 */
+
+    /* ---------- Typography / 字体（じたい） ---------- */
+    --font-mono:      'JetBrains Mono', ui-monospace, monospace;
+    --font-sans:      'Space Grotesk', system-ui, sans-serif;
+}
+
+/* =========================================================================
+   SECTION : BASE_RESET（リセット / きそリセット）
+   ========================================================================= */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    margin: 0;
+    background: var(--bg-void);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* =========================================================================
+   SECTION : BACKGROUND_GRID（グリッド背景 / グリッドはいけい）
+   工業風格網格底紋 + 雷射掃描線
+   ========================================================================= */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(var(--border-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-grid) 1px, transparent 1px);
+    background-size: 56px 56px;
+    pointer-events: none;
+    z-index: 0;
+}
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(34, 211, 238, 0.08), transparent 70%),
+        radial-gradient(ellipse 60% 50% at 100% 100%, rgba(192, 132, 252, 0.05), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* 雷射掃描線 / レーザースキャン */
+.scanline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(34, 211, 238, 0.0) 10%,
+        rgba(34, 211, 238, 0.8) 50%,
+        rgba(34, 211, 238, 0.0) 90%,
+        transparent);
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.6);
+    pointer-events: none;
+    z-index: 100;
+    animation: scan 8s linear infinite;
+}
+@keyframes scan {
+    0%   { transform: translateY(0); opacity: 0; }
+    5%   { opacity: 1; }
+    95%  { opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* =========================================================================
+   SECTION : BOOT_SEQUENCE（起動シーケンス / きどうシーケンス）
+   類似 BIOS 開機畫面
+   ========================================================================= */
+#boot-screen {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-void);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#boot-screen.done {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+.boot-inner {
+    max-width: 680px;
+    width: 100%;
+    padding: 24px;
+    color: var(--color-pass);
+    font-size: 13px;
+}
+.boot-line {
+    opacity: 0;
+    animation: bootLine 0.1s forwards;
+    margin-bottom: 2px;
+}
+.boot-ok    { color: var(--color-pass); }
+.boot-info  { color: var(--color-info); }
+.boot-warn  { color: var(--color-warn); }
+.boot-dim   { color: var(--text-muted); }
+@keyframes bootLine { to { opacity: 1; } }
+
+.cursor-blink::after {
+    content: "▊";
+    animation: blink 1s steps(1) infinite;
+    color: var(--color-pass);
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* =========================================================================
+   SECTION : HEADER（ヘッダー / 上部バー）
+   ========================================================================= */
+.toc-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10, 14, 26, 0.85);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid var(--border-line);
+}
+.led-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-pass);
+    box-shadow: 0 0 8px var(--color-pass), 0 0 16px rgba(16, 185, 129, 0.4);
+    animation: pulse-led 1.6s ease-in-out infinite;
+}
+@keyframes pulse-led {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.35; }
+}
+
+/* =========================================================================
+   SECTION : HERO_TERMINAL（ヒーロー端末 / メインターミナル）
+   ========================================================================= */
+.terminal {
+    background: linear-gradient(180deg, var(--bg-panel) 0%, var(--bg-base) 100%);
+    border: 1px solid var(--border-line);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+.terminal::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(34, 211, 238, 0.03) 50%, transparent 100%);
+    pointer-events: none;
+}
+.terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: rgba(6, 8, 15, 0.6);
+    border-bottom: 1px solid var(--border-subtle);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+}
+.term-dot { width: 11px; height: 11px; border-radius: 50%; }
+.term-dot.r { background: #ff5f56; }
+.term-dot.y { background: #ffbd2e; }
+.term-dot.g { background: #27c93f; }
+.terminal-body {
+    padding: 22px 26px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.85;
+}
+.prompt { color: var(--color-pass); }
+.cmd    { color: var(--text-primary); }
+.out    { color: var(--text-secondary); }
+
+/* 打字效果 / タイピング演出 */
+.typing {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--color-pass);
+    animation: typing 2.2s steps(40, end), blink-cursor 0.7s step-end infinite;
+}
+@keyframes typing { from { width: 0; } to { width: 100%; } }
+@keyframes blink-cursor { 50% { border-color: transparent; } }
+
+/* =========================================================================
+   SECTION : IDENTITY_CARD（個人カード / プロフィール）
+   ========================================================================= */
+.id-card {
+    background: linear-gradient(135deg, var(--bg-panel) 0%, var(--bg-elevated) 100%);
+    border: 1px solid var(--border-line);
+    border-radius: 14px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+}
+.id-card::before {
+    content: "";
+    position: absolute;
+    top: 0; right: 0;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.10), transparent 70%);
+    pointer-events: none;
+}
+.avatar-wrap {
+    position: relative;
+    width: 112px;
+    height: 112px;
+    flex-shrink: 0;
+}
+.avatar-wrap img {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-info);
+    box-shadow: 0 0 24px rgba(34, 211, 238, 0.35);
+}
+.avatar-wrap::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border: 1px dashed var(--border-glow);
+    border-radius: 50%;
+    animation: rotate 24s linear infinite;
+}
+@keyframes rotate { to { transform: rotate(360deg); } }
+
+.tech-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-secondary);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+.tech-chip:hover {
+    color: var(--color-info);
+    border-color: var(--border-glow);
+    transform: translateY(-1px);
+}
+
+/* =========================================================================
+   SECTION : SECTION_HEADER（セクション見出し / みだし）
+   ========================================================================= */
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--color-info);
+    text-transform: uppercase;
+    margin: 0;
+}
+.section-title::before {
+    content: ">";
+    color: var(--color-pass);
+}
+.section-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-glow), transparent);
+}
+
+/* =========================================================================
+   SECTION : CONTROL_PANEL（操作パネル / そうさパネル）
+   分類過濾 + 搜尋
+   ========================================================================= */
+.control-panel {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-line);
+    border-radius: 10px;
+    padding: 16px;
+}
+.search-input {
+    width: 100%;
+    background: var(--bg-void);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 10px 14px 10px 38px;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+.search-input::placeholder { color: var(--text-muted); }
+.search-input:focus {
+    border-color: var(--color-info);
+    box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.12);
+}
+.filter-btn {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 6px 12px;
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    background: var(--bg-void);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+.filter-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-glow);
+}
+.filter-btn.active {
+    background: var(--color-info);
+    color: var(--bg-void);
+    border-color: var(--color-info);
+    font-weight: 700;
+}
+.filter-count {
+    margin-left: 6px;
+    padding: 1px 6px;
+    background: rgba(0,0,0,0.25);
+    border-radius: 3px;
+    font-size: 10px;
+}
+
+/* =========================================================================
+   SECTION : RACK_CARD（仮想ラック / かそうラック）
+   每個專案 = 一個伺服器機架插槽
+   ========================================================================= */
+.rack-card {
+    position: relative;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-line);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    min-height: 220px;
+}
+.rack-card::before {
+    /* 左側機架識別條 / ラックインジケーター */
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--color-info);
+    transition: width 0.3s, box-shadow 0.3s;
+}
+.rack-card::after {
+    /* hover 時的角落裝飾 */
+    content: "";
+    position: absolute;
+    top: 0; right: 0;
+    width: 24px; height: 24px;
+    border-top: 1px solid transparent;
+    border-right: 1px solid transparent;
+    transition: all 0.3s;
+}
+.rack-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--border-glow);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 0 24px rgba(34, 211, 238, 0.15);
+}
+.rack-card:hover::before {
+    width: 5px;
+    box-shadow: 0 0 12px var(--color-info);
+}
+.rack-card:hover::after {
+    top: 8px; right: 8px;
+    border-color: var(--color-info);
+}
+
+.rack-card.cat-web::before     { background: #22D3EE; }
+.rack-card.cat-system::before  { background: #84FF00; }
+.rack-card.cat-edu::before     { background: #F59E0B; }
+.rack-card.cat-finance::before { background: #C084FC; }
+.rack-card.cat-server::before  { background: #F87171; }
+.rack-card.cat-other::before   { background: #94A3B8; }
+
+.rack-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+.rack-status.pass { background: rgba(16, 185, 129, 0.12); color: var(--color-pass); border: 1px solid rgba(16, 185, 129, 0.3); }
+.rack-status.info { background: rgba(34, 211, 238, 0.12); color: var(--color-info); border: 1px solid rgba(34, 211, 238, 0.3); }
+.rack-status.warn { background: rgba(245, 158, 11, 0.12); color: var(--color-warn); border: 1px solid rgba(245, 158, 11, 0.3); }
+.rack-status.priv { background: rgba(192, 132, 252, 0.12); color: var(--color-accent); border: 1px solid rgba(192, 132, 252, 0.3); }
+
+.rack-title {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text-primary);
+    margin: 0;
+    word-break: break-word;
+}
+.rack-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border-subtle);
+}
+.rack-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.rack-desc {
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.rack-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 8px 14px;
+    border: 1px solid var(--border-glow);
+    border-radius: 5px;
+    color: var(--color-info);
+    text-decoration: none;
+    transition: all 0.2s;
+    text-transform: uppercase;
+}
+.rack-link:hover {
+    background: var(--color-info);
+    color: var(--bg-void);
+    box-shadow: 0 0 16px rgba(34, 211, 238, 0.5);
+}
+
+/* =========================================================================
+   SECTION : STAT_BLOCK（統計ブロック / とうけい）
+   ========================================================================= */
+.stat-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-line);
+    border-radius: 8px;
+    padding: 14px 16px;
+}
+.stat-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+.stat-value {
+    font-family: var(--font-mono);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--color-info);
+    line-height: 1.1;
+    margin-top: 4px;
+}
+
+/* =========================================================================
+   SECTION : LOADING_STATE（ローディング / 読み込み中）
+   ========================================================================= */
+.skeleton {
+    background: linear-gradient(90deg, var(--bg-panel) 0%, var(--bg-elevated) 50%, var(--bg-panel) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s ease-in-out infinite;
+    border-radius: 8px;
+}
+@keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* =========================================================================
+   SECTION : FOOTER（フッター / 下部バー）
+   ========================================================================= */
+.toc-footer {
+    border-top: 1px solid var(--border-subtle);
+    background: rgba(6, 8, 15, 0.6);
+    padding: 22px 24px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+}
+
+/* =========================================================================
+   SECTION : RESPONSIVE（レスポンシブ / 適応設計）
+   ========================================================================= */
+@media (max-width: 640px) {
+    .id-card { padding: 22px; }
+    .terminal-body { padding: 16px 18px; font-size: 12px; }
+    .stat-value { font-size: 20px; }
+}
+
+/* 可訪問性 / アクセシビリティ */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+    .scanline { display: none; }
+}
+
+/* =========================================================================
+   SECTION : UTILITY（ユーティリティ）
+   ========================================================================= */
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 36px 0 20px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.18em;
+}
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border-subtle);
+}
+</style>
 </head>
+
 <body>
 
-  <!-- ============================================================
-       スキャンライン背景 (Scanline Background)
-       (スキャンライン はいけい)
-       Subtle CRT-style overlay for engineering atmosphere
-       ============================================================ -->
-  <div class="bg-scanlines" aria-hidden="true"></div>
-  <div class="bg-grid" aria-hidden="true"></div>
-
-  <!-- ============================================================
-       ナビゲーション (Navigation Header)
-       (ナビゲーション ヘッダー)
-       Fixed top nav with brand, links, language & theme switchers
-       ============================================================ -->
-  <header class="site-header" id="siteHeader">
-    <div class="container nav-wrap">
-      <a href="#top" class="brand" aria-label="Albert Engineering Home">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 32 32" width="28" height="28">
-            <rect x="2" y="2" width="28" height="28" rx="6" fill="none" stroke="currentColor" stroke-width="2"/>
-            <text x="16" y="22" text-anchor="middle" font-family="JetBrains Mono" font-size="16" font-weight="800" fill="currentColor">A</text>
-          </svg>
-        </span>
-        <span class="brand-text">Albert<span class="brand-underscore">_</span>Engineering</span>
-      </a>
-
-      <nav class="nav-links" aria-label="Primary">
-        <a href="#tools" data-i18n="nav.tools">Tools</a>
-        <a href="#repos" data-i18n="nav.repos">Repositories</a>
-        <a href="#framework" data-i18n="nav.framework">5W2H</a>
-        <a href="#analytics" data-i18n="nav.analytics">Analytics</a>
-        <a href="#contact" data-i18n="nav.contact">Contact</a>
-      </nav>
-
-      <div class="nav-controls">
-        <!-- 言語切替 (げんごきりかえ) - Language Switcher -->
-        <div class="ctrl-group" role="group" aria-label="Language">
-          <button class="ctrl-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
-            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 2a10 10 0 100 20 10 10 0 000-20zM2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
-            <span id="langLabel">繁中</span>
-          </button>
-          <ul class="ctrl-menu" id="langMenu" role="listbox">
-            <li role="option" data-lang="zh-TW">繁體中文</li>
-            <li role="option" data-lang="zh-CN">简体中文</li>
-            <li role="option" data-lang="en">English</li>
-            <li role="option" data-lang="ja">日本語</li>
-          </ul>
-        </div>
-
-        <!-- テーマ切替 (てーま きりかえ) - Theme Switcher -->
-        <div class="ctrl-group" role="group" aria-label="Theme">
-          <button class="ctrl-btn" id="themeBtn" aria-haspopup="listbox" aria-expanded="false">
-            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="5" fill="currentColor"/><path stroke="currentColor" stroke-width="2" d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
-            <span id="themeLabel">Dark</span>
-          </button>
-          <ul class="ctrl-menu" id="themeMenu" role="listbox">
-            <li role="option" data-theme="dark">Dark · #262626</li>
-            <li role="option" data-theme="neutral">Neutral · #BFBFBF</li>
-            <li role="option" data-theme="light">Light · #E6E6E6</li>
-          </ul>
-        </div>
-
-        <a href="#contact" class="cta-btn" data-i18n="nav.cta">
-          <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-          <span>Contact Me</span>
-        </a>
-      </div>
+<!-- =========================================================================
+     SECTION : BOOT_SEQUENCE_SCREEN（起動画面 / きどうがめん）
+     模擬 BIOS / 系統開機畫面 - 提升「儀式感」與「物件感」
+     ========================================================================= -->
+<div id="boot-screen">
+    <div class="boot-inner">
+        <pre class="boot-ok" style="font-size:10px;line-height:1.2;margin:0 0 16px;">
+   ▄▄▄       ██▓     ▄▄▄▄    ▓█████  ██▀███  ▄▄▄█████▓
+  ▒████▄    ▓██▒    ▓█████▄  ▓█   ▀ ▓██ ▒ ██▒▓  ██▒ ▓▒
+  ▒██  ▀█▄  ▒██░    ▒██▒ ▄██ ▒███   ▓██ ░▄█ ▒▒ ▓██░ ▒░
+  ░██▄▄▄▄██ ▒██░    ▒██░█▀   ▒▓█  ▄ ▒██▀▀█▄  ░ ▓██▓ ░
+   ▓█   ▓██▒░██████▒░▓█  ▀█▓ ░▒████▒░██▓ ▒██▒  ▒██▒ ░
+                T E C H N I C A L   O P S   C E N T E R
+        </pre>
+        <div id="boot-lines"></div>
+        <div class="boot-line cursor-blink" style="animation-delay:3.0s;">&nbsp;</div>
     </div>
-  </header>
+</div>
 
-  <main id="top">
+<!-- 雷射掃描線 / レーザースキャンライン -->
+<div class="scanline"></div>
 
-    <!-- ============================================================
-         ヒーロー セクション (Hero Section)
-         Main visual area with tagline and live terminal preview
-         ============================================================ -->
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-text">
-          <span class="hero-badge">
-            <span class="dot"></span>
-            <span data-i18n="hero.badge">PROFESSIONAL EDITION · v1.0.0</span>
-          </span>
-          <h1 class="hero-title">
-            <span data-i18n="hero.title1">Albert</span><br/>
-            <span class="accent" data-i18n="hero.title2">Engineering</span><br/>
-            <span data-i18n="hero.title3">Toolset</span>
-          </h1>
-          <p class="hero-desc" data-i18n="hero.desc">
-            Production-grade engineering tools for server validation, CPU state monitoring,
-            and root-cause analysis. Built by engineers, refined for engineers.
-          </p>
-          <div class="hero-tags">
-            <span class="tag">RHEL 9.x</span>
-            <span class="tag">SLE 15 SPx</span>
-            <span class="tag">openSUSE Leap</span>
-            <span class="tag">Ubuntu 22.04+</span>
-          </div>
-          <div class="hero-cta">
-            <a href="#tools" class="btn btn-primary">
-              <svg viewBox="0 0 24 24" width="16" height="16"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 3v14m0 0l-5-5m5 5l5-5M5 21h14"/></svg>
-              <span data-i18n="hero.cta1">Browse Tools</span>
-            </a>
-            <a href="https://albertchou20250706.github.io/Albert-Pyahaw/" target="_blank" rel="noopener" class="btn btn-ghost">
-              <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 .3a12 12 0 00-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.3-3.2-.1-.4-.6-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 016 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0012 .3"/></svg>
-              <span data-i18n="hero.cta2">View on GitHub</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- ターミナル プレビュー (Terminal Preview) -->
-        <div class="terminal" role="img" aria-label="Terminal preview of cstate_logger_gui.sh">
-          <div class="term-bar">
-            <span class="term-dot red"></span>
-            <span class="term-dot yellow"></span>
-            <span class="term-dot green"></span>
-            <span class="term-title">cstate_logger_gui.sh — bash</span>
-          </div>
-          <div class="term-body">
-            <pre><code><span class="c-cmt"># Albert C-State Logger v1.0.0</span>
-<span class="c-cmt"># OS Auto-Detection ...</span>
-<span class="c-ok">✓</span> Detected: <span class="c-val">SLES 15 SP6 (x86_64)</span>
-<span class="c-ok">✓</span> turbostat: <span class="c-val">available</span>
-<span class="c-ok">✓</span> zenity GUI: <span class="c-val">available</span>
-
-Select Mode:
-[<span class="c-key">1</span>] 1H Idle   [<span class="c-key">2</span>] 12H Idle
-[<span class="c-key">3</span>] 1H Stress [<span class="c-key">4</span>] Custom
-
-<span class="c-acc">▶</span> Mode: <span class="c-val">1H Idle</span>  Interval: <span class="c-val">900s × 4</span>
-
-<span class="c-acc">▶</span> Sampling ...  <span class="c-ok">1/4 PASS</span>
-C1%: <span class="c-val">12.4</span>  C6%: <span class="c-val">68.2</span>  C10%: <span class="c-val">15.1</span>
-PkgTemp: <span class="c-warn">42°C</span>  Busy%: <span class="c-val">4.3</span>
-
-<span class="c-ok">✓</span> Output: <span class="c-val">Albert_Overview.html</span>
-<span class="c-ok">✓</span> Output: <span class="c-val">Albert_Overview.txt</span>
-<span class="cursor">█</span></code></pre>
-          </div>
-        </div>
-      </div>
-
-      <!-- 統計バー (Stats Bar) -->
-      <div class="container stats-row">
-        <div class="stat-card">
-          <svg viewBox="0 0 24 24" width="22" height="22"><path fill="none" stroke="currentColor" stroke-width="2" d="M4 6h16M4 12h16M4 18h10"/></svg>
-          <div class="stat-num" id="statRepos">--</div>
-          <div class="stat-lbl" data-i18n="stats.repos">Public Repositories</div>
-        </div>
-        <div class="stat-card">
-          <svg viewBox="0 0 24 24" width="22" height="22"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg>
-          <div class="stat-num" id="statStars">--</div>
-          <div class="stat-lbl" data-i18n="stats.stars">Total Stars</div>
-        </div>
-        <div class="stat-card">
-          <svg viewBox="0 0 24 24" width="22" height="22"><path fill="none" stroke="currentColor" stroke-width="2" d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M23 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8M9 11a4 4 0 100-8 4 4 0 000 8z"/></svg>
-          <div class="stat-num" id="statFollowers">--</div>
-          <div class="stat-lbl" data-i18n="stats.followers">GitHub Followers</div>
-        </div>
-        <div class="stat-card">
-          <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" d="M12 6v6l4 2"/></svg>
-          <div class="stat-num">1s</div>
-          <div class="stat-lbl" data-i18n="stats.precision">Sampling Precision</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         商業ツール展示カード (Business Tool Showcase Cards)
-         (しょうぎょう ツール てんじ カード)
-         Curated tool catalog with pricing tier, downloads, and demo
-         ============================================================ -->
-    <section class="section" id="tools">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow" data-i18n="tools.eyebrow">COMMERCIAL TOOLSET</span>
-          <h2 class="section-title" data-i18n="tools.title">Business-Grade Engineering Tools</h2>
-          <p class="section-desc" data-i18n="tools.desc">
-            Tools used in real validation pipelines at top Taiwan server OEMs.
-            Each ships with HTML+TXT reports, run logs, and RCA-ready traceability.
-          </p>
-        </div>
-
-        <div class="tools-grid">
-
-          <article class="tool-card featured">
-            <div class="tool-head">
-              <span class="tool-tag tier-pro" data-i18n="tools.tier.pro">PROFESSIONAL</span>
-              <span class="tool-price">USD <strong>$0</strong> <small>/ Open Source</small></span>
-            </div>
-            <div class="tool-icon">
-              <svg viewBox="0 0 32 32" width="36" height="36"><rect x="3" y="6" width="26" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 12h26M7 18l2 2 6-6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-            </div>
-            <h3 class="tool-name">Albert C-State Logger</h3>
-            <p class="tool-sub" data-i18n="tools.cstate.sub">CPU C-State validation suite</p>
-            <p class="tool-desc" data-i18n="tools.cstate.desc">
-              Auto-detects RHEL / SLE / openSUSE. Runs 1H/12H Idle or Stress profiles
-              with turbostat. Emits dark-themed HTML report keyed to RCA standards.
-            </p>
-            <ul class="tool-feat">
-              <li data-i18n="tools.cstate.f1">✓ Zenity GUI + TUI fallback</li>
-              <li data-i18n="tools.cstate.f2">✓ 5W2H structured anomaly framework</li>
-              <li data-i18n="tools.cstate.f3">✓ Per-core C1/C6/C10 + PkgTemp + Busy%</li>
-              <li data-i18n="tools.cstate.f4">✓ Timestamped run history (non-overwrite)</li>
-            </ul>
-            <div class="tool-actions">
-              <a class="btn btn-primary btn-sm" href="https://albertchou20250706.github.io/Albert-Pyahaw/" target="_blank" rel="noopener">
-                <span data-i18n="tools.btn.download">Download</span>
-              </a>
-              <a class="btn btn-ghost btn-sm" href="#contact" data-i18n="tools.btn.demo">Request Demo</a>
-            </div>
-          </article>
-
-          <article class="tool-card">
-            <div class="tool-head">
-              <span class="tool-tag tier-std" data-i18n="tools.tier.std">STANDARD</span>
-              <span class="tool-price">USD <strong>$0</strong> <small>/ Open Source</small></span>
-            </div>
-            <div class="tool-icon">
-              <svg viewBox="0 0 32 32" width="36" height="36"><path d="M4 4h24v8H4zM4 20h24v8H4zM8 8h.01M8 24h.01M14 8h10M14 24h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-            <h3 class="tool-name">BIOS Setting Auditor</h3>
-            <p class="tool-sub" data-i18n="tools.bios.sub">UEFI/BIOS verification helper</p>
-            <p class="tool-desc" data-i18n="tools.bios.desc">
-              Compares production BIOS configurations against engineering golden snapshot.
-              Outputs diff report with traceable settings per platform.
-            </p>
-            <ul class="tool-feat">
-              <li data-i18n="tools.bios.f1">✓ DMI / SMBIOS field extraction</li>
-              <li data-i18n="tools.bios.f2">✓ Golden snapshot diff engine</li>
-              <li data-i18n="tools.bios.f3">✓ Per-platform rule profiles</li>
-            </ul>
-            <div class="tool-actions">
-              <a class="btn btn-primary btn-sm" href="https://albertchou20250706.github.io/Albert-Pyahaw/" target="_blank" rel="noopener">
-                <span data-i18n="tools.btn.download">Download</span>
-              </a>
-              <a class="btn btn-ghost btn-sm" href="#contact" data-i18n="tools.btn.demo">Request Demo</a>
-            </div>
-          </article>
-
-          <article class="tool-card">
-            <div class="tool-head">
-              <span class="tool-tag tier-std" data-i18n="tools.tier.std">STANDARD</span>
-              <span class="tool-price">USD <strong>$0</strong> <small>/ Open Source</small></span>
-            </div>
-            <div class="tool-icon">
-              <svg viewBox="0 0 32 32" width="36" height="36"><path d="M16 2L3 9v14l13 7 13-7V9L16 2zM3 9l13 7 13-7M16 16v14" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-            </div>
-            <h3 class="tool-name">Stress Profile Runner</h3>
-            <p class="tool-sub" data-i18n="tools.stress.sub">stress-ng workload orchestrator</p>
-            <p class="tool-desc" data-i18n="tools.stress.desc">
-              Curated stress-ng profiles for thermal soak, memory, and CPU validation.
-              Generates HTML graphs with sensor + power data overlays.
-            </p>
-            <ul class="tool-feat">
-              <li data-i18n="tools.stress.f1">✓ Pre-tuned validation profiles</li>
-              <li data-i18n="tools.stress.f2">✓ Live sensor + ipmitool overlay</li>
-              <li data-i18n="tools.stress.f3">✓ HTML graph + CSV exports</li>
-            </ul>
-            <div class="tool-actions">
-              <a class="btn btn-primary btn-sm" href="https://albertchou20250706.github.io/Albert-Pyahaw/" target="_blank" rel="noopener">
-                <span data-i18n="tools.btn.download">Download</span>
-              </a>
-              <a class="btn btn-ghost btn-sm" href="#contact" data-i18n="tools.btn.demo">Request Demo</a>
-            </div>
-          </article>
-
-          <article class="tool-card">
-            <div class="tool-head">
-              <span class="tool-tag tier-ent" data-i18n="tools.tier.ent">ENTERPRISE</span>
-              <span class="tool-price" data-i18n="tools.priceConsult">By Consultation</span>
-            </div>
-            <div class="tool-icon">
-              <svg viewBox="0 0 32 32" width="36" height="36"><path d="M16 2v6M16 24v6M2 16h6M24 16h6M6 6l4.5 4.5M21.5 21.5L26 26M6 26l4.5-4.5M21.5 10.5L26 6" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16" r="6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-            </div>
-            <h3 class="tool-name">Validation Pipeline Pack</h3>
-            <p class="tool-sub" data-i18n="tools.pipe.sub">End-to-end CI/CD for HW QA teams</p>
-            <p class="tool-desc" data-i18n="tools.pipe.desc">
-              Custom GitLab/Jenkins pipeline scaffolding for hardware QA: artifact storage,
-              RCA dashboards, and golden-bench comparison automation.
-            </p>
-            <ul class="tool-feat">
-              <li data-i18n="tools.pipe.f1">✓ Custom pipeline scaffolding</li>
-              <li data-i18n="tools.pipe.f2">✓ RCA dashboard integration</li>
-              <li data-i18n="tools.pipe.f3">✓ On-site / remote workshop included</li>
-            </ul>
-            <div class="tool-actions">
-              <a class="btn btn-primary btn-sm" href="#contact" data-i18n="tools.btn.inquire">Inquire</a>
-              <a class="btn btn-ghost btn-sm" href="#contact" data-i18n="tools.btn.demo">Request Demo</a>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         GitHub リポジトリ自動同期 (GitHub Repos Auto-Sync)
-         (リポジトリ じどう どうき)
-         Pinned repos + auto-categorised repos + contribution graph
-         ============================================================ -->
-    <section class="section section-alt" id="repos">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow" data-i18n="repos.eyebrow">GITHUB AUTO-SYNC</span>
-          <h2 class="section-title" data-i18n="repos.title">Live Repository Showcase</h2>
-          <p class="section-desc" data-i18n="repos.desc">
-            Synced directly from GitHub API. Auto-categorised via CATEGORY_RULES.
-            Albert-Pyahaw is excluded as it's a private placeholder.
-          </p>
-        </div>
-
-        <!-- 📌 Pinned Repos (置頂專案) -->
-        <div class="pinned-row">
-          <h3 class="sub-title">
-            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z" fill="currentColor"/></svg>
-            <span data-i18n="repos.pinned">Pinned Projects</span>
-          </h3>
-          <div class="pinned-grid" id="pinnedGrid">
-            <!-- 動的に注入 (どうてき に ちゅうにゅう) - Dynamically injected -->
-          </div>
-        </div>
-
-        <!-- カテゴリフィルター (Category Filter) -->
-        <div class="repo-filters" id="repoFilters" role="tablist">
-          <button class="filter-btn active" data-cat="all" data-i18n="repos.cat.all">All</button>
-          <button class="filter-btn" data-cat="validation" data-i18n="repos.cat.validation">Validation</button>
-          <button class="filter-btn" data-cat="automation" data-i18n="repos.cat.automation">Automation</button>
-          <button class="filter-btn" data-cat="monitoring" data-i18n="repos.cat.monitoring">Monitoring</button>
-          <button class="filter-btn" data-cat="tools" data-i18n="repos.cat.tools">Utilities</button>
-          <button class="filter-btn" data-cat="docs" data-i18n="repos.cat.docs">Docs</button>
-        </div>
-
-        <div class="repo-grid" id="repoGrid">
-          <div class="repo-loading">
-            <span class="spinner"></span>
-            <span data-i18n="repos.loading">Loading repositories from GitHub ...</span>
-          </div>
-        </div>
-
-        <!-- 貢献ヒートマップ (こうけん ヒートマップ) - Contribution Heatmap -->
-        <div class="heatmap-wrap">
-          <h3 class="sub-title">
-            <svg viewBox="0 0 24 24" width="18" height="18"><rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 9h18M9 3v18" stroke="currentColor" stroke-width="2"/></svg>
-            <span data-i18n="repos.heatmap">Contribution Activity</span>
-          </h3>
-          <div class="heatmap" id="heatmap">
-            <!-- 動的生成 (どうてき せいせい) - dynamic -->
-          </div>
-          <div class="heatmap-legend">
-            <span data-i18n="repos.less">Less</span>
-            <span class="legend-cell lvl-0"></span>
-            <span class="legend-cell lvl-1"></span>
-            <span class="legend-cell lvl-2"></span>
-            <span class="legend-cell lvl-3"></span>
-            <span class="legend-cell lvl-4"></span>
-            <span data-i18n="repos.more">More</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         5W2H フレームワーク (5W2H Framework)
-         (フレームワーク)
-         Structured anomaly-reporting methodology
-         ============================================================ -->
-    <section class="section" id="framework">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">5W2H FRAMEWORK</span>
-          <h2 class="section-title" data-i18n="w2h.title">Structured Anomaly Reporting</h2>
-          <p class="section-desc" data-i18n="w2h.desc">
-            Every Albert tool ships output aligned to the 5W2H framework — making each
-            anomaly precisely recordable, traceable, and resolvable.
-          </p>
-        </div>
-
-        <div class="w2h-grid">
-          <div class="w2h-card">
-            <span class="w2h-tag">What</span>
-            <h4 data-i18n="w2h.what.h">What Happened?</h4>
-            <p data-i18n="w2h.what.d">The specific C-State or thermal anomaly — what deviated from expected behaviour.</p>
-            <span class="w2h-meta">● C1 / C6 / C10</span>
-          </div>
-          <div class="w2h-card highlight">
-            <span class="w2h-tag">Why</span>
-            <h4 data-i18n="w2h.why.h">Root Cause</h4>
-            <p data-i18n="w2h.why.d">BIOS C-State misconfig, OS power policy, driver interference, or hardware fault.</p>
-            <span class="w2h-meta">● RCA Pinpoint</span>
-          </div>
-          <div class="w2h-card">
-            <span class="w2h-tag">When</span>
-            <h4 data-i18n="w2h.when.h">Timeline</h4>
-            <p data-i18n="w2h.when.d">Every sample carries a timestamp — 1H/12H sampling reveals patterns and periodicity.</p>
-            <span class="w2h-meta">● 900s / 1800s</span>
-          </div>
-          <div class="w2h-card">
-            <span class="w2h-tag">Where</span>
-            <h4 data-i18n="w2h.where.h">System Layer</h4>
-            <p data-i18n="w2h.where.d">Per-core C-state breakdown locates the exact CPU core or package.</p>
-            <span class="w2h-meta">● Per-Core</span>
-          </div>
-          <div class="w2h-card">
-            <span class="w2h-tag">Who</span>
-            <h4 data-i18n="w2h.who.h">Ownership</h4>
-            <p data-i18n="w2h.who.d">Albert_Run.log records operator info, environment, OS version — full traceability.</p>
-            <span class="w2h-meta">● PASS / FAIL Tag</span>
-          </div>
-          <div class="w2h-card">
-            <span class="w2h-tag">How</span>
-            <h4 data-i18n="w2h.how.h">Resolution Path</h4>
-            <p data-i18n="w2h.how.d">HTML report cross-references BIOS, OS policy, driver versions for systematic fix.</p>
-            <span class="w2h-meta">● HTML Pivot</span>
-          </div>
-          <div class="w2h-card">
-            <span class="w2h-tag">How Much</span>
-            <h4 data-i18n="w2h.much.h">Impact</h4>
-            <p data-i18n="w2h.much.d">Idle vs Stress comparison quantifies the power, thermal, and performance impact.</p>
-            <span class="w2h-meta">● Idle vs Stress</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         流量統計ダッシュボード (Traffic & Download Analytics)
-         (りゅうりょう とうけい ダッシュボード)
-         Day / Week / Month / Year view controls
-         ============================================================ -->
-    <section class="section section-alt" id="analytics">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow" data-i18n="analytics.eyebrow">REAL-TIME ANALYTICS</span>
-          <h2 class="section-title" data-i18n="analytics.title">Traffic & Downloads</h2>
-          <p class="section-desc" data-i18n="analytics.desc">
-            Live page view and tool download counters. Aggregated locally — privacy-friendly.
-          </p>
-        </div>
-
-        <div class="analytics-controls">
-          <div class="ctrl-group inline" role="group" aria-label="Time range">
-            <button class="seg-btn active" data-range="day" data-i18n="analytics.day">Day</button>
-            <button class="seg-btn" data-range="week" data-i18n="analytics.week">Week</button>
-            <button class="seg-btn" data-range="month" data-i18n="analytics.month">Month</button>
-            <button class="seg-btn" data-range="year" data-i18n="analytics.year">Year</button>
-          </div>
-        </div>
-
-        <div class="analytics-grid">
-          <div class="metric-card">
-            <div class="metric-head">
-              <span class="metric-label" data-i18n="analytics.views">Page Views</span>
-              <span class="metric-delta" id="viewsDelta">+0%</span>
-            </div>
-            <div class="metric-value" id="viewsValue">0</div>
-            <canvas class="metric-chart" id="viewsChart" width="320" height="80"></canvas>
-          </div>
-          <div class="metric-card">
-            <div class="metric-head">
-              <span class="metric-label" data-i18n="analytics.downloads">Tool Downloads</span>
-              <span class="metric-delta" id="downloadsDelta">+0%</span>
-            </div>
-            <div class="metric-value" id="downloadsValue">0</div>
-            <canvas class="metric-chart" id="downloadsChart" width="320" height="80"></canvas>
-          </div>
-          <div class="metric-card">
-            <div class="metric-head">
-              <span class="metric-label" data-i18n="analytics.unique">Unique Visitors</span>
-              <span class="metric-delta" id="uniqueDelta">+0%</span>
-            </div>
-            <div class="metric-value" id="uniqueValue">0</div>
-            <canvas class="metric-chart" id="uniqueChart" width="320" height="80"></canvas>
-          </div>
-        </div>
-
-        <p class="analytics-note" data-i18n="analytics.note">
-          Note: Owner receives a single daily aggregated email via GitHub Actions —
-          never per-event spam. See <code>.github/workflows/notify-traffic.yml</code>.
-        </p>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         お問い合わせフォーム (Contact Form)
-         (おといあわせ フォーム)
-         Consultation request form + email + GitHub + RSS link
-         ============================================================ -->
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow" data-i18n="contact.eyebrow">CONSULTING SERVICE</span>
-          <h2 class="section-title" data-i18n="contact.title">Professional Consultation</h2>
-          <p class="section-desc" data-i18n="contact.desc">
-            Bring industrial-grade rigor into your validation workflow. Reply within 1–2 business days.
-          </p>
-        </div>
-
-        <form class="contact-form" id="contactForm" novalidate>
-          <div class="form-row">
-            <label class="form-field">
-              <span class="label" data-i18n="contact.name">Name *</span>
-              <input type="text" name="name" required autocomplete="name" placeholder="Your Name" />
-            </label>
-            <label class="form-field">
-              <span class="label" data-i18n="contact.email">Email *</span>
-              <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" />
-            </label>
-          </div>
-          <div class="form-row">
-            <label class="form-field">
-              <span class="label" data-i18n="contact.company">Company</span>
-              <input type="text" name="company" autocomplete="organization" placeholder="Company Name" />
-            </label>
-            <label class="form-field">
-              <span class="label" data-i18n="contact.role">Role</span>
-              <input type="text" name="role" autocomplete="organization-title" placeholder="Job Title" />
-            </label>
-          </div>
-          <label class="form-field">
-            <span class="label" data-i18n="contact.os">Target OS</span>
-            <select name="os">
-              <option value="">— Select —</option>
-              <option>RHEL 9.x</option>
-              <option>SLE 15 SPx</option>
-              <option>openSUSE Leap</option>
-              <option>Ubuntu 22.04+</option>
-              <option>Other / Mixed</option>
-            </select>
-          </label>
-          <label class="form-field">
-            <span class="label">
-              <span data-i18n="contact.msg">Inquiry *</span>
-              <span class="char-count"><span id="msgCount">0</span>/500</span>
+<!-- =========================================================================
+     SECTION : HEADER（上部ヘッダー）
+     系統頂部狀態列：版本、即時時間、系統燈
+     ========================================================================= -->
+<header class="toc-header">
+    <div class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between flex-wrap gap-2" style="position:relative;z-index:1;">
+        <div class="flex items-center gap-3">
+            <span class="led-dot"></span>
+            <span style="font-family:var(--font-mono);font-weight:700;font-size:14px;color:var(--color-info);letter-spacing:0.05em;">
+                ALBERT_TOC_v2.0.0
             </span>
-            <textarea name="message" required maxlength="500" rows="5" placeholder="Describe your validation environment, requirements, or issue ..."></textarea>
-          </label>
-
-          <button type="submit" class="btn btn-primary btn-block">
-            <svg viewBox="0 0 24 24" width="16" height="16"><path stroke="currentColor" stroke-width="2" fill="none" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-            <span data-i18n="contact.submit">Send Inquiry</span>
-          </button>
-          <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
-        </form>
-
-        <div class="contact-info">
-          <a class="info-card" href="mailto:albert@albert-engineering.dev">
-            <svg viewBox="0 0 24 24" width="20" height="20"><path stroke="currentColor" stroke-width="2" fill="none" d="M4 4h16v16H4zM4 4l8 8 8-8"/></svg>
-            <div>
-              <span class="info-lbl" data-i18n="contact.info.email">Email</span>
-              <span class="info-val">albert@albert-engineering.dev</span>
-            </div>
-          </a>
-          <a class="info-card" href="https://albertchou20250706.github.io/Albert-Pyahaw/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 .3a12 12 0 00-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.3-3.2-.1-.4-.6-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 016 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0012 .3"/></svg>
-            <div>
-              <span class="info-lbl">GitHub</span>
-              <span class="info-val">github.com/albertchou20250706</span>
-            </div>
-          </a>
-          <a class="info-card" href="./rss.xml" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2" d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16M6 19a1 1 0 100-2 1 1 0 000 2z"/></svg>
-            <div>
-              <span class="info-lbl" data-i18n="contact.info.rss">RSS Feed</span>
-              <span class="info-val">Subscribe to new repos</span>
-            </div>
-          </a>
-          <div class="info-card">
-            <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-            <div>
-              <span class="info-lbl" data-i18n="contact.info.reply">Response Time</span>
-              <span class="info-val" data-i18n="contact.info.replyVal">1–2 business days</span>
-            </div>
-          </div>
+            <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-muted);letter-spacing:0.1em;" class="hidden md:inline">
+                // TECHNICAL_OPERATIONS_CENTER
+            </span>
         </div>
-      </div>
+        <div class="flex items-center gap-4" style="font-family:var(--font-mono);font-size:11px;color:var(--text-muted);">
+            <span><span style="color:var(--color-pass);">●</span> SYS_OK</span>
+            <span class="hidden sm:inline" id="clock">--:--:--</span>
+            <span class="hidden md:inline" id="date">----/--/--</span>
+        </div>
+    </div>
+</header>
+
+<!-- =========================================================================
+     SECTION : MAIN_CONTENT（メインコンテンツ）
+     ========================================================================= -->
+<main class="max-w-6xl mx-auto px-5 py-10" style="position:relative;z-index:1;">
+
+    <!-- ===== Hero Terminal Block ===== -->
+    <section class="mb-10">
+        <div class="terminal">
+            <div class="terminal-bar">
+                <span class="term-dot r"></span>
+                <span class="term-dot y"></span>
+                <span class="term-dot g"></span>
+                <span class="ml-2">~/albert@toc-center: /portfolio/init.sh</span>
+            </div>
+            <div class="terminal-body">
+                <div><span class="prompt">albert@toc</span><span class="out">:</span><span style="color:var(--color-info);">~$</span>
+                    <span class="cmd">./run_portfolio.sh --mode=production --style=albert</span></div>
+                <div class="out" style="color:var(--text-muted);">[OK] Loading identity module ...</div>
+                <div class="out" style="color:var(--text-muted);">[OK] Fetching repositories from github.com/AlbertChou20250706 ...</div>
+                <div class="out" style="color:var(--text-muted);">[OK] Building category matrix ...</div>
+                <div class="out" style="color:var(--color-pass);">[PASS] Welcome to Albert's Technical Operations Center.</div>
+                <div style="margin-top:6px;"><span class="prompt">albert@toc</span><span class="out">:</span><span style="color:var(--color-info);">~$</span> <span class="cursor-blink"></span></div>
+            </div>
+        </div>
     </section>
-  </main>
 
-  <!-- ============================================================
-       フッター (Footer)
-       Brand · Product · Support · Contact columns
-       ============================================================ -->
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <a href="#top" class="brand">
-          <span class="brand-mark">
-            <svg viewBox="0 0 32 32" width="24" height="24"><rect x="2" y="2" width="28" height="28" rx="6" fill="none" stroke="currentColor" stroke-width="2"/><text x="16" y="22" text-anchor="middle" font-family="JetBrains Mono" font-size="16" font-weight="800" fill="currentColor">A</text></svg>
-          </span>
-          <span class="brand-text">Albert<span class="brand-underscore">_</span>Engineering</span>
-        </a>
-        <p data-i18n="footer.tagline">Professional engineering toolset for server CPU validation. Albert Style reports. RCA-ready.</p>
-        <div class="footer-badges">
-          <span class="badge-pill">v1.0.0</span>
-          <span class="badge-pill accent">Stable</span>
+    <!-- ===== Identity Card ===== -->
+    <section class="mb-10">
+        <div class="id-card">
+            <div class="flex flex-col md:flex-row md:items-center gap-6">
+                <div class="avatar-wrap mx-auto md:mx-0">
+                    <img src="https://github.com/AlbertChou20250706.png" alt="Albert_Pyahaw" loading="lazy"
+                         onerror="this.style.background='var(--bg-elevated)';this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23131b2e\'/%3E%3Ctext x=\'50\' y=\'58\' text-anchor=\'middle\' font-family=\'monospace\' font-size=\'42\' fill=\'%2322d3ee\' font-weight=\'700\'%3EA%3C/text%3E%3C/svg%3E';">
+                </div>
+                <div class="flex-1 text-center md:text-left">
+                    <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-pass);letter-spacing:0.15em;">
+                        // OPERATOR_PROFILE
+                    </div>
+                    <h2 style="font-size:30px;font-weight:700;color:var(--text-primary);margin:6px 0 4px;letter-spacing:-0.01em;">
+                        Albert Pyahaw
+                    </h2>
+                    <p style="font-family:var(--font-mono);font-size:13px;color:var(--color-info);margin:0 0 12px;">
+                        System Integration Engineer / Technical Developer
+                    </p>
+                    <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.7;margin:0 0 16px;max-width:640px;">
+                        專注於企業級伺服器架構部署、系統整合測試（SIT）、自動化運維工具開發。
+                        堅持<span style="color:var(--text-primary);">標準化架構</span>與<span style="color:var(--text-primary);">嚴謹版本控制</span>，
+                        在 RHEL／Windows Server 2022 與多硬體平台上交付穩定可維護的技術解決方案。
+                    </p>
+                    <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                        <span class="tech-chip">Python</span>
+                        <span class="tech-chip">PowerShell</span>
+                        <span class="tech-chip">Shell / Bash</span>
+                        <span class="tech-chip">Windows Server 2022</span>
+                        <span class="tech-chip">RHEL / Linux</span>
+                        <span class="tech-chip">PyQt6</span>
+                        <span class="tech-chip">HTML / CSS / JS</span>
+                        <span class="tech-chip">PXE / DHCP / TFTP</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="footer-col">
-        <h5 data-i18n="footer.product">Product</h5>
-        <a href="#tools" data-i18n="footer.l.tools">Tools</a>
-        <a href="#repos" data-i18n="footer.l.repos">Repositories</a>
-        <a href="#framework" data-i18n="footer.l.framework">5W2H Framework</a>
-        <a href="#analytics" data-i18n="footer.l.analytics">Analytics</a>
-      </div>
-      <div class="footer-col">
-        <h5 data-i18n="footer.support">Support</h5>
-        <a href="#contact" data-i18n="footer.l.contact">Contact</a>
-        <a href="https://albertchou20250706.github.io/Albert-Pyahaw/" target="_blank" rel="noopener">GitHub</a>
-        <a href="./rss.xml" data-i18n="footer.l.rss">RSS Feed</a>
-        <a href="#contact" data-i18n="footer.l.demo">Request Demo</a>
-      </div>
-      <div class="footer-col">
-        <h5 data-i18n="footer.legal">Legal</h5>
-        <a href="#" data-i18n="footer.l.privacy">Privacy</a>
-        <a href="#" data-i18n="footer.l.terms">Terms</a>
-        <a href="#" data-i18n="footer.l.license">License</a>
-      </div>
+    </section>
+
+    <!-- ===== Stats Row ===== -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
+        <div class="stat-card">
+            <div class="stat-label">// Repos</div>
+            <div class="stat-value" id="stat-total">—</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">// Languages</div>
+            <div class="stat-value" id="stat-langs">—</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">// Categories</div>
+            <div class="stat-value" id="stat-cats">—</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">// Updated</div>
+            <div class="stat-value" id="stat-updated" style="font-size:14px;line-height:1.4;padding-top:6px;">—</div>
+        </div>
+    </section>
+
+    <!-- ===== Section Title : Projects ===== -->
+    <h3 class="section-title mb-5">
+        CORE_PROJECT_MATRIX
+    </h3>
+
+    <!-- ===== Control Panel : Search + Filter ===== -->
+    <section class="control-panel mb-6">
+        <div class="flex flex-col md:flex-row gap-3 md:items-center">
+            <div style="position:relative;flex:1;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                     style="position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--text-muted);">
+                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                </svg>
+                <input type="text" id="search-input" class="search-input" placeholder="search projects... (e.g. PXE, GUI, dashboard)">
+            </div>
+            <button id="refresh-btn" class="filter-btn" style="padding:10px 16px;" title="重新從 GitHub 拉取資料">
+                <span id="refresh-icon">⟳</span> RELOAD
+            </button>
+        </div>
+        <div id="filter-bar" class="flex flex-wrap gap-2 mt-3">
+            <!-- 分類按鈕由 JS 動態產生 / カテゴリーボタンは JS で動的に生成 -->
+        </div>
+    </section>
+
+    <!-- ===== Projects Grid ===== -->
+    <section id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+        <!-- 卡片由 JS 動態渲染 / カードは JS が動的にレンダリング -->
+    </section>
+
+    <!-- ===== Empty / Error State ===== -->
+    <div id="empty-state" class="hidden text-center py-12">
+        <div style="font-family:var(--font-mono);font-size:13px;color:var(--text-muted);">
+            <div style="color:var(--color-warn);font-size:16px;margin-bottom:6px;">[WARN] No matching projects found.</div>
+            <div>嘗試清除搜尋字串或切換到 ALL 分類。</div>
+        </div>
     </div>
-    <div class="footer-base">
-      <span>© <span id="footerYear">2026</span> Albert Chou · All rights reserved.</span>
-      <span class="build-info">Build: <code id="buildHash">v1.0.0+stable</code></span>
+
+    <!-- ===== Divider ===== -->
+    <div class="divider">// END_OF_MATRIX</div>
+
+    <!-- ===== Changelog / Version Notes ===== -->
+    <section class="mb-10">
+        <h3 class="section-title mb-5">VERSION_HISTORY</h3>
+        <div class="terminal">
+            <div class="terminal-bar">
+                <span class="term-dot r"></span>
+                <span class="term-dot y"></span>
+                <span class="term-dot g"></span>
+                <span class="ml-2">CHANGELOG.md</span>
+            </div>
+            <div class="terminal-body" style="font-size:12.5px;">
+                <div style="color:var(--color-info);">## [v2.0.0] - 2026-05-16 — Designed by Albert Pyahaw</div>
+                <div class="out" style="margin-left:14px;">+ [NEW] GitHub API 自動拉取 repos（未來新增專案無需改 code）</div>
+                <div class="out" style="margin-left:14px;">+ [NEW] 智慧分類系統（Web / System / Edu / Finance / Server / Other）</div>
+                <div class="out" style="margin-left:14px;">+ [NEW] 即時搜尋過濾、雷射掃描線、BIOS 啟動畫面</div>
+                <div class="out" style="margin-left:14px;">+ [NEW] 即時時鐘、統計儀表、終端機 Hero Banner</div>
+                <div class="out" style="margin-left:14px;">+ [NEW] 完全相對路徑、純靜態、可離線檢視快取</div>
+                <div class="out" style="margin-left:14px;">+ [OPT] 響應式（手機／平板／桌機），鍵盤可訪問</div>
+                <div style="margin-top:8px;color:var(--text-muted);">## [v1.0.0] - 2025-12-31 — Initial Release</div>
+                <div class="out" style="margin-left:14px;color:var(--text-muted);">+ [INIT] 靜態雙專案卡（Coffee Dashboard / RX4770M8）</div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- =========================================================================
+     SECTION : FOOTER（フッター）
+     ========================================================================= -->
+<footer class="toc-footer">
+    <div>© 2026 Albert_Pyahaw · Technical Operations Center v2.0.0 · Designed in Albert Style</div>
+    <div style="margin-top:6px;color:var(--text-muted);font-size:10px;">
+        // BUILT_WITH: HTML5 + TailwindCSS + GitHub_REST_API · ZERO_DEPENDENCY_DEPLOY
     </div>
-  </footer>
+</footer>
 
-  <!-- ============================================================
-       浮動の連絡ボタン (Floating Contact Button)
-       (ふどう の れんらく ボタン)
-       Sticky CTA that follows the user across the page
-       ============================================================ -->
-  <a href="#contact" class="float-contact" aria-label="Contact Me">
-    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path stroke="currentColor" stroke-width="2" fill="none" d="M21 11.5a8.4 8.4 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.4 8.4 0 01-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.4 8.4 0 013.8-.9h.5a8.5 8.5 0 018 8v.5z"/></svg>
-    <span class="float-label" data-i18n="float.contact">Contact Me</span>
-    <span class="pulse-ring" aria-hidden="true"></span>
-  </a>
+<!-- =========================================================================
+     SECTION : MAIN_SCRIPT（メインスクリプト / メインJS）
+     設計師：Albert Pyahaw | 版本：v2.0.0
+     注意事項（ちゅういじこう）：
+     - 所有 UI 文字使用英文（避免亂碼問題 / もじばけ かいひ）
+     - 註解使用日文 + 中文（含讀音）便於團隊維護
+     - 完全相對路徑、無需後端、純前端架構
+     ========================================================================= -->
+<script>
+'use strict';
 
-  <!-- ============================================================
-       スクリプト読み込み (Scripts) - module 順序が重要
-       (じゅんじょ が じゅうよう) - Load order matters
-       ============================================================ -->
-  <script src="./assets/js/i18n.js"></script>
-  <script src="./assets/js/theme.js"></script>
-  <script src="./assets/js/github-sync.js"></script>
-  <script src="./assets/js/analytics.js"></script>
-  <script src="./assets/js/app.js"></script>
+// =========================================================================
+// SECTION : USER_CONFIG（ユーザー設定 / ユーザーせってい）
+// 使用者可在此修改參數（カスタマイズ可能パラメーター）
+// =========================================================================
+const CONFIG = {
+    GITHUB_USER:    'AlbertChou20250706',          // GitHub 帳號 / アカウント名
+    PER_PAGE:       100,                            // 每頁拉取數量 / ページごとの件数
+    CACHE_KEY:      'albert_toc_cache_v2',         // 快取金鑰 / キャッシュキー
+    CACHE_TTL_MIN:  15,                             // 快取存活分鐘 / キャッシュ有効分
+    SORT_BY:        'updated',                      // 排序方式 / そーとほうしき: updated | stars | name
+    SHOW_FORKS:     false,                          // 是否顯示 fork / フォーク表示
+    SHOW_ARCHIVED:  true,                           // 是否顯示封存 / アーカイブ表示
+    BOOT_DURATION:  2800,                           // 開機畫面毫秒 / きどうがめん ms
+};
 
-  <!-- PWA Service Worker 登録 (とうろく) -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch(() => {});
-      });
+// =========================================================================
+// SECTION : CATEGORY_RULES（分類ルール / ぶんるいルール）
+// 自動分類規則 - 依關鍵字判斷專案類別（じどうぶんるい）
+// =========================================================================
+const CATEGORY_RULES = [
+    { id: 'web',     label: 'WEB / DASHBOARD',    keywords: ['dashboard', 'web', 'html', 'site', 'page', 'coffee', 'rx4770'] },
+    { id: 'system',  label: 'SYSTEM / AUTOMATION', keywords: ['cstate', 'logger', 'gym', 'miniav', 'launcher', 'qt'] },
+    { id: 'server',  label: 'SERVER / NETWORK',   keywords: ['pxe', 'tftp', 'dhcp', 'dctcp', 'server', 'netpair'] },
+    { id: 'edu',     label: 'EDUCATION',          keywords: ['toeic', 'study', 'tracker', 'learn', 'english', 'teach'] },
+    { id: 'finance', label: 'FINANCE / DATA',     keywords: ['stock', 'market', 'finance', 'world'] },
+    { id: 'other',   label: 'OTHERS',             keywords: [] },
+];
+
+// =========================================================================
+// SECTION : STATE（状態 / じょうたい）
+// =========================================================================
+const STATE = {
+    repos:        [],   // 全部 repo 資料
+    filtered:     [],   // 過濾後資料
+    activeCat:    'all',
+    searchQuery:  '',
+};
+
+// =========================================================================
+// SECTION : UTIL（ユーティリティ / ゆーてぃりてぃ）
+// =========================================================================
+const $  = (sel) => document.querySelector(sel);
+const $$ = (sel) => document.querySelectorAll(sel);
+
+function escapeHTML(str) {
+    if (!str) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function timeAgo(iso) {
+    const d = new Date(iso);
+    const diff = (Date.now() - d.getTime()) / 1000;
+    if (diff < 60)        return `${Math.floor(diff)}s ago`;
+    if (diff < 3600)      return `${Math.floor(diff/60)}m ago`;
+    if (diff < 86400)     return `${Math.floor(diff/3600)}h ago`;
+    if (diff < 86400*30)  return `${Math.floor(diff/86400)}d ago`;
+    if (diff < 86400*365) return `${Math.floor(diff/86400/30)}mo ago`;
+    return `${Math.floor(diff/86400/365)}y ago`;
+}
+
+function classifyRepo(repo) {
+    const text = ((repo.name || '') + ' ' +
+                  (repo.description || '') + ' ' +
+                  (repo.topics || []).join(' ')).toLowerCase();
+    for (const rule of CATEGORY_RULES) {
+        if (rule.id === 'other') continue;
+        if (rule.keywords.some(kw => text.includes(kw))) return rule.id;
     }
-  </script>
+    return 'other';
+}
+
+// =========================================================================
+// SECTION : BOOT_SEQUENCE（起動シーケンス / きどう）
+// 模擬 BIOS 開機動畫
+// =========================================================================
+function runBootSequence() {
+    const lines = [
+        { txt: '[BIOS] Albert TOC v2.0.0 ... initializing', cls: 'boot-dim', delay: 100 },
+        { txt: '[OK]   Memory test ........................ PASS', cls: 'boot-ok',   delay: 350 },
+        { txt: '[OK]   Network adapter .................... ONLINE', cls: 'boot-ok',   delay: 600 },
+        { txt: '[OK]   GitHub API endpoint reachable',           cls: 'boot-ok',   delay: 900 },
+        { txt: '[INFO] Loading repository matrix ...',           cls: 'boot-info', delay: 1200 },
+        { txt: '[INFO] Mounting category index ...',             cls: 'boot-info', delay: 1500 },
+        { txt: '[INFO] Activating UI module: Albert_Style',      cls: 'boot-info', delay: 1800 },
+        { txt: '[OK]   All systems operational',                 cls: 'boot-ok',   delay: 2100 },
+        { txt: '> System ready. Welcome, Operator.',             cls: 'boot-ok',   delay: 2400 },
+    ];
+    const target = $('#boot-lines');
+    if (!target) return;
+    lines.forEach((line) => {
+        const div = document.createElement('div');
+        div.className = `boot-line ${line.cls}`;
+        div.style.animationDelay = `${line.delay}ms`;
+        div.textContent = line.txt;
+        target.appendChild(div);
+    });
+    setTimeout(() => {
+        $('#boot-screen')?.classList.add('done');
+    }, CONFIG.BOOT_DURATION);
+}
+
+// =========================================================================
+// SECTION : CLOCK（時計 / とけい）
+// 即時時鐘 + 日期
+// =========================================================================
+function updateClock() {
+    const now = new Date();
+    const pad = (n) => String(n).padStart(2, '0');
+    const clk = $('#clock');
+    const dt  = $('#date');
+    if (clk) clk.textContent = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+    if (dt)  dt.textContent  = `${now.getFullYear()}/${pad(now.getMonth()+1)}/${pad(now.getDate())}`;
+}
+
+// =========================================================================
+// SECTION : CACHE（キャッシュ / きゃっしゅ）
+// 本地快取 - 減少 GitHub API 呼叫
+// =========================================================================
+function loadCache() {
+    try {
+        const raw = localStorage.getItem(CONFIG.CACHE_KEY);
+        if (!raw) return null;
+        const obj = JSON.parse(raw);
+        const ageMin = (Date.now() - obj.ts) / 60000;
+        if (ageMin > CONFIG.CACHE_TTL_MIN) return null;
+        return obj.data;
+    } catch (e) { return null; }
+}
+function saveCache(data) {
+    try {
+        localStorage.setItem(CONFIG.CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
+    } catch (e) { /* 容量不足忽略 / よぶん むし */ }
+}
+
+// =========================================================================
+// SECTION : FETCH_REPOS（リポジトリ取得 / しゅとく）
+// GitHub REST API 拉取所有 public repository
+// =========================================================================
+async function fetchRepos(force = false) {
+    if (!force) {
+        const cached = loadCache();
+        if (cached && cached.length) return cached;
+    }
+    const url = `https://api.github.com/users/${CONFIG.GITHUB_USER}/repos?per_page=${CONFIG.PER_PAGE}&sort=${CONFIG.SORT_BY}&direction=desc`;
+    const res = await fetch(url, { headers: { 'Accept': 'application/vnd.github+json' } });
+    if (!res.ok) throw new Error(`GitHub API error: HTTP ${res.status}`);
+    const data = await res.json();
+    saveCache(data);
+    return data;
+}
+
+// =========================================================================
+// SECTION : RENDER_FILTERS（フィルター描画 / びょうが）
+// =========================================================================
+function renderFilters() {
+    const bar = $('#filter-bar');
+    if (!bar) return;
+
+    // ALL 按鈕 / すべてボタン
+    const counts = { all: STATE.repos.length };
+    CATEGORY_RULES.forEach(r => { counts[r.id] = STATE.repos.filter(x => x._cat === r.id).length; });
+
+    const buttons = [
+        { id: 'all', label: 'ALL', count: counts.all },
+        ...CATEGORY_RULES.map(r => ({ id: r.id, label: r.label, count: counts[r.id] })),
+    ];
+
+    bar.innerHTML = buttons
+        .filter(b => b.count > 0 || b.id === 'all')
+        .map(b => `
+            <button class="filter-btn ${STATE.activeCat === b.id ? 'active' : ''}" data-cat="${b.id}">
+                ${b.label}<span class="filter-count">${b.count}</span>
+            </button>
+        `).join('');
+
+    bar.querySelectorAll('button[data-cat]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            STATE.activeCat = btn.dataset.cat;
+            renderFilters();
+            applyFilters();
+        });
+    });
+}
+
+// =========================================================================
+// SECTION : APPLY_FILTERS（フィルター適用 / てきよう）
+// =========================================================================
+function applyFilters() {
+    const q = STATE.searchQuery.trim().toLowerCase();
+    STATE.filtered = STATE.repos.filter(r => {
+        if (STATE.activeCat !== 'all' && r._cat !== STATE.activeCat) return false;
+        if (!q) return true;
+        const hay = (r.name + ' ' + (r.description || '') + ' ' + (r.language || '') + ' ' + (r.topics || []).join(' ')).toLowerCase();
+        return hay.includes(q);
+    });
+    renderGrid();
+}
+
+// =========================================================================
+// SECTION : RENDER_GRID（グリッド描画 / グリッドびょうが）
+// 渲染專案卡片
+// =========================================================================
+function renderGrid() {
+    const grid  = $('#project-grid');
+    const empty = $('#empty-state');
+    if (!grid) return;
+
+    if (!STATE.filtered.length) {
+        grid.innerHTML = '';
+        empty.classList.remove('hidden');
+        return;
+    }
+    empty.classList.add('hidden');
+
+    grid.innerHTML = STATE.filtered.map(repo => {
+        const isPriv     = repo.private;
+        const isArchived = repo.archived;
+        const statusCls  = isPriv ? 'priv' : (isArchived ? 'warn' : (repo.stargazers_count > 0 ? 'pass' : 'info'));
+        const statusTxt  = isPriv ? '● PRIVATE' : (isArchived ? '● ARCHIVED' : (repo.stargazers_count > 0 ? `● ★ ${repo.stargazers_count}` : '● ONLINE'));
+        const desc       = repo.description || '— No description provided. —';
+        const lang       = repo.language || 'N/A';
+        const updated    = timeAgo(repo.updated_at);
+        const link       = repo.has_pages
+            ? `https://${CONFIG.GITHUB_USER.toLowerCase()}.github.io/${repo.name.toLowerCase()}/`
+            : repo.html_url;
+        const linkLabel  = repo.has_pages ? 'OPEN DEMO ↗' : 'VIEW REPO ↗';
+
+        return `
+        <article class="rack-card cat-${repo._cat}">
+            <div class="flex justify-between items-start gap-2">
+                <h4 class="rack-title">${escapeHTML(repo.name)}</h4>
+                <span class="rack-status ${statusCls}">${statusTxt}</span>
+            </div>
+            <p class="rack-desc">${escapeHTML(desc)}</p>
+            <div class="rack-meta">
+                <span>◆ ${escapeHTML(lang)}</span>
+                <span>⌖ ${updated}</span>
+                ${repo.forks_count > 0 ? `<span>⑂ ${repo.forks_count}</span>` : ''}
+            </div>
+            <a class="rack-link" href="${escapeHTML(link)}" target="_blank" rel="noopener noreferrer">
+                ${linkLabel}
+            </a>
+        </article>`;
+    }).join('');
+}
+
+// =========================================================================
+// SECTION : RENDER_STATS（統計描画 / とうけい）
+// =========================================================================
+function renderStats() {
+    $('#stat-total').textContent = STATE.repos.length;
+    const langs = new Set(STATE.repos.map(r => r.language).filter(Boolean));
+    $('#stat-langs').textContent = langs.size;
+    const cats = new Set(STATE.repos.map(r => r._cat));
+    $('#stat-cats').textContent = cats.size;
+    const latest = STATE.repos.reduce((a, b) => new Date(a.updated_at) > new Date(b.updated_at) ? a : b, STATE.repos[0]);
+    $('#stat-updated').textContent = latest ? timeAgo(latest.updated_at) : '—';
+}
+
+// =========================================================================
+// SECTION : SHOW_ERROR（エラー表示 / エラーひょうじ）
+// =========================================================================
+function showError(msg) {
+    const grid = $('#project-grid');
+    grid.innerHTML = `
+        <div class="col-span-full text-center py-8" style="font-family:var(--font-mono);font-size:13px;">
+            <div style="color:var(--color-fail);font-size:15px;margin-bottom:8px;">[FAIL] ${escapeHTML(msg)}</div>
+            <div style="color:var(--text-muted);">GitHub API rate limit 為 60 req/hr，請稍候再試 or 開啟快取資料。</div>
+            <button class="filter-btn mt-3" onclick="bootstrap(true)">⟳ RETRY</button>
+        </div>`;
+}
+
+// =========================================================================
+// SECTION : BOOTSTRAP（ブートストラップ / きどうしょり）
+// 主程式進入點
+// =========================================================================
+async function bootstrap(force = false) {
+    const grid = $('#project-grid');
+    grid.innerHTML = Array.from({ length: 6 }, () =>
+        `<div class="skeleton" style="height:220px;"></div>`).join('');
+
+    try {
+        let data = await fetchRepos(force);
+        // 過濾規則 / フィルタールール
+        data = data.filter(r => CONFIG.SHOW_FORKS    || !r.fork);
+        data = data.filter(r => CONFIG.SHOW_ARCHIVED || !r.archived);
+        // 加上分類標籤 / カテゴリータグ
+        data.forEach(r => { r._cat = classifyRepo(r); });
+        STATE.repos = data;
+        STATE.filtered = data;
+        renderStats();
+        renderFilters();
+        applyFilters();
+    } catch (e) {
+        console.error(e);
+        showError(e.message || 'Failed to load repositories.');
+    }
+}
+
+// =========================================================================
+// SECTION : EVENT_BINDING（イベント紐付け / バインディング）
+// =========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    // 啟動序列 / きどうシーケンス
+    runBootSequence();
+
+    // 時鐘 / とけい
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // 搜尋 / けんさく
+    const searchInput = $('#search-input');
+    if (searchInput) {
+        let t;
+        searchInput.addEventListener('input', (e) => {
+            clearTimeout(t);
+            t = setTimeout(() => {
+                STATE.searchQuery = e.target.value;
+                applyFilters();
+            }, 200);
+        });
+    }
+
+    // 重新整理 / さいよみこみ
+    const refreshBtn = $('#refresh-btn');
+    if (refreshBtn) {
+        refreshBtn.addEventListener('click', () => {
+            const icon = $('#refresh-icon');
+            if (icon) icon.style.animation = 'rotate 0.8s linear';
+            localStorage.removeItem(CONFIG.CACHE_KEY);
+            bootstrap(true).then(() => {
+                setTimeout(() => { if (icon) icon.style.animation = ''; }, 800);
+            });
+        });
+    }
+
+    // 鍵盤快捷鍵 / キーボードショートカット
+    document.addEventListener('keydown', (e) => {
+        if (e.key === '/' && document.activeElement !== searchInput) {
+            e.preventDefault();
+            searchInput?.focus();
+        }
+        if (e.key === 'Escape' && document.activeElement === searchInput) {
+            searchInput.value = '';
+            STATE.searchQuery = '';
+            applyFilters();
+            searchInput.blur();
+        }
+    });
+
+    // 主程式 / メインプログラム
+    bootstrap(false);
+});
+</script>
+
 </body>
 </html>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Albert Pyahaw - Technical Operations Center. System Integration Engineer Portfolio & Commercial Tools.">
 <meta name="author" content="Albert Pyahaw">
-<title>ALBERT_TOC_v2.2.0 // Technical Operations Center</title>
+<title>ALBERT_TOC_v2.3.0 // Technical Operations Center</title>
 
 <!-- =========================================================================
      SECTION : EXTERNAL_RESOURCES（外部資源 / がいぶしげん）
@@ -18,7 +18,7 @@
 <style>
 /* =========================================================================
    SECTION : DESIGN_TOKENS（設計トークン / せっけいトークン）
-   設計師：Albert Pyahaw | 版本：v2.2.0
+   設計師：Albert Pyahaw | 版本：v2.3.0
    主題系統：dark（既定）/ neutral / light
    ========================================================================= */
 
@@ -443,6 +443,49 @@ body::after {
 .rack-link:hover { background: var(--color-info); color: var(--bg-void); box-shadow: 0 0 16px var(--bg-elevated); }
 
 /* =========================================================================
+   SECTION : COMMERCE_BADGE（商業バッジ）
+   v2.3.0 NEW - 商品 / Demo / 免費 視覺區分
+   ========================================================================= */
+.commerce-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 3px 9px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    align-self: flex-start;
+    width: fit-content;
+}
+.commerce-badge.premium {
+    background: var(--color-warn);
+    color: var(--bg-void);
+    box-shadow: 0 0 12px color-mix(in srgb, var(--color-warn) 50%, transparent);
+}
+.commerce-badge.demo {
+    background: color-mix(in srgb, var(--color-info) 18%, transparent);
+    color: var(--color-info);
+    border: 1px solid color-mix(in srgb, var(--color-info) 45%, transparent);
+}
+/* 商品專屬「BUY NOW」按鈕（金色高對比，強導購）/ こうにゅう ボタン */
+.rack-link.commerce-buy {
+    background: var(--color-warn);
+    color: var(--bg-void);
+    border-color: var(--color-warn);
+    font-weight: 800;
+}
+.rack-link.commerce-buy:hover {
+    background: var(--color-warn);
+    box-shadow: 0 0 20px var(--color-warn);
+    transform: translateY(-1px);
+}
+/* 商品卡片整體加金色光環 / きん ふちどり */
+.rack-card.commerce-premium,
+.pinned-card.commerce-premium {
+    border-color: color-mix(in srgb, var(--color-warn) 45%, var(--border-line));
+}
+.rack-card.commerce-premium::before { background: var(--color-warn); }
+
+/* =========================================================================
    SECTION : STAT_CARDS（統計）
    ========================================================================= */
 .stat-card { background: var(--bg-panel); border: 1px solid var(--border-line); border-radius: 8px; padding: 14px 16px; }
@@ -451,7 +494,7 @@ body::after {
 
 /* =========================================================================
    SECTION : PINNED_CARDS（招牌專案 / かんばんプロジェクト）
-   v2.2.0 NEW
+   v2.3.0 NEW
    ========================================================================= */
 .pinned-card {
     position: relative;
@@ -513,7 +556,7 @@ body::after {
 
 /* =========================================================================
    SECTION : CONTRIBUTION_GRAPH（貢獻熱力圖 / こうけんねつりょくず）
-   v2.2.0 NEW
+   v2.3.0 NEW
    ========================================================================= */
 .contrib-wrap {
     background: var(--bg-panel);
@@ -544,7 +587,7 @@ body::after {
 
 /* =========================================================================
    SECTION : PREMIUM_TOOLS（商業工具區 / プレミアムツール）
-   v2.2.0 NEW
+   v2.3.0 NEW
    ========================================================================= */
 .premium-card {
     position: relative;
@@ -644,7 +687,7 @@ body::after {
 
 /* =========================================================================
    SECTION : CONTACT（聯絡我區 / コンタクト）
-   v2.2.0 NEW
+   v2.3.0 NEW
    ========================================================================= */
 .contact-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
 @media (min-width: 768px) { .contact-grid { grid-template-columns: 1.4fr 1fr; } }
@@ -721,7 +764,7 @@ body::after {
 
 /* =========================================================================
    SECTION : LIVE_ACTIVITY_LOG（動態日誌 / ライブログ）
-   v2.2.0 NEW - 模擬全球部署日誌
+   v2.3.0 NEW - 模擬全球部署日誌
    ========================================================================= */
 .live-log {
     background: var(--bg-void);
@@ -823,14 +866,14 @@ body::after {
 
 <!-- =========================================================================
      SECTION : HEADER（上部ヘッダー）
-     新增（v2.2.0）：語言切換 + 主題切換
+     新增（v2.3.0）：語言切換 + 主題切換
      ========================================================================= -->
 <header class="toc-header">
     <div class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between flex-wrap gap-3" style="position:relative;z-index:1;">
         <div class="flex items-center gap-3">
             <span class="led-dot"></span>
             <span style="font-family:var(--font-mono);font-weight:700;font-size:14px;color:var(--color-info);letter-spacing:0.05em;">
-                ALBERT_TOC_v2.2.0
+                ALBERT_TOC_v2.3.0
             </span>
             <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-muted);letter-spacing:0.1em;" class="hidden md:inline">
                 // TECHNICAL_OPERATIONS_CENTER
@@ -940,7 +983,7 @@ body::after {
 
     <!-- =========================================================================
          SECTION : PINNED_PROJECTS（招牌專案 / かんばんプロジェクト）
-         v2.2.0 NEW - CONFIG.PINNED_REPOS 手動置頂
+         v2.3.0 NEW - CONFIG.PINNED_REPOS 手動置頂
          ========================================================================= -->
     <section id="pinned-section" class="mb-10 hidden">
         <h3 class="section-title mb-5" data-i18n="section.pinned">FLAGSHIP_PROJECTS</h3>
@@ -952,7 +995,7 @@ body::after {
 
     <!-- =========================================================================
          SECTION : CONTRIBUTION_GRAPH（貢獻熱力圖 / こうけんマップ）
-         v2.2.0 NEW
+         v2.3.0 NEW
          ========================================================================= -->
     <section class="mb-10">
         <h3 class="section-title mb-5" data-i18n="section.contrib">GITHUB_CONTRIBUTION_HEATMAP</h3>
@@ -972,7 +1015,7 @@ body::after {
 
     <!-- =========================================================================
          SECTION : PREMIUM_TOOLS_MATRIX（商業工具區 / プレミアムツール）
-         v2.2.0
+         v2.3.0
          ========================================================================= -->
     <h3 class="section-title mb-5" data-i18n="section.premium">PREMIUM_TOOLS_MATRIX</h3>
     <div style="font-family:var(--font-mono);font-size:11.5px;color:var(--text-muted);margin-bottom:18px;letter-spacing:0.05em;" data-i18n="premium.subtitle">
@@ -1171,7 +1214,7 @@ body::after {
 
     <!-- =========================================================================
          SECTION : LIVE_ACTIVITY_LOG（動態日誌 / ライブログ）
-         v2.2.0 NEW - 模擬全球部署活動
+         v2.3.0 NEW - 模擬全球部署活動
          ========================================================================= -->
     <h3 class="section-title mb-5" data-i18n="section.livelog">LIVE_ACTIVITY_LOG</h3>
     <div style="font-family:var(--font-mono);font-size:11.5px;color:var(--text-muted);margin-bottom:12px;letter-spacing:0.05em;" data-i18n="livelog.subtitle">
@@ -1183,7 +1226,7 @@ body::after {
 
     <!-- =========================================================================
          SECTION : CONTACT（聯絡我 / コンタクト）
-         v2.2.0 NEW
+         v2.3.0 NEW
          ========================================================================= -->
     <h3 class="section-title mb-5" id="contact-section" data-i18n="section.contact">ESTABLISH_CONNECTION</h3>
 
@@ -1253,7 +1296,7 @@ body::after {
                 <span class="contact-channel-arrow">→</span>
             </a>
 
-            <!-- v2.2.0 NEW : LINE -->
+            <!-- v2.3.0 NEW : LINE -->
             <a class="contact-channel" href="https://line.me/" target="_blank" rel="noopener" data-cta="line">
                 <div class="contact-channel-icon" style="color:var(--color-pass);">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.508.43-.595.06-.023.135-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
@@ -1265,7 +1308,7 @@ body::after {
                 <span class="contact-channel-arrow">→</span>
             </a>
 
-            <!-- v2.2.0 NEW : Meta / Facebook -->
+            <!-- v2.3.0 NEW : Meta / Facebook -->
             <a class="contact-channel" href="https://www.facebook.com/" target="_blank" rel="noopener" data-cta="facebook">
                 <div class="contact-channel-icon" style="color:var(--color-info);">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12c0-6.627-5.373-12-12-12S0 5.373 0 12c0 5.99 4.388 10.954 10.125 11.854V15.469H7.078V12h3.047V9.356c0-3.007 1.792-4.668 4.533-4.668 1.312 0 2.686.234 2.686.234v2.953h-1.514c-1.491 0-1.956.925-1.956 1.875V12h3.328l-.532 3.469h-2.796v8.385C19.612 22.954 24 17.99 24 12"/></svg>
@@ -1288,18 +1331,17 @@ body::after {
                 <span class="ml-2">CHANGELOG.md</span>
             </div>
             <div class="terminal-body" style="font-size:12.5px;">
-                <div style="color:var(--color-info);">## [v2.2.0] - 2026-05-16 — Designed by Albert Pyahaw</div>
-                <div class="out" style="margin-left:14px;">+ [NEW] FLAGSHIP_PROJECTS — Manually pinned showcase cards</div>
-                <div class="out" style="margin-left:14px;">+ [NEW] README hover preview with permanent localStorage cache</div>
-                <div class="out" style="margin-left:14px;">+ [NEW] GitHub Contribution Heatmap (ghchart embed)</div>
-                <div class="out" style="margin-left:14px;">+ [NEW] EXCLUDE_REPOS blacklist — Albert-Pyahaw repo hidden</div>
-                <div class="out" style="margin-left:14px;">+ [NEW] LINE + Facebook contact channels (now 6 total)</div>
-                <div class="out" style="margin-left:14px;">+ [NEW] Visitor activity Webhook — 1 notification per visitor / day</div>
-                <div class="out" style="margin-left:14px;">+ [FIX] GitHub Pages URL logic verified for /Albert-Pyahaw/ subpath</div>
+                <div style="color:var(--color-info);">## [v2.3.0] - 2026-05-16 — Designed by Albert Pyahaw</div>
+                <div class="out" style="margin-left:14px;">+ [NEW] Topic-driven commerce tagging — mark repo as PREMIUM / DEMO / FREE</div>
+                <div class="out" style="margin-left:14px;">+ [NEW] PREMIUM repos link to Gumroad only — GitHub source hidden (anti-leak)</div>
+                <div class="out" style="margin-left:14px;">+ [NEW] $ PREMIUM / ▶ DEMO badges with gold/cyan visual tiers</div>
+                <div class="out" style="margin-left:14px;">+ [NEW] Buy link auto-resolved from repo homepage → PRODUCT_LINKS → fallback</div>
+                <div class="out" style="margin-left:14px;">+ [OPT] Card CTA logic unified via resolveRepoLink()</div>
+                <div style="margin-top:8px;color:var(--text-muted);">## [v2.2.0] - 2026-05-16</div>
+                <div class="out" style="margin-left:14px;color:var(--text-muted);">+ [NEW] FLAGSHIP_PROJECTS · README hover preview · Contribution Heatmap</div>
+                <div class="out" style="margin-left:14px;color:var(--text-muted);">+ [NEW] EXCLUDE_REPOS blacklist · LINE + Facebook · daily Webhook notify</div>
                 <div style="margin-top:8px;color:var(--text-muted);">## [v2.1.0] - 2026-05-16</div>
-                <div class="out" style="margin-left:14px;color:var(--text-muted);">+ [NEW] i18n 4 langs (zh-TW / zh-CN / en / ja)</div>
-                <div class="out" style="margin-left:14px;color:var(--text-muted);">+ [NEW] 3 themes (Dark / Neutral #262626 / Light #E6E6E6)</div>
-                <div class="out" style="margin-left:14px;color:var(--text-muted);">+ [NEW] PREMIUM_TOOLS_MATRIX · ESTABLISH_CONNECTION · LIVE_ACTIVITY_LOG</div>
+                <div class="out" style="margin-left:14px;color:var(--text-muted);">+ [NEW] i18n 4 langs · 3 themes · PREMIUM_TOOLS · CONTACT · LIVE_LOG</div>
                 <div style="margin-top:8px;color:var(--text-muted);">## [v2.0.0] - 2026-05-16</div>
                 <div class="out" style="margin-left:14px;color:var(--text-muted);">+ [NEW] GitHub API auto-sync, search, filter, BIOS boot, scanline</div>
                 <div style="margin-top:8px;color:var(--text-muted);">## [v1.0.0] - 2025-12-31</div>
@@ -1314,7 +1356,7 @@ body::after {
      SECTION : FOOTER（フッター）
      ========================================================================= -->
 <footer class="toc-footer">
-    <div data-i18n="footer.line1">© 2026 Albert_Pyahaw · Technical Operations Center v2.2.0 · Designed in Albert Style</div>
+    <div data-i18n="footer.line1">© 2026 Albert_Pyahaw · Technical Operations Center v2.3.0 · Designed in Albert Style</div>
     <div style="margin-top:6px;color:var(--text-muted);font-size:10px;" data-i18n="footer.line2">
         // BUILT_WITH: HTML5 + TailwindCSS + GitHub_REST_API · ZERO_DEPENDENCY_DEPLOY
     </div>
@@ -1322,7 +1364,7 @@ body::after {
 
 <!-- =========================================================================
      SECTION : MAIN_SCRIPT（メインスクリプト）
-     設計師：Albert Pyahaw | 版本：v2.2.0
+     設計師：Albert Pyahaw | 版本：v2.3.0
      ========================================================================= -->
 <script>
 'use strict';
@@ -1449,6 +1491,9 @@ const I18N = {
         'price.trial':             '/ 試用',
         'price.forever':           '/ 永久',
         'cta.buy':                 '前往 GUMROAD 購買 ↗',
+        'cta.buynow':              'BUY NOW ↗',
+        'cta.demo':                'OPEN DEMO ↗',
+        'cta.viewrepo':            'VIEW REPO ↗',
         'cta.contact':             '立即聯絡 ↗',
         'cta.try':                 '試用 DEMO ↗',
         'cta.subscribe':           '訂閱 ↗',
@@ -1463,7 +1508,7 @@ const I18N = {
         'btn.reload':              ' RELOAD 重整',
         'empty.title':             '[WARN] 找不到符合的專案。',
         'empty.body':              '請清除搜尋字串或切換到「ALL」分類。',
-        'footer.line1':            '© 2026 Albert_Pyahaw · 技術指揮中心 v2.2.0 · 以 Albert Style 設計',
+        'footer.line1':            '© 2026 Albert_Pyahaw · 技術指揮中心 v2.3.0 · 以 Albert Style 設計',
         'footer.line2':            '// 採用 HTML5 + TailwindCSS + GitHub_REST_API · 零依賴部署'
     },
     'zh-CN': {
@@ -1526,6 +1571,9 @@ const I18N = {
         'price.trial':             '/ 试用',
         'price.forever':           '/ 永久',
         'cta.buy':                 '前往 GUMROAD 购买 ↗',
+        'cta.buynow':              'BUY NOW ↗',
+        'cta.demo':                'OPEN DEMO ↗',
+        'cta.viewrepo':            'VIEW REPO ↗',
         'cta.contact':             '立即联络 ↗',
         'cta.try':                 '试用 DEMO ↗',
         'cta.subscribe':           '订阅 ↗',
@@ -1540,7 +1588,7 @@ const I18N = {
         'btn.reload':              ' RELOAD 重载',
         'empty.title':             '[WARN] 未找到匹配的项目。',
         'empty.body':              '请清除搜索字串或切换到「ALL」分类。',
-        'footer.line1':            '© 2026 Albert_Pyahaw · 技术指挥中心 v2.2.0 · 以 Albert Style 设计',
+        'footer.line1':            '© 2026 Albert_Pyahaw · 技术指挥中心 v2.3.0 · 以 Albert Style 设计',
         'footer.line2':            '// 采用 HTML5 + TailwindCSS + GitHub_REST_API · 零依赖部署'
     },
     'en': {
@@ -1603,6 +1651,9 @@ const I18N = {
         'price.trial':             '/ trial',
         'price.forever':           '/ forever',
         'cta.buy':                 'BUY ON GUMROAD ↗',
+        'cta.buynow':              'BUY NOW ↗',
+        'cta.demo':                'OPEN DEMO ↗',
+        'cta.viewrepo':            'VIEW REPO ↗',
         'cta.contact':             'CONTACT ME ↗',
         'cta.try':                 'TRY DEMO ↗',
         'cta.subscribe':           'SUBSCRIBE ↗',
@@ -1617,7 +1668,7 @@ const I18N = {
         'btn.reload':              ' RELOAD',
         'empty.title':             '[WARN] No matching projects found.',
         'empty.body':              'Try clearing the search or switch to ALL category.',
-        'footer.line1':            '© 2026 Albert_Pyahaw · Technical Operations Center v2.2.0 · Designed in Albert Style',
+        'footer.line1':            '© 2026 Albert_Pyahaw · Technical Operations Center v2.3.0 · Designed in Albert Style',
         'footer.line2':            '// BUILT_WITH: HTML5 + TailwindCSS + GitHub_REST_API · ZERO_DEPENDENCY_DEPLOY'
     },
     'ja': {
@@ -1680,6 +1731,9 @@ const I18N = {
         'price.trial':             '/ トライアル',
         'price.forever':           '/ 永久',
         'cta.buy':                 'GUMROAD で購入 ↗',
+        'cta.buynow':              'BUY NOW ↗',
+        'cta.demo':                'OPEN DEMO ↗',
+        'cta.viewrepo':            'VIEW REPO ↗',
         'cta.contact':             'お問い合わせ ↗',
         'cta.try':                 'DEMO を試す ↗',
         'cta.subscribe':           '登録 ↗',
@@ -1694,7 +1748,7 @@ const I18N = {
         'btn.reload':              ' RELOAD',
         'empty.title':             '[WARN] 一致するプロジェクトが見つかりません。',
         'empty.body':              '検索文字列をクリアするか、「ALL」カテゴリに切り替えてください。',
-        'footer.line1':            '© 2026 Albert_Pyahaw · テクニカル オペレーション センター v2.2.0 · Albert Style で設計',
+        'footer.line1':            '© 2026 Albert_Pyahaw · テクニカル オペレーション センター v2.3.0 · Albert Style で設計',
         'footer.line2':            '// HTML5 + TailwindCSS + GitHub_REST_API · ゼロ依存展開'
     }
 };
@@ -1710,6 +1764,74 @@ const CATEGORY_RULES = [
     { id: 'finance', label: 'FINANCE / DATA',     keywords: ['stock', 'market', 'finance', 'world'] },
     { id: 'other',   label: 'OTHERS',             keywords: [] },
 ];
+
+// =========================================================================
+// SECTION : COMMERCE_RULES（商業ルール / しょうぎょうルール）
+// v2.3.0 NEW - 用 GitHub Topics 標記 repo 是「商品 / Demo / 免費」
+//             ・じ GitHub で topic を つけるだけ
+//
+// 使用方式（在 GitHub repo 的 About → Topics 加標籤）：
+//   - 加 'premium' / 'paid' / 'sale' → 商品（連到 Gumroad，隱藏 GitHub 連結）
+//   - 加 'demo'                     → Demo（連到 GitHub Pages）
+//   - 不加任何標籤（預設）          → 免費開源（連到 GitHub repo）
+//
+// 商品的購買連結來源（優先順序）：
+//   1. repo 的 homepage 欄位（在 About 設定）← 最推薦
+//   2. CONFIG.PRODUCT_LINKS[repo.name] 映射表
+//   3. CONFIG.LINKS.gumroad_5w2h（最終 fallback）
+// =========================================================================
+const COMMERCE_TOPICS = {
+    premium: ['premium', 'paid', 'sale', 'pro', 'commercial', 'buy'],
+    demo:    ['demo', 'preview', 'sample'],
+};
+
+// 商品專屬 Gumroad 連結映射（repo 名稱 → URL）
+// しょうひん せんよう リンク マッピング
+const PRODUCT_LINKS = {
+    // 'Cycles-for-Linux': 'https://gumroad.com/l/cycles',   // 範例
+    // 'cstate-logger-pro': 'https://gumroad.com/l/cstate',
+};
+
+// 判斷 repo 的商業屬性 / しょうぎょう ぞくせい はんてい
+function getRepoCommerce(repo) {
+    const topics = (repo.topics || []).map(t => t.toLowerCase());
+    if (topics.some(t => COMMERCE_TOPICS.premium.includes(t))) return 'premium';
+    if (topics.some(t => COMMERCE_TOPICS.demo.includes(t)))    return 'demo';
+    return 'free';
+}
+
+// 統一解析卡片連結 + 標籤 + 徽章 / リンク・ラベル・バッジ かいけつ
+function resolveRepoLink(repo, commerce, dict) {
+    const ghPages = `https://${CONFIG.GITHUB_USER.toLowerCase()}.github.io/${repo.name}/`;
+    if (commerce === 'premium') {
+        // 商品：連 Gumroad，絕不連 GitHub（防下載）/ ダウンロード ぼうし
+        const buyUrl = repo.homepage || PRODUCT_LINKS[repo.name] || CONFIG.LINKS.gumroad_5w2h || '#';
+        return {
+            link:      buyUrl,
+            label:     (dict && dict['cta.buynow']) || 'BUY NOW ↗',
+            linkClass: 'rack-link commerce-buy',
+            badge:     `<span class="commerce-badge premium" title="Premium product">$ PREMIUM</span>`,
+            track:     'buy_click',
+        };
+    }
+    if (commerce === 'demo') {
+        return {
+            link:      repo.has_pages ? ghPages : repo.html_url,
+            label:     (dict && dict['cta.demo']) || 'OPEN DEMO ↗',
+            linkClass: 'rack-link commerce-demo',
+            badge:     `<span class="commerce-badge demo" title="Live demo">▶ DEMO</span>`,
+            track:     'open_demo',
+        };
+    }
+    // free / 預設
+    return {
+        link:      repo.has_pages ? ghPages : repo.html_url,
+        label:     repo.has_pages ? ((dict && dict['cta.demo']) || 'OPEN DEMO ↗') : ((dict && dict['cta.viewrepo']) || 'VIEW REPO ↗'),
+        linkClass: 'rack-link',
+        badge:     '',
+        track:     'open_repo',
+    };
+}
 
 // =========================================================================
 // SECTION : STATE（状態 / じょうたい）
@@ -1769,6 +1891,7 @@ function applyI18n(lang) {
     $$('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
     try { localStorage.setItem('albert_toc_lang', lang); } catch (e) {}
     renderGrid();   // 重新渲染卡片（語言相關文字）
+    renderPinned(); // v2.3.0：招牌卡片的 CTA 文字也要隨語言更新
     renderFilters();
 }
 
@@ -1788,7 +1911,7 @@ function applyTheme(theme) {
 // =========================================================================
 function runBootSequence() {
     const lines = [
-        { txt: '[BIOS] Albert TOC v2.2.0 ... initializing', cls: 'boot-dim', delay: 100 },
+        { txt: '[BIOS] Albert TOC v2.3.0 ... initializing', cls: 'boot-dim', delay: 100 },
         { txt: '[OK]   Memory test ........................ PASS', cls: 'boot-ok', delay: 350 },
         { txt: '[OK]   Network adapter .................... ONLINE', cls: 'boot-ok', delay: 600 },
         { txt: '[OK]   GitHub API endpoint reachable',           cls: 'boot-ok', delay: 900 },
@@ -1915,23 +2038,24 @@ function renderGrid() {
         const desc = repo.description || '— No description provided. —';
         const lang = repo.language || 'N/A';
         const updated = timeAgo(repo.updated_at);
-        const link = repo.has_pages
-            ? `https://${CONFIG.GITHUB_USER.toLowerCase()}.github.io/${repo.name.toLowerCase()}/`
-            : repo.html_url;
-        const linkLabel = repo.has_pages ? 'OPEN DEMO ↗' : 'VIEW REPO ↗';
+        // v2.3.0：依 GitHub Topics 判斷商業屬性 / しょうぎょう はんてい
+        const commerce = getRepoCommerce(repo);
+        const r = resolveRepoLink(repo, commerce, dict);
         return `
-        <article class="rack-card cat-${repo._cat}">
+        <article class="rack-card cat-${repo._cat} commerce-${commerce}">
             <div class="flex justify-between items-start gap-2">
                 <h4 class="rack-title">${escapeHTML(repo.name)}</h4>
                 <span class="rack-status ${statusCls}">${statusTxt}</span>
             </div>
+            ${r.badge}
             <p class="rack-desc">${escapeHTML(desc)}</p>
             <div class="rack-meta">
                 <span>◆ ${escapeHTML(lang)}</span>
                 <span>⌖ ${updated}</span>
                 ${repo.forks_count > 0 ? `<span>⑂ ${repo.forks_count}</span>` : ''}
             </div>
-            <a class="rack-link" href="${escapeHTML(link)}" target="_blank" rel="noopener noreferrer">${linkLabel}</a>
+            <a class="${r.linkClass}" href="${escapeHTML(r.link)}" target="_blank" rel="noopener noreferrer"
+               onclick="trackInteraction('${r.track}', '${escapeHTML(repo.name)}')">${r.label}</a>
         </article>`;
     }).join('');
 }
@@ -1955,7 +2079,7 @@ function renderStats() {
 // =========================================================================
 const LOG_TEMPLATES = [
     { tag: 'SUCCESS', tagCls: 'log-tag-ok',   msg: 'License activated for Node: RX4770-M8',             region: 'TechCorp_US'    },
-    { tag: 'INFO',    tagCls: 'log-tag-info', msg: '5W2H_Report_Generator_v2.2.0 downloaded',           region: 'Taiwan (114.34.*)' },
+    { tag: 'INFO',    tagCls: 'log-tag-info', msg: '5W2H_Report_Generator_v2.3.0 downloaded',           region: 'Taiwan (114.34.*)' },
     { tag: 'SUCCESS', tagCls: 'log-tag-ok',   msg: 'Premium Package purchase via Gumroad',              region: 'Tokyo, JP'      },
     { tag: 'INFO',    tagCls: 'log-tag-info', msg: 'Log_Toolkit_Pro installed on Windows Server 2022',  region: 'Berlin, DE'     },
     { tag: 'SUCCESS', tagCls: 'log-tag-ok',   msg: 'Enterprise consulting inquiry received',            region: 'Singapore, SG'  },
@@ -2022,7 +2146,7 @@ async function bootstrap(force = false) {
     grid.innerHTML = Array.from({ length: 6 }, () => `<div class="skeleton" style="height:220px;"></div>`).join('');
     try {
         let data = await fetchRepos(force);
-        // v2.2.0：先過 EXCLUDE 黑名單（如本站所在的 Albert-Pyahaw repo）
+        // v2.3.0：先過 EXCLUDE 黑名單（如本站所在的 Albert-Pyahaw repo）
         // じょがいリスト ふぃるたー
         data = data.filter(r => !CONFIG.EXCLUDE_REPOS.includes(r.name));
         data = data.filter(r => CONFIG.SHOW_FORKS || !r.fork);
@@ -2031,7 +2155,7 @@ async function bootstrap(force = false) {
         STATE.repos = data;
         STATE.filtered = data;
         renderStats();
-        renderPinned();      // v2.2.0：渲染招牌專案 / かんばん プロジェクト レンダリング
+        renderPinned();      // v2.3.0：渲染招牌專案 / かんばん プロジェクト レンダリング
         renderFilters();
         applyFilters();
     } catch (e) {
@@ -2043,7 +2167,7 @@ window.bootstrap = bootstrap;
 
 // =========================================================================
 // SECTION : PINNED_PROJECTS（招牌專案 / かんばんプロジェクト）
-// v2.2.0 NEW - 手動指定置頂的招牌專案
+// v2.3.0 NEW - 手動指定置頂的招牌專案
 // =========================================================================
 function renderPinned() {
     const wrap = $('#pinned-grid');
@@ -2055,15 +2179,17 @@ function renderPinned() {
         .filter(Boolean);
     if (!pinned.length) { sec.classList.add('hidden'); return; }
     sec.classList.remove('hidden');
+    const dict = I18N[STATE.lang] || I18N['en'];
     wrap.innerHTML = pinned.map(repo => {
-        const link = repo.has_pages
-            ? `https://${CONFIG.GITHUB_USER.toLowerCase()}.github.io/${repo.name}/`
-            : repo.html_url;
-        const linkLabel = repo.has_pages ? 'OPEN DEMO ↗' : 'VIEW REPO ↗';
+        const commerce = getRepoCommerce(repo);
+        const r = resolveRepoLink(repo, commerce, dict);
         const desc = repo.description || '— No description provided. —';
         return `
-        <article class="pinned-card cat-${repo._cat}" data-repo="${escapeHTML(repo.name)}">
-            <div class="pinned-badge">★ PINNED</div>
+        <article class="pinned-card cat-${repo._cat} commerce-${commerce}" data-repo="${escapeHTML(repo.name)}">
+            <div class="flex items-center gap-2 mt-1" style="flex-wrap:wrap;">
+                <div class="pinned-badge">★ PINNED</div>
+                ${r.badge}
+            </div>
             <div class="flex justify-between items-start gap-2 mt-2">
                 <h4 class="rack-title" style="font-size:18px;">${escapeHTML(repo.name)}</h4>
                 <span class="rack-status ${repo.stargazers_count > 0 ? 'pass' : 'info'}">
@@ -2079,8 +2205,8 @@ function renderPinned() {
                 <span>⌖ ${timeAgo(repo.updated_at)}</span>
                 ${repo.forks_count > 0 ? `<span>⑂ ${repo.forks_count}</span>` : ''}
             </div>
-            <a class="rack-link" href="${escapeHTML(link)}" target="_blank" rel="noopener noreferrer"
-               onclick="trackInteraction('open_pinned', '${escapeHTML(repo.name)}')">${linkLabel}</a>
+            <a class="${r.linkClass}" href="${escapeHTML(r.link)}" target="_blank" rel="noopener noreferrer"
+               onclick="trackInteraction('${r.track}', '${escapeHTML(repo.name)}')">${r.label}</a>
         </article>`;
     }).join('');
     // 綁定 hover 載入 README / ほばー で README ロード
@@ -2091,7 +2217,7 @@ function renderPinned() {
 
 // =========================================================================
 // SECTION : README_PREVIEW（README プレビュー）
-// v2.2.0 NEW - hover 時 lazy fetch + 永久 cache（節省 API 呼叫）
+// v2.3.0 NEW - hover 時 lazy fetch + 永久 cache（節省 API 呼叫）
 // =========================================================================
 function loadReadmeCache() {
     try { return JSON.parse(localStorage.getItem(CONFIG.README_CACHE_KEY) || '{}'); }
@@ -2138,7 +2264,7 @@ async function loadReadmePreview(repoName) {
 
 // =========================================================================
 // SECTION : INTERACTION_TRACKING（互動追蹤 / インタラクション ついせき）
-// v2.2.0 NEW - 每訪客每天最多送 1 次 Webhook，避免洗版
+// v2.3.0 NEW - 每訪客每天最多送 1 次 Webhook，避免洗版
 //             まいにち 1 かい のみ つうち
 // =========================================================================
 function todayStr() {
@@ -2204,8 +2330,8 @@ function resolveCtaLinks() {
         'gumroad-tpl':  CONFIG.LINKS.gumroad_tpl,
         'youtube':      CONFIG.LINKS.youtube,
         'linkedin':     CONFIG.LINKS.linkedin,
-        'line':         CONFIG.LINKS.line,          // v2.2.0 NEW
-        'facebook':     CONFIG.LINKS.facebook,      // v2.2.0 NEW
+        'line':         CONFIG.LINKS.line,          // v2.3.0 NEW
+        'facebook':     CONFIG.LINKS.facebook,      // v2.3.0 NEW
     };
     $$('[data-cta]').forEach(el => {
         const key = el.dataset.cta;
@@ -2213,7 +2339,7 @@ function resolveCtaLinks() {
             el.setAttribute('href', map[key]);
             if (el.tagName === 'A') { el.setAttribute('target', '_blank'); el.setAttribute('rel', 'noopener noreferrer'); }
         }
-        // v2.2.0：追蹤點擊（每日 1 次通知）/ くりっく ついせき
+        // v2.3.0：追蹤點擊（每日 1 次通知）/ くりっく ついせき
         el.addEventListener('click', () => trackInteraction('cta_click', key));
     });
 }
@@ -2279,7 +2405,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 解析商業連結 / コマーシャル リンクの かいせつ
     resolveCtaLinks();
 
-    // v2.2.0：訪客首次造訪追蹤（每天最多 1 次通知 Albert）
+    // v2.3.0：訪客首次造訪追蹤（每天最多 1 次通知 Albert）
     // はつほうもん の ついせき・1にち 1かい の つうち
     trackInteraction('page_view', document.referrer || 'direct');
 
